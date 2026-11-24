@@ -1,0 +1,1680 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>清邁八日</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* 版面概念：一面直書的紅色蘭納長幡掛在頁首；之後每一天都是「方城示意圖＋時間軸」，全部靠左對齊，其餘保持安靜。 */
+:root{
+  --ground:#E7EEE6;      /* 青瓷霧：涼季早晨的底色 */
+  --paper:#F5F8F3;       /* 地圖與表格的紙面 */
+  --ink:#1C2748;         /* 藍染 */
+  --ink-soft:#4E5A78;
+  --line:#C2CFC5;
+  --moat:#6FA79A;        /* 護城河 */
+  --celadon:#3A7464;     /* 山與自然 */
+  --red:#B3222B;         /* 紅色雙條車 */
+  --gold:#8A6510;        /* 寺院金漆 */
+  --tung:#B3222B;        /* 長幡 */
+  --on-tung:#F7EFE2;
+  --on-fill:#F5F8F3;     /* 實心印章上的字 */
+
+  --f-display:"LXGW WenKai TC","Noto Serif TC","BiauKai","DFKai-SB",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-num:"Kanit","Noto Sans TC","Microsoft JhengHei",sans-serif;
+
+  --s-1:.8125rem; --s0:1rem; --s1:1.25rem; --s2:1.5625rem; --s3:1.95rem;
+  --tung-w:64px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#111830; --paper:#19223F; --ink:#E4EAE3; --ink-soft:#A5B0C8; --line:#2F3B61;
+    --moat:#3F8F86; --celadon:#86C4B0; --red:#F0696E; --gold:#E2B95E;
+    --tung:#A2222A; --on-tung:#F7EFE2; --on-fill:#111830; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#111830; --paper:#19223F; --ink:#E4EAE3; --ink-soft:#A5B0C8; --line:#2F3B61;
+  --moat:#3F8F86; --celadon:#86C4B0; --red:#F0696E; --gold:#E2B95E;
+  --tung:#A2222A; --on-tung:#F7EFE2; --on-fill:#111830; color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-body);font-size:var(--s0);line-height:1.75;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ground)}
+h1,h2,h3,p,ol,ul,dl,dd,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.th{font-family:var(--f-num);font-weight:300;color:var(--ink-soft)}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){
+  :root{--tung-w:96px}
+  .wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}
+}
+
+/* ── 頁首 ─────────────────────────── */
+.hero-grid{display:grid;grid-template-columns:var(--tung-w) minmax(0,1fr);grid-template-areas:"tung text" "flights flights" "map map";column-gap:1.25rem;row-gap:1.75rem;padding-bottom:2.5rem}
+.tung{grid-area:tung;writing-mode:vertical-rl;background-color:var(--tung);background-image:repeating-linear-gradient(to bottom,transparent 0 47px,rgba(247,239,226,.26) 47px 48px);color:var(--on-tung);font-family:var(--f-display);font-weight:700;font-size:2.5rem;line-height:var(--tung-w);letter-spacing:.14em;padding:1.75rem 0 3.5rem;min-height:19rem;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 26px),0 100%)}
+.hero-text{grid-area:text;padding-top:1.5rem;display:grid;gap:.9rem;align-content:start}
+.hero-thai{font-family:var(--f-num);font-weight:300;font-size:clamp(2.1rem,7.5vw,3.6rem);line-height:1.25;color:var(--celadon)}
+.hero-dates{font-family:var(--f-display);font-size:clamp(1rem,4.4vw,1.25rem);line-height:1.5}
+.hero-dates span{display:inline-block}
+.hero-lede{max-width:34em;color:var(--ink-soft)}
+.hero-count{font-size:var(--s-1);color:var(--ink-soft)}
+.hero-count b{font-family:var(--f-num);font-weight:500;font-size:var(--s1);color:var(--red);margin-inline:.15em}
+
+.flights{grid-area:flights;display:grid;gap:0;border-top:1px solid var(--line);align-self:start}
+.flight{padding-block:1rem;border-bottom:1px solid var(--line);display:grid;gap:.5rem}
+.f-head{display:flex;flex-wrap:wrap;column-gap:1rem;align-items:baseline;font-size:var(--s-1);color:var(--ink-soft)}
+.f-head strong{font-family:var(--f-display);font-size:var(--s0);color:var(--red)}
+.f-head .num{font-weight:500;color:var(--ink);font-size:var(--s0)}
+.f-line{display:grid;grid-template-columns:auto minmax(12px,1fr) auto minmax(12px,1fr) auto;align-items:center;column-gap:.6rem}
+.f-pt{display:grid;font-size:var(--s-1);color:var(--ink-soft);line-height:1.4}
+.f-pt b{font-family:var(--f-num);font-weight:500;font-size:var(--s3);line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums}
+.f-pt.end{text-align:right}
+.f-rule{height:1px;background:var(--ink-soft);opacity:.55}
+.f-dur{font-size:var(--s-1);color:var(--ink-soft);white-space:nowrap}
+.f-note{font-size:var(--s-1);color:var(--ink-soft);padding-top:.75rem}
+
+.hero-map{grid-area:map}
+.map{background:var(--paper);border:1px solid var(--line)}
+.map svg{display:block;width:100%;height:auto}
+.map-cap{font-size:var(--s-1);color:var(--ink-soft);padding-top:.5rem;line-height:1.6}
+.map-cap i{display:inline-block;width:.6em;height:.6em;background:var(--ink);margin-right:.35em;vertical-align:.05em}
+
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:var(--tung-w) minmax(0,1fr) minmax(0,430px);grid-template-areas:"tung text map" "tung flights map";column-gap:2.5rem;row-gap:1.5rem;padding-bottom:3.5rem}
+  .tung{font-size:3.6rem;padding:2.25rem 0 4.5rem}
+  .hero-text{padding-top:2.25rem}
+  .hero-map{padding-top:2.25rem;align-self:start}
+}
+
+/* ── 地圖 SVG（底圖畫法出自和 Codex 的討論）────── */
+.map{overflow:hidden}
+.map text{font-family:var(--f-body);font-size:13.5px;font-weight:500;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+.map .m-region{font-family:var(--f-display);font-size:15px;font-weight:700;fill:var(--ink-soft)}
+.m-g-far{stop-color:color-mix(in srgb,var(--celadon) 20%,var(--paper))}
+.m-g-mid{stop-color:color-mix(in srgb,var(--celadon) 34%,var(--paper))}
+.m-g-near{stop-color:color-mix(in srgb,var(--celadon) 50%,var(--paper))}
+.m-tree{fill:color-mix(in srgb,var(--celadon) 42%,var(--paper))}
+.m-river{fill:none;stroke:color-mix(in srgb,var(--moat) 55%,var(--paper));stroke-width:13}
+.m-river-shine{fill:none;stroke:color-mix(in srgb,var(--moat) 15%,var(--paper));stroke-width:1.5}
+.m-moat{fill:var(--ground);stroke:color-mix(in srgb,var(--moat) 72%,var(--paper));stroke-width:8}
+.m-wall{fill:none;stroke:var(--celadon);stroke-width:1.2;opacity:.8}
+.m-grid{fill:none;stroke:var(--line);stroke-width:1}
+.m-gate{fill:none;stroke:var(--paper);stroke-width:10}
+.m-towers rect{fill:var(--celadon);stroke:var(--paper);stroke-width:1}
+.m-route{fill:none;stroke:var(--ink-soft);stroke-width:1.5;stroke-dasharray:4 5;stroke-linejoin:round}
+.m-seg{stroke:var(--red);stroke-width:5;stroke-linecap:round}
+.m-hotel{fill:var(--ink);stroke:var(--paper);stroke-width:1.5}
+.m-icon{fill:none;stroke:var(--ink-soft);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.m-icon.on{stroke:var(--red);stroke-width:1.8}
+.m-icon.on.is-temple{stroke:var(--gold)}
+.m-pin{fill:var(--paper);stroke:var(--red);stroke-width:1.6}
+.m-pin.is-temple{stroke:var(--gold)}
+.m-arrow line{stroke:var(--ink-soft);stroke-width:1.3;stroke-dasharray:5 4}
+.m-arrow path{fill:var(--ink-soft)}
+.m-arrow.on line{stroke:var(--red);stroke-width:2.2;stroke-dasharray:none}
+.m-arrow.on path{fill:var(--red)}
+.m-north path{fill:var(--ink-soft)}
+.m-north line{stroke:var(--ink-soft);stroke-width:1.2}
+.map .m-north-t{font-size:13px;fill:var(--ink-soft)}
+.t-far{fill:color-mix(in srgb,var(--celadon) 14%,var(--paper))}
+.t-area{fill:color-mix(in srgb,var(--celadon) 48%,var(--paper))}
+.t-line{fill:none;stroke:var(--celadon);stroke-width:2.5;stroke-linejoin:round}
+.t-axis{stroke:var(--ink-soft);stroke-width:1.2}
+.t-lead{stroke:var(--ink-soft);stroke-width:1;stroke-dasharray:2 3}
+.t-stop{fill:var(--red);stroke:var(--paper);stroke-width:2}
+.t-city{fill:var(--ground);stroke:color-mix(in srgb,var(--moat) 72%,var(--paper));stroke-width:3.5}
+.map .t-title{font-family:var(--f-display);font-size:26px;font-weight:700}
+.map .t-meta{fill:var(--ink-soft)}
+.map .t-tick{font-size:13px;fill:var(--ink-soft)}
+
+/* ── 日期列 ───────────────────────── */
+.daynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-block:1px solid var(--line)}
+.daynav ol{display:flex;overflow-x:auto;scrollbar-width:none}
+.daynav ol::-webkit-scrollbar{display:none}
+.daynav li{flex:1 0 auto}
+.daynav a{display:grid;justify-items:center;padding:.5rem .55rem .45rem;text-decoration:none;line-height:1.25;border-bottom:3px solid transparent;color:var(--ink-soft)}
+.daynav a b{font-family:var(--f-num);font-weight:500;font-size:var(--s0);color:var(--ink);font-variant-numeric:tabular-nums}
+.daynav a span{font-size:.75rem}
+.daynav a:hover b{color:var(--red)}
+.daynav a[aria-current="true"]{border-bottom-color:var(--red)}
+.daynav a[aria-current="true"] b{color:var(--red)}
+.daynav a.wkend span{color:var(--red)}
+@media (max-width:520px){.daynav a{padding-inline:.2rem}}
+
+/* ── 區段 ─────────────────────────── */
+.band{padding-block:clamp(2.25rem,5.5vw,4rem)}
+.band + .band, .day{border-top:1px solid var(--line)}
+.sec-title{font-family:var(--f-display);font-weight:700;font-size:var(--s3);line-height:1.3;text-wrap:balance}
+.sec-lede{color:var(--ink-soft);max-width:36em;padding-top:.5rem}
+[id]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 4.25rem)}
+
+/* 八天一覽 */
+.glance{margin-top:1.5rem;border-top:1px solid var(--line)}
+.glance a{display:grid;grid-template-columns:4.6rem minmax(0,1fr);column-gap:.75rem;row-gap:.1rem;padding-block:.7rem;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline}
+.glance a:hover .g-title{color:var(--red)}
+.g-date{font-family:var(--f-num);font-weight:500;font-variant-numeric:tabular-nums}
+.g-date small{font-family:var(--f-body);font-weight:400;font-size:var(--s-1);color:var(--ink-soft);margin-left:.35em}
+.g-title{font-family:var(--f-display);font-size:1.125rem;line-height:1.5;min-width:0}
+.g-meta{grid-column:2;font-size:var(--s-1);color:var(--ink-soft);display:flex;flex-wrap:wrap;column-gap:1rem}
+.g-meta .book{color:var(--red)}
+@media (min-width:760px){
+  .glance a{grid-template-columns:5.5rem minmax(0,1fr) minmax(0,19rem)}
+  .g-meta{grid-column:3;justify-content:space-between}
+}
+
+/* ── 每一天 ───────────────────────── */
+.day{padding-block:clamp(2.25rem,5.5vw,3.75rem)}
+.day-head{display:grid;gap:.35rem;padding-bottom:1.75rem;max-width:44rem}
+.day-date{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.75rem;color:var(--ink-soft);font-size:var(--s-1)}
+.day-date .num{font-weight:500;font-size:var(--s2);color:var(--red);line-height:1.2}
+.day-date .today{background:var(--red);color:var(--on-fill);padding:0 .5em;font-weight:500}
+.day-head h2{font-family:var(--f-display);font-weight:700;font-size:var(--s3);line-height:1.3;text-wrap:balance}
+.day-sum{color:var(--ink-soft);max-width:36em}
+.day-body{display:grid;gap:1.75rem}
+.day-map{max-width:440px;display:grid;gap:1.25rem}
+@media (min-width:900px){
+  .day-body{grid-template-columns:minmax(0,360px) minmax(0,1fr);column-gap:3rem;align-items:start}
+  .day-map{position:sticky;top:calc(env(safe-area-inset-top,0px) + 4.5rem)}
+}
+
+.tl li{display:grid;grid-template-columns:3.1rem 1.75rem minmax(0,1fr);column-gap:.7rem;padding-bottom:1.35rem;position:relative}
+.tl li::before{content:"";position:absolute;left:calc(3.1rem + .7rem + .875rem - .5px);top:2rem;bottom:.2rem;width:1px;background:var(--line)}
+.tl li:last-child{padding-bottom:0}
+.tl li:last-child::before{display:none}
+.tl time{font-family:var(--f-num);font-weight:500;font-variant-numeric:tabular-nums;text-align:right;line-height:1.75rem}
+.seal{width:1.75rem;height:1.75rem;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:.95rem;line-height:1;border:1.5px solid currentColor;border-radius:2px;color:var(--ink-soft)}
+.seal.temple{background:var(--gold);border-color:var(--gold);color:var(--on-fill)}
+.seal.food{background:var(--red);border-color:var(--red);color:var(--on-fill)}
+.seal.nature{background:var(--celadon);border-color:var(--celadon);color:var(--on-fill)}
+.seal.market{background:var(--ink);border-color:var(--ink);color:var(--on-fill)}
+.seal.rest{border-style:dashed}
+.tl-body{min-width:0;display:grid;gap:.2rem}
+.tl-title{font-weight:700;line-height:1.75rem;display:flex;flex-wrap:wrap;column-gap:.6rem;align-items:baseline}
+.tl-title .th{font-size:.9rem}
+.tl-desc{max-width:36em}
+.tl-meta{display:flex;flex-wrap:wrap;column-gap:1.1rem;font-size:var(--s-1);color:var(--ink-soft)}
+
+.notes{margin-top:1.75rem;padding-top:1.1rem;border-top:1px solid var(--line);display:grid;grid-template-columns:4.2rem minmax(0,1fr);column-gap:.9rem;row-gap:.7rem;max-width:44rem}
+.notes dt{font-family:var(--f-display);font-weight:700;color:var(--celadon)}
+.notes dd{min-width:0}
+
+/* ── 出發前 ───────────────────────── */
+.todo{margin-top:1.5rem;border-top:1px solid var(--line)}
+.todo label{display:grid;grid-template-columns:1.5rem 5.6rem minmax(0,1fr);column-gap:.6rem;align-items:baseline;padding-block:.7rem;border-bottom:1px solid var(--line);cursor:pointer}
+.todo input{width:1.1rem;height:1.1rem;accent-color:var(--red);margin:0;align-self:center}
+.todo .when{font-size:var(--s-1);color:var(--red);font-weight:500}
+.todo input:checked ~ .what{color:var(--ink-soft);text-decoration:line-through}
+.todo input:checked ~ .when{color:var(--ink-soft)}
+@media (max-width:520px){
+  .todo label{grid-template-columns:1.5rem minmax(0,1fr)}
+  .todo .when{grid-column:2}
+  .todo .what{grid-column:2}
+}
+
+.topics{margin-top:2.5rem;display:grid;gap:2rem 3rem}
+@media (min-width:760px){.topics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.topic h3{font-family:var(--f-display);font-weight:700;font-size:var(--s1);padding-bottom:.4rem}
+.topic ul{display:grid;gap:.45rem}
+.topic li{padding-left:1em;position:relative}
+.topic li::before{content:"";position:absolute;left:0;top:.72em;width:.38em;height:.38em;background:var(--moat)}
+.topic .sel{user-select:all;font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+/* ── 預算 ─────────────────────────── */
+.tbl-scroll{overflow-x:auto;margin-top:1.5rem}
+table{border-collapse:collapse;width:100%;min-width:30rem}
+th,td{text-align:left;padding:.65rem .9rem .65rem 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+thead th{font-weight:500;font-size:var(--s-1);color:var(--ink-soft)}
+td.amt{font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.why{color:var(--ink-soft);font-size:.9375rem}
+tfoot td{font-weight:700;border-bottom:0}
+tfoot td.amt{color:var(--red);font-size:var(--s1);font-weight:500}
+
+/* ── 置換 ─────────────────────────── */
+[hidden]{display:none!important}
+.m-north-tip{fill:var(--ink-soft)}
+.plan-pick{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .75rem;padding-top:.6rem;font-size:var(--s-1);color:var(--ink-soft)}
+.day-head{grid-template-columns:minmax(0,1fr)}
+.plan-pick label{flex:none}
+.plan-pick select{font:inherit;font-size:var(--s0);color:var(--ink);background:var(--paper);border:1px solid var(--ink-soft);border-radius:2px;padding:.4rem .5rem;flex:1 1 12rem;width:100%;max-width:24rem;min-width:0}
+.slot{font-weight:400;font-size:var(--s-1);color:var(--ink-soft)}
+.changed{font-family:var(--f-body);font-size:.75rem;font-weight:500;color:var(--red);border:1px solid currentColor;border-radius:2px;padding:0 .35em;line-height:1.5}
+.swap{padding-top:.3rem}
+.swap-btn{font:inherit;font-size:var(--s-1);color:var(--celadon);background:none;border:0;border-bottom:1px dashed currentColor;padding:0;cursor:pointer}
+.swap-btn:hover,.swap-btn[aria-expanded="true"]{color:var(--red)}
+.swap-list{margin-top:.6rem;border-top:1px solid var(--line);display:grid;max-width:36em}
+.swap-group{font-family:var(--f-display);font-weight:700;font-size:var(--s-1);color:var(--celadon);padding:.7rem 0 .2rem}
+.swap-opt{font:inherit;color:inherit;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:.55rem 0 .6rem 1.5rem;cursor:pointer;display:grid;gap:.1rem;position:relative;min-width:0}
+.swap-opt::before{content:"";position:absolute;left:.15rem;top:1.05rem;width:.6rem;height:.6rem;border:1.5px solid var(--ink-soft);border-radius:1px}
+.swap-opt[aria-pressed="true"]::before{background:var(--red);border-color:var(--red)}
+.swap-opt:hover .o-name > span:first-child{color:var(--red)}
+.o-name{font-weight:700;display:flex;flex-wrap:wrap;column-gap:.6rem;align-items:baseline}
+.o-name .th{font-size:.9rem}
+.o-def{font-weight:400;font-size:.75rem;color:var(--ink-soft)}
+.o-desc{font-size:.9375rem}
+.o-meta{font-size:var(--s-1);color:var(--ink-soft);display:flex;flex-wrap:wrap;column-gap:1.1rem}
+.reset{font:inherit;font-size:var(--s-1);color:var(--red);background:none;border:1px solid currentColor;border-radius:2px;padding:.35rem .8rem;cursor:pointer;margin-top:1.25rem}
+
+/* ── 米其林與伴手禮 ───────────────── */
+.badge{font-family:var(--f-body);font-size:.75rem;font-weight:500;color:var(--on-tung);background:var(--tung);border-radius:2px;padding:0 .4em;line-height:1.6;white-space:nowrap}
+.mlist{margin-top:1.5rem;border-top:1px solid var(--line);display:grid;column-gap:3rem}
+.mlist li{padding:.7rem 0;border-bottom:1px solid var(--line);display:grid;gap:.1rem;align-content:start;min-width:0}
+.souv{display:grid;column-gap:3rem}
+@media (min-width:760px){
+  .mlist,.souv{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.sgroup{margin-top:2rem;min-width:0}
+.sgroup h3{font-family:var(--f-display);font-weight:700;font-size:var(--s1);padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+.sitem{display:grid;grid-template-columns:1.5rem minmax(0,1fr);column-gap:.6rem;padding:.7rem 0;border-bottom:1px solid var(--line);cursor:pointer}
+.sitem input{width:1.1rem;height:1.1rem;accent-color:var(--red);margin:.35rem 0 0}
+.s-body{display:grid;gap:.1rem;min-width:0}
+.sitem input:checked + .s-body .o-name > span:first-child{color:var(--red)}
+.warn{font-size:var(--s-1);color:var(--red)}
+.nope h3{color:var(--red)}
+.nope ul{display:grid;gap:.45rem;padding-top:.7rem}
+.nope li{padding-left:1em;position:relative}
+.nope li::before{content:"";position:absolute;left:0;top:.72em;width:.38em;height:.38em;background:var(--red)}
+
+/* ── 動畫 ─────────────────────────────
+   背景：整頁後面一層慢慢飄的晨霧；深色模式多了往上升的天燈。
+   前景：長幡輕擺、航班線上的飛機、河水流動、路線虛線往前走、地圖圖示和剖面線進場。 */
+:root{--mist:rgba(250,252,248,.85);--lantern:0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mist:rgba(74,98,160,.2);--lantern:1}}
+:root[data-theme="dark"]{--mist:rgba(74,98,160,.2);--lantern:1}
+
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero,main{position:relative;z-index:1}
+.sky::before,.sky::after{content:"";position:absolute;left:-35%;width:170%;height:48vh;background:radial-gradient(closest-side,var(--mist),transparent);animation:drift 70s ease-in-out infinite alternate}
+.sky::before{top:2vh}
+.sky::after{top:50vh;animation-duration:95s;animation-direction:alternate-reverse}
+.lantern{position:absolute;bottom:-5vh;border-radius:46% 46% 36% 36%;background:var(--gold);box-shadow:0 0 12px 3px color-mix(in srgb,var(--gold) 55%,transparent);opacity:calc(var(--lantern) * .7);animation:rise 40s linear infinite}
+@keyframes drift{from{transform:translateX(-14%)}to{transform:translateX(14%)}}
+@keyframes rise{0%{transform:translate(0,0)}25%{transform:translate(14px,-28vh)}50%{transform:translate(-10px,-56vh)}75%{transform:translate(12px,-84vh)}100%{transform:translate(0,-112vh)}}
+
+.tung{transform-origin:50% 0;animation:sway 6.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-.7deg) skewX(.5deg)}to{transform:rotate(.7deg) skewX(-.5deg)}}
+
+.f-line{position:relative}
+.f-plane{position:absolute;top:-.55rem;left:5rem;width:1.15rem;height:1.15rem;fill:var(--red);transform:rotate(90deg);opacity:0;animation:fly 10s cubic-bezier(.45,0,.55,1) infinite}
+.f-plane.late{animation-delay:5s}
+@keyframes fly{0%{left:5rem;opacity:0}7%{opacity:1}62%{opacity:1}70%,100%{left:calc(100% - 6.2rem);opacity:0}}
+
+.m-river-shine{stroke-dasharray:22 26;animation:flow 8s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-96}}
+.m-route,.m-arrow line{animation:march 2.6s linear infinite}
+@keyframes march{to{stroke-dashoffset:-18}}
+
+.m-pin{transform-box:fill-box;transform-origin:center}
+.inview .m-pin{animation:pop .55s cubic-bezier(.2,1.5,.4,1) backwards}
+.inview .m-icon.on,.inview .t-stop{animation:appear .5s ease-out backwards}
+.inview .t-line{stroke-dasharray:1;animation:draw 1.6s ease-out backwards}
+.inview .t-area{animation:appear 1.4s .3s ease-out backwards}
+@keyframes pop{from{transform:scale(0);opacity:0}}
+@keyframes appear{from{opacity:0}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+
+.motion-btn{font:inherit;font-size:var(--s-1);color:var(--ink-soft);background:none;border:0;border-bottom:1px dashed currentColor;padding:0;cursor:pointer}
+.motion-btn:hover{color:var(--red)}
+.no-motion .sky,.no-motion .f-plane{display:none}
+.no-motion *,.no-motion *::before,.no-motion *::after{animation:none!important}
+@media (prefers-reduced-motion: reduce){
+  .sky,.f-plane,.motion-btn{display:none}
+  *,*::before,*::after{animation:none!important}
+}
+
+.foot{font-size:var(--s-1);color:var(--ink-soft);display:grid;gap:.6rem;max-width:48rem}
+.foot a{text-underline-offset:.2em}
+
+/* ── 換頁版面 ─────────────────────────
+   上面是日期列，中間一次只顯示一頁，下面是換頁列。地圖是固定在後面的背景，跟著目前這一頁換。 */
+html,body{height:100%}
+body{display:flex;flex-direction:column;overflow:hidden}
+.daynav{position:relative;top:auto;flex:none}
+.pages{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;position:relative;z-index:1;overscroll-behavior:contain}
+.band + .band,.day{border-top:0}
+.day{padding-block:0}
+.pager{flex:none;position:relative;z-index:5;background:var(--ground);border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:.75rem;padding-block:.45rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pager button{font:inherit;font-weight:500;color:var(--ink);background:var(--paper);border:1px solid var(--ink-soft);border-radius:2px;padding:.4rem .9rem;cursor:pointer}
+.pager button:hover{color:var(--red);border-color:var(--red)}
+.pager button:disabled{opacity:.35;cursor:default;color:var(--ink);border-color:var(--ink-soft)}
+.pager-now{text-align:center;font-size:var(--s-1);color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pager-now b{font-family:var(--f-num);font-weight:500;color:var(--ink);margin-right:.7em}
+
+.bgmap{position:fixed;z-index:0;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + var(--nav-h,3.4rem));height:40vh;background:none;border:0;overflow:visible;display:flex;flex-direction:column;gap:.2rem;padding:.6rem 16px .2rem;pointer-events:none}
+.bgmap svg{flex:1 1 0;min-height:0;width:100%;height:100%}
+.bgmap text{stroke:var(--ground)}
+.bgmap .map-cap{flex:none;padding-top:0;text-align:center}
+[data-layout="wide"] .bgmap{height:auto;bottom:var(--bar-h,3.2rem);opacity:.14}
+[data-layout="wide"] .bgmap .map-cap{display:none}
+
+.split{padding-top:40vh}
+.split > .wrap{background:color-mix(in srgb,var(--ground) 96%,transparent);border-top:1px solid var(--line);padding-block:1.25rem 2.5rem;min-height:calc(100vh - 40vh - var(--nav-h,3.4rem) - var(--bar-h,3.2rem))}
+.hero-grid{grid-template-areas:"tung text" "flights flights"}
+.day-head{padding-bottom:.9rem}
+.day-head h2{font-size:var(--s2)}
+@media (min-width:900px){
+  .bgmap{right:auto;width:50%;height:auto;bottom:var(--bar-h,3.2rem);padding:1.5rem 2rem 1rem}
+  [data-layout="wide"] .bgmap{width:100%}
+  .split{padding-top:0}
+  .split > .wrap{background:none;border-top:0;max-width:none;margin:0;min-height:0;padding:2.25rem clamp(1.5rem,4vw,3.5rem) 3rem calc(50% + 1rem)}
+  .split .panel{max-width:38rem}
+  .hero-grid{grid-template-columns:var(--tung-w) minmax(0,34rem);grid-template-areas:"tung text" "tung flights";column-gap:2rem}
+  .day-head h2{font-size:var(--s3)}
+}
+
+/* 條列式行程：一項一列，點開才看說明 */
+.tl-tools{display:flex;justify-content:flex-end;padding-bottom:.3rem}
+.text-btn{font:inherit;font-size:var(--s-1);color:var(--celadon);background:none;border:0;border-bottom:1px dashed currentColor;padding:0;cursor:pointer}
+.text-btn:hover{color:var(--red)}
+.tl li{display:block;padding-bottom:.2rem}
+.tl li::before{top:2.25rem;bottom:.05rem}
+.tl-row{display:grid;grid-template-columns:3.1rem 1.75rem minmax(0,1fr) 1.1rem;column-gap:.7rem;align-items:start;padding:.3rem 0;list-style:none}
+summary.tl-row{cursor:pointer}
+summary.tl-row::-webkit-details-marker{display:none}
+summary.tl-row::after{content:"";width:.5rem;height:.5rem;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:rotate(45deg);margin-top:.45rem;justify-self:center}
+details[open] > summary.tl-row::after{transform:rotate(-135deg);margin-top:.75rem}
+summary.tl-row:hover .tl-title > span:not(.slot):not(.th):not(.badge):not(.changed){color:var(--red)}
+.tl-more{padding:.1rem 0 .9rem 6.25rem;display:grid;gap:.25rem}
+@media (max-width:520px){.tl-more{padding-left:3.8rem}}
+
+/* 串場：角色走過畫面，後面跟著一道霧，霧蓋住畫面時換頁 */
+.stage{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;visibility:hidden}
+.stage.go{visibility:visible}
+.stage.rev{transform:scaleX(-1)}
+.wipe{position:absolute;top:0;bottom:0;left:0;width:220vw;background:linear-gradient(90deg,transparent 0,var(--ground) 30%,var(--ground) 70%,transparent 100%);transform:translateX(-220vw)}
+.stage.go .wipe{animation:wipe 1.4s cubic-bezier(.45,0,.55,1) both}
+.runner{position:absolute;left:0;bottom:11vh;width:clamp(170px,36vw,320px);transform:translateX(-45vw)}
+.runner svg{display:block;width:100%;height:auto;overflow:visible}
+.stage.go .runner{animation:run 1.4s linear both}
+.stage.is-plane .runner{bottom:52vh}
+.stage.is-plane.go .runner{animation-name:runfly}
+@keyframes wipe{from{transform:translateX(-220vw)}to{transform:translateX(100vw)}}
+@keyframes run{from{transform:translateX(-45vw)}to{transform:translateX(112vw)}}
+@keyframes runfly{from{transform:translate(-45vw,9vh) rotate(-7deg)}to{transform:translate(112vw,-9vh) rotate(-7deg)}}
+[data-layout="wide"] .bgmap{opacity:.1}
+[data-layout="wide"] .bgmap text{display:none}
+
+/* 串場角色。雙條車和飛機出自 Codex；大象是之後重畫的扁平剪影。只有祖先帶 .go 時才會動。 */
+.sp-sprite{display:block;width:100%;height:auto;overflow:visible}
+.sp-el-fill{fill:color-mix(in srgb,var(--ink-soft) 88%,var(--paper))}
+.sp-el-far{fill:color-mix(in srgb,var(--ink-soft) 60%,var(--paper))}
+.sp-el-tail{fill:none;stroke:color-mix(in srgb,var(--ink-soft) 88%,var(--paper));stroke-width:4;stroke-linecap:round}
+.sp-el-ear{fill:color-mix(in srgb,var(--ink-soft) 68%,var(--paper))}
+.sp-el-eye{fill:var(--ground)}
+.sp-el-tusk{fill:var(--paper)}
+.sp-el-nail{fill:color-mix(in srgb,var(--ink-soft) 35%,var(--paper))}
+.sp-el-cloth{fill:var(--tung);stroke:var(--gold);stroke-width:2.5;stroke-linejoin:round}
+.sp-el-band{fill:none;stroke:var(--gold);stroke-width:1.6}
+.sp-el-diamond{fill:none;stroke:var(--on-tung);stroke-width:1.5;stroke-linejoin:round}
+.sp-el-fringe{fill:none;stroke:var(--gold);stroke-width:6;stroke-dasharray:2 3.5}
+.sp-truck-shadow{stroke:color-mix(in srgb,var(--ink) 35%,transparent);stroke-width:3;stroke-linecap:round}
+.sp-truck-body,.sp-truck-cab{fill:var(--tung);stroke:var(--ink);stroke-width:1.8;stroke-linejoin:round}
+.sp-truck-window{fill:var(--paper);stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round}
+.sp-truck-roof,.sp-rack,.sp-truck-rail,.sp-truck-step{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.sp-truck-open{fill:color-mix(in srgb,var(--tung) 78%,var(--paper));stroke:var(--ink);stroke-width:1.5}
+.sp-truck-lamp{stroke:var(--gold);stroke-width:3;stroke-linecap:round}
+.sp-wheel circle:first-child{fill:var(--ink);stroke:var(--paper);stroke-width:1.4}
+.sp-wheel-hub{fill:var(--gold);stroke:var(--paper);stroke-width:1}
+.sp-spoke{fill:none;stroke:var(--paper);stroke-width:1.2}
+.sp-plane-body{fill:var(--paper);stroke:var(--ink-soft);stroke-width:2;stroke-linejoin:round}
+.sp-plane-wing,.sp-plane-tail{fill:var(--celadon);stroke:var(--ink-soft);stroke-width:1.6;stroke-linejoin:round}
+.sp-plane-window,.sp-plane-line{fill:none;stroke:var(--ink-soft);stroke-width:2;stroke-linecap:round}
+.sp-leg,.sp-el-trunk,.sp-wheel,.sp-el-all,.sp-vehicle-all{transform-box:fill-box}
+.sp-leg,.sp-el-trunk{transform-origin:50% 0}
+.sp-wheel{transform-origin:center}
+.go .sp-el-all{animation:sp-bob .45s ease-in-out infinite}
+.go .sp-leg-a{animation:sp-leg-a .9s ease-in-out infinite}
+.go .sp-leg-b{animation:sp-leg-b .9s ease-in-out infinite}
+.go .sp-el-trunk{animation:sp-trunk 1.8s ease-in-out infinite}
+.go .sp-vehicle-all{animation:sp-bob .5s ease-in-out infinite}
+.go .sp-wheel{animation:sp-wheel .6s linear infinite reverse}
+@keyframes sp-bob{50%{transform:translateY(-2px)}}
+@keyframes sp-leg-a{0%,100%{transform:rotate(11deg)}50%{transform:rotate(-11deg)}}
+@keyframes sp-leg-b{0%,100%{transform:rotate(-11deg)}50%{transform:rotate(11deg)}}
+@keyframes sp-trunk{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
+@keyframes sp-wheel{to{transform:rotate(360deg)}}
+
+/* 封面：一隻大象像雪花一樣從天上慢慢飄下來 */
+.snow{position:fixed;z-index:20;top:0;left:58%;width:clamp(120px,27vw,210px);pointer-events:none;animation:snowfall 26s linear -7s infinite}
+.snow.s2{width:clamp(80px,17vw,130px)}
+.snow.s3{width:clamp(64px,13vw,100px)}
+.snow-sway{transform-origin:50% 0;animation:snowsway 5.5s ease-in-out infinite alternate}
+@keyframes snowfall{from{transform:translateY(-40vh)}to{transform:translateY(112vh)}}
+@keyframes snowsway{from{transform:translateX(-7vw) rotate(-10deg)}to{transform:translateX(7vw) rotate(10deg)}}
+.no-motion .snow{display:none}
+@media (prefers-reduced-motion: reduce){.snow{display:none}}
+
+/* ── 泰式框架與表格（紋樣圖形出自 Codex）────────── */
+.th-defs{position:absolute;width:0;height:0;overflow:hidden;color:var(--gold);--th-1:var(--gold);--th-2:var(--tung);--th-3:var(--celadon)}
+.th-frame{position:relative;color:var(--gold);--th-1:var(--gold);--th-2:var(--tung);--th-3:var(--celadon)}
+.th-gable{display:block;width:min(100%,25rem);height:auto;margin:0 auto -3px;position:relative;z-index:1}
+.th-box{position:relative;border:2px solid var(--gold);outline:1px solid var(--gold);outline-offset:3px;background:color-mix(in srgb,var(--paper) 93%,transparent)}
+.th-band{display:block;width:100%;height:18px}
+.th-band.top{border-bottom:1px solid var(--gold);background:var(--tung)}
+.th-band.bottom{border-top:1px solid var(--gold);height:16px}
+.th-c{position:absolute;width:46px;height:46px;z-index:2;pointer-events:none}
+.th-c.c1{left:-13px;top:-13px}
+.th-c.c2{right:-13px;top:-13px;transform:scaleX(-1)}
+.th-c.c3{left:-13px;bottom:-13px;transform:scaleY(-1)}
+.th-c.c4{right:-13px;bottom:-13px;transform:scale(-1)}
+.th-inner{color:var(--ink);padding:1.7rem .9rem 1.7rem}
+.weave{position:absolute;inset:0;width:100%;height:100%;opacity:.055}
+.daynav{border-bottom:0}
+.bar-band{position:absolute;left:0;right:0;bottom:-11px;height:12px;z-index:1;pointer-events:none;transform:scaleY(-1)}
+.bar-band.top{bottom:auto;top:-11px;transform:none}
+.pager{border-top-color:var(--gold)}
+.gtable a.g-title{padding:0;border-bottom:0}
+.hero-grid{display:block;padding-block:1.25rem 2.5rem}
+[data-layout="cover"] .bgmap{display:none}
+.cover-frame{max-width:38rem;margin-inline:auto}
+.hero-inner{display:grid;grid-template-columns:var(--tung-w) minmax(0,1fr);grid-template-areas:"tung text" "flights flights";column-gap:1.1rem;row-gap:1.25rem}
+.hero-inner .tung{margin-top:-1.7rem;min-height:17rem}
+.hero-inner .hero-text{padding-top:0}
+.hero-inner .hero-dates{font-size:clamp(.9rem,3.9vw,1.25rem)}
+@media (min-width:900px){
+  .hero-grid{max-width:none}
+  .cover-frame{max-width:38rem}
+  .hero-inner{grid-template-areas:"tung text" "tung flights";column-gap:1.75rem}
+}
+.daynav{border-bottom:1px solid var(--gold)}
+.ttable .tl-title .th{flex-basis:100%}
+.th-divider{display:block;width:min(100%,17rem);height:auto;margin:.35rem 0 .45rem;color:var(--gold)}
+.wide-frame{max-width:60rem;margin-inline:auto}
+.wide-frame .th-inner{padding:1.4rem 1rem 1.8rem}
+.band{padding-block:1.5rem 2.5rem}
+.band + .band{padding-top:0}
+.split > .wrap{background:none;border-top:0;padding-block:.5rem 2.5rem}
+.glance,.mlist{border-top:0;margin-top:1.25rem}
+.notes{display:none}
+@media (min-width:760px){
+  .th-inner{padding:1.5rem 1.6rem 1.8rem}
+  .wide-frame .th-inner{padding:1.8rem 2rem 2.2rem}
+  .th-c{width:60px;height:60px}
+  .mlist{grid-template-columns:none}
+}
+
+table{width:100%;min-width:0;border-collapse:collapse;border:1.5px solid var(--gold)}
+.tbl-scroll table{min-width:30rem}
+caption{caption-side:top;text-align:left;font-family:var(--f-display);font-weight:700;color:var(--celadon);padding:1.2rem 0 .4rem}
+th,td{padding:.5rem .6rem;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);vertical-align:top;text-align:left}
+thead th{background:var(--tung);color:var(--on-tung);font-family:var(--f-display);font-size:var(--s0);font-weight:700;padding:.4rem .5rem;border-color:color-mix(in srgb,var(--gold) 75%,transparent);white-space:nowrap}
+tbody th{font-family:var(--f-display);font-weight:700;color:var(--celadon);white-space:nowrap;width:4.6rem}
+tbody tr:nth-child(even) > td{background:color-mix(in srgb,var(--gold) 6%,transparent)}
+tfoot td{border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,transparent)}
+
+.ttable tbody tr:nth-child(even) > td{background:none}
+.ttable .c-time{font-family:var(--f-num);font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;width:3.7rem;text-align:right;line-height:1.75rem}
+.ttable .c-seal{width:3.4rem}
+.ttable td.c-seal .seal{margin-inline:auto}
+.ttable td.c-cost{width:7.6rem;font-size:var(--s-1);color:var(--ink-soft);line-height:1.75rem}
+.ph{margin:0 0 .35rem;max-width:24rem}
+.ph img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1.5px solid var(--gold);background:var(--line)}
+.ph figcaption{font-size:.75rem;line-height:1.4;color:var(--ink-soft);padding-top:.2rem}
+.ph figcaption a{color:inherit;text-underline-offset:.15em}
+.what-in{display:flex;align-items:flex-start;gap:.6rem}
+.what-in > .row-btn,.what-in > .tl-title{flex:1 1 auto;min-width:0}
+.gmap{flex:none;font-size:var(--s-1);font-weight:500;color:var(--celadon);white-space:nowrap;text-underline-offset:.2em}
+.gmap:hover{color:var(--red)}
+.what-in > .gmap{line-height:1.75rem}
+.row.can{cursor:pointer}
+.row.can:hover > td,.row.open > td{background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.row-btn{font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;width:100%}
+.row-btn::after{content:"";flex:none;width:.5rem;height:.5rem;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(45deg);margin:.45rem .15rem 0 0}
+.row.open .row-btn::after{transform:rotate(-135deg);margin-top:.75rem}
+tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-top:0;padding:0}
+.more-in{display:grid;gap:.25rem;padding:.6rem .8rem 1rem 7.7rem}
+@media (max-width:560px){.more-in{padding-left:.8rem}}
+.gtable .g-date{white-space:nowrap;width:5.6rem}
+.gtable a.g-title{display:block;text-decoration:none}
+.gtable a.g-title:hover{color:var(--red)}
+.gtable td.book{color:var(--red);font-size:var(--s-1);width:9rem}
+.mtable td:first-child{display:grid;gap:.1rem}
+.mtable .m-type,.mtable .m-price{white-space:nowrap;font-size:var(--s-1);color:var(--ink-soft);width:5.5rem}
+@media (max-width:560px){
+  .ttable .c-cost,.gtable .c-range{display:none}
+  .gtable td.book{width:5.6rem}
+  th,td{padding:.45rem .45rem}
+  .ttable .c-time{width:3.3rem}
+  .ttable .c-seal{width:3rem}
+}
+</style>
+</head>
+<body>
+
+<div class="sky" id="sky" aria-hidden="true"></div>
+<div class="map bgmap" id="bgmap" aria-hidden="true"></div>
+
+<header class="hero" id="cover">
+  <div class="wrap hero-grid">
+    <h1 class="tung">清邁八日</h1>
+
+    <div class="hero-text">
+      <p class="hero-thai" lang="th">เชียงใหม่</p>
+      <p class="hero-dates"><span>2027 年 1 月 1 日（五）出發，</span><span>1 月 8 日（五）回台</span></p>
+      <p class="hero-lede">涼季的清邁白天 28°C、清晨 15°C，幾乎不下雨。行程以古城為圓心：四天在城裡慢慢走，三天往郊外的山裡去，週六、週日兩個夜市都排進去了。</p>
+      <p class="hero-count" id="count">去回都搭華航直飛，七晚住同一間旅館。</p>
+      <p><button type="button" class="motion-btn" id="motion" aria-pressed="false">暫停動畫</button></p>
+    </div>
+
+    <div class="flights">
+      <div class="flight">
+        <p class="f-head"><strong>去程</strong><span>1 月 1 日（五）</span><span class="num">華航 CI851</span></p>
+        <div class="f-line">
+          <svg class="f-plane" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 11l7-2V3h2v6l7 2v2l-7-1v5l-2-1v-4l-7 1z"/></svg>
+          <span class="f-pt"><b>07:20</b>桃園 TPE</span><span class="f-rule"></span>
+          <span class="f-dur">直飛 4 小時 5 分</span><span class="f-rule"></span>
+          <span class="f-pt end"><b>10:25</b>清邁 CNX</span>
+        </div>
+      </div>
+      <div class="flight">
+        <p class="f-head"><strong>回程</strong><span>1 月 8 日（五）</span><span class="num">華航 CI852</span></p>
+        <div class="f-line">
+          <svg class="f-plane late" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 11l7-2V3h2v6l7 2v2l-7-1v5l-2-1v-4l-7 1z"/></svg>
+          <span class="f-pt"><b>11:25</b>清邁 CNX</span><span class="f-rule"></span>
+          <span class="f-dur">直飛 3 小時 25 分</span><span class="f-rule"></span>
+          <span class="f-pt end"><b>15:50</b>桃園 TPE</span>
+        </div>
+      </div>
+      <p class="f-note">時間都是當地時間，清邁比台灣慢 1 小時。時刻取自華航上一個冬季班表與 2026 年 11 月的實際航班，2027 年 1 月的班表請在訂票時到華航官網確認。</p>
+    </div>
+
+  </div>
+</header>
+
+<nav class="daynav" aria-label="跳到某一天">
+  <div class="wrap"><ol id="daynav"></ol></div>
+</nav>
+
+<main>
+  <section class="band" id="glance">
+    <div class="wrap">
+      <h2 class="sec-title">八天一覽</h2>
+      <p class="sec-lede">點任何一天直接翻到那一頁，也可以用下方的上一頁、下一頁，或左右滑動。1/4 到 1/7 這四天可以整天換成別的行程，每一餐和每次按摩也都能換一家，換過的內容只存在這台裝置。標紅字的項目要在出發前訂好。</p>
+      <div class="glance" id="glance-list"></div>
+      <button type="button" class="reset" id="reset" hidden>全部恢復成原本的安排</button>
+    </div>
+  </section>
+
+  <div id="days"></div>
+
+  <section class="band" id="michelin">
+    <div class="wrap">
+      <h2 class="sec-title">米其林推薦</h2>
+      <p class="sec-lede">《米其林指南泰國》2027 年版在清邁選出 20 家必比登推介和 1 家一星。必比登給的是價錢實在的好味道，路邊攤也在榜上。這 21 家都放進了每一餐的「換一個」清單，這裡是完整名單。</p>
+      <div class="mlist" id="mlist"></div>
+    </div>
+  </section>
+
+  <section class="band" id="souvenir">
+    <div class="wrap">
+      <h2 class="sec-title">必買伴手禮</h2>
+      <p class="sec-lede">想買的先打勾，到尼曼採買那天照著清單走。打勾的紀錄只存在這台裝置。</p>
+      <div class="souv" id="souv"></div>
+    </div>
+  </section>
+
+  <section class="band" id="prep">
+    <div class="wrap">
+      <h2 class="sec-title">出發前</h2>
+      <p class="sec-lede">照期限排好了。打勾的紀錄只存在這台裝置的瀏覽器裡。</p>
+      <div class="todo" id="todo"></div>
+
+      <div class="topics">
+        <div class="topic">
+          <h3>入境</h3>
+          <ul>
+            <li>台灣護照免簽，每次可停留 30 天（2026 年 9 月 15 日起的規定）。</li>
+            <li>護照效期要 6 個月以上，也就是至少到 2027 年 7 月之後。</li>
+            <li>數位入境卡 TDAC：抵達前 3 天內上網填，12 月 29 日起可以填，免費。官方網址是 <span class="sel">tdac.immigration.go.th</span>，搜尋結果前幾名常是收費的代辦網站。</li>
+            <li>入境時可能抽查回程機票、住宿紀錄，以及每人 2 萬泰銖等值的現金。信用卡不算。</li>
+          </ul>
+        </div>
+        <div class="topic">
+          <h3>錢</h3>
+          <ul>
+            <li>小吃攤、雙條車、寺院門票只收現金。先在台灣換一部分，其餘到古城的換匯所換。</li>
+            <li>當地提款機用外國卡領錢，每次收約 220–250 銖手續費，盡量一次領夠。</li>
+            <li>按摩後給 50–100 銖小費。</li>
+          </ul>
+        </div>
+        <div class="topic">
+          <h3>網路與叫車</h3>
+          <ul>
+            <li>買 8 天的泰國 eSIM，出發前裝好，落地開漫遊就能用。</li>
+            <li>先裝 Grab 並綁好信用卡。市區短程約 60–120 銖。</li>
+            <li>行程裡每個地名都附了泰文，可以直接拿給雙條車司機看。</li>
+          </ul>
+        </div>
+        <div class="topic">
+          <h3>衣服</h3>
+          <ul>
+            <li>市區白天 28–30°C、清晨 14–16°C，日夜差 15 度。短袖加一件薄外套。</li>
+            <li>清晨的素帖山和晚上的夜間動物園只有 12–15°C，那兩天多帶一件外套。</li>
+            <li>進寺院要遮住肩膀和膝蓋，進殿脫鞋。帶一條薄圍巾，穿好穿脫的鞋。</li>
+          </ul>
+        </div>
+        <div class="topic">
+          <h3>電</h3>
+          <ul>
+            <li>電壓 220V。台灣的兩腳扁插頭可以直接插，但充電器要標示 100–240V 才能用。</li>
+            <li>只支援 110V 的吹風機、電棒捲不要帶。</li>
+          </ul>
+        </div>
+        <div class="topic">
+          <h3>要留意</h3>
+          <ul>
+            <li>電子菸在泰國違法，帶入境會被沒收並罰款。</li>
+            <li>燒山季在 2 到 4 月，1 月空氣通常還可以，偶爾有霾。出發前看一下 AQI，帶幾個口罩。</li>
+            <li>泰北香腸、炸豬皮等豬肉製品不能帶回台灣，初犯罰新台幣 20 萬元。</li>
+            <li>觀光警察 <span class="sel">1155</span>。駐泰國台北經濟文化辦事處（在曼谷）急難救助電話 <span class="sel">+66 81 666 4006</span>，出發前到外交部領務局網站再核對一次。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="budget">
+    <div class="wrap">
+      <h2 class="sec-title">在當地大概花多少</h2>
+      <p class="sec-lede">以兩人同行、每人的花費來估，單位是泰銖。這張表照原本的安排計算，換了行程、餐廳或按摩店，金額會跟著不同。金額是近年行情的粗估，不是報價。</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>項目</th><th>每人（泰銖）</th><th>怎麼算的</th></tr></thead>
+          <tbody>
+            <tr><td>住宿 7 晚</td><td class="amt">5,250–12,250</td><td class="why">中價位旅館每晚 1,500–3,500 銖，兩人分攤</td></tr>
+            <tr><td>兩天包車</td><td class="amt">1,650–2,150</td><td class="why">南郊和湄林山區各一天，兩人分攤</td></tr>
+            <tr><td>飛索與 ATV</td><td class="amt">4,000–5,800</td><td class="why">飛索套餐 2,000–3,500 銖，ATV 1 小時 2,000–2,300 銖</td></tr>
+            <tr><td>大象保護區</td><td class="amt">2,500–3,500</td><td class="why">半日到全日方案</td></tr>
+            <tr><td>三餐</td><td class="amt">4,000–7,000</td><td class="why">每天 500–900 銖，小吃和餐廳各半</td></tr>
+            <tr><td>門票</td><td class="amt">2,000–2,700</td><td class="why">水上樂園、夜間動物園、皇家花園和幾座寺院</td></tr>
+            <tr><td>按摩</td><td class="amt">1,200–2,000</td><td class="why">三到四次</td></tr>
+            <tr><td>市區交通</td><td class="amt">1,200–1,800</td><td class="why">Grab 和雙條車</td></tr>
+            <tr><td>網路</td><td class="amt">約 300</td><td class="why">8 天 eSIM</td></tr>
+          </tbody>
+          <tfoot><tr><td>合計</td><td class="amt">約 22,000–38,000</td><td class="why">不含機票和伴手禮。元旦連假是旺季，機票以華航官網當下的報價為準。</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="credits">
+    <div class="wrap foot">
+      <p>整理於 2026 年 11 月 23 日。店家營業時間、門票和車資都會變，元旦前後尤其容易臨時休息，出發前再確認一次。</p>
+      <p>米其林名單取自<a href="https://guide.michelin.com/th/en/chiang-mai-region/restaurants/bib-gourmand" target="_blank" rel="noopener">米其林指南官網的清邁必比登頁面</a>和 <a href="https://guide.michelin.com/th/en/article/michelin-guide-ceremony/bib-gourmand-thailand-2027" target="_blank" rel="noopener">2027 年版公告</a>。沒有標米其林的店不在這份名單上。</p>
+      <p>餐廳和按摩店的選項沒有逐家查證現在的營業狀況，去之前先在地圖上看一下當天有沒有開。</p>
+      <p>飛索與 ATV 的價格取自 <a href="https://sg.trip.com/things-to-do/detail/55112746" target="_blank" rel="noopener">Trip.com</a>、<a href="https://pelago.com/en/activity/pz81ix7nj-chiang-mai-atv-off-road-by-x-centre-chiang-mai" target="_blank" rel="noopener">Pelago</a> 等訂購平台的商品頁，各平台和套餐差很多，以下單當天為準。</p>
+      <p>航班時刻：<a href="https://www.aeroroutes.com/eng/250815-cinw25cnx" target="_blank" rel="noopener">AeroRoutes 華航冬季班表</a>、<a href="https://www.trip.com/flights/status-ci851" target="_blank" rel="noopener">Trip.com CI851 航班動態</a>。入境規定：<a href="https://www.boca.gov.tw/sp-foof-countrycp-01-24-dec45-02-1.html" target="_blank" rel="noopener">外交部領事事務局泰國簽證資訊</a>。</p>
+    </div>
+  </section>
+</main>
+
+<nav class="pager" id="pager" aria-label="換頁">
+  <button type="button" id="prev">上一頁</button>
+  <p class="pager-now" id="pager-now" aria-live="polite"></p>
+  <button type="button" id="next">下一頁</button>
+</nav>
+<div id="snow" aria-hidden="true"></div>
+<div class="stage" id="stage" aria-hidden="true"><div class="wipe"></div><div class="runner" id="runner"></div></div>
+
+<script>
+(function(){
+document.documentElement.lang='zh-Hant';
+var SEAL={'機':'move','車':'move','寺':'temple','食':'food','景':'nature','市':'market','學':'market','歇':'rest'};
+
+/*SPRITES-START*/
+/* 串場角色。雙條車和飛機是 Codex 畫的；大象是在它的版本之後重畫的扁平剪影。 */
+var SPRITE={
+elephant:'<svg class="sp-sprite sp-elephant" viewBox="0 0 240 160"><g class="sp-el-all">'
+ +'<path class="sp-el-tail" d="M48 60C38 70 35 92 40 110"/><path class="sp-el-fill" d="M40 107c-4 5-4 11-1 16 4-4 5-10 1-16z"/>'
+ +'<g class="sp-leg sp-leg-a"><path class="sp-el-far" d="M72 100l1 42c0 5 2 8 7 8h12c4 0 5-3 4-8l-1-42z"/></g>'
+ +'<g class="sp-leg sp-leg-b"><path class="sp-el-far" d="M108 100l1 42c0 5 2 8 7 8h12c4 0 5-3 4-8l-1-42z"/></g>'
+ +'<g class="sp-el-trunk"><path class="sp-el-fill" d="M197 64C204 94 206 120 200 136c-2 6 2 11 8 8-5 8-18 4-19-8 3-18 1-34-5-48z"/></g>'
+ +'<path class="sp-el-fill" d="M46 66C46 46 70 34 100 34c22 0 38 4 48 10 2-10 8-17 14-17 3 0 5 2 7 4 3-3 7-4 11-4 9 0 16 8 17 19 1 8 1 14 0 20l-12 24c-5 6-13 8-19 5-6 4-10 7-14 10-22 8-56 8-80 0C58 100 46 88 46 66z"/>'
+ +'<g class="sp-leg sp-leg-b"><path class="sp-el-fill" d="M54 92c-2 20 3 36 3 48 0 7 3 10 8 10h15c4 0 5-4 4-10V98z"/><path class="sp-el-nail" d="M70 150a3.2 3.2 0 0 1 6.4 0zM77 150a3.2 3.2 0 0 1 6.4 0z"/></g>'
+ +'<g class="sp-leg sp-leg-a"><path class="sp-el-fill" d="M130 98l-1 42c0 7 3 10 8 10h16c4 0 5-4 4-10l-2-42z"/><path class="sp-el-nail" d="M143 150a3.2 3.2 0 0 1 6.4 0zM150 150a3.2 3.2 0 0 1 6.4 0z"/></g>'
+ +'<path class="sp-el-cloth" d="M80 37C96 33 116 33 132 38l2 44c-16 6-38 6-56 0z"/>'
+ +'<path class="sp-el-band" d="M80 47C97 43 115 43 133 48M79 72c18 5 37 5 55 0"/>'
+ +'<path class="sp-el-diamond" d="M92 60l7-7 7 7-7 7zM110 60l7-7 7 7-7 7z"/>'
+ +'<path class="sp-el-fringe" d="M79 87c17 6 39 6 56 0"/>'
+ +'<path class="sp-el-ear" d="M149 44c11-4 22 4 23 18 1 16-6 30-16 35-7-4-11-17-11-31 0-10 1-17 4-22z"/>'
+ +'<path class="sp-el-cloth" d="M172 29c10-2 21 5 24 17l-9 4c-2-8-7-14-15-16z"/>'
+ +'<circle class="sp-el-eye" cx="183" cy="60" r="2.4"/>'
+ +'<path class="sp-el-tusk" d="M186 88c6 8 14 10 21 6-4 9-15 10-23 2z"/>'
+ +'</g></svg>',
+songthaew:'<svg class="sp-sprite sp-songthaew" viewBox="0 0 240 160"><g transform="translate(240 0) scale(-1 1)"><g class="sp-vehicle-all"><path class="sp-truck-shadow" d="M26 149 H212"/><path class="sp-truck-body" d="M30 101 L38 83 H77 V66 H179 L197 86 H213 V126 H30 Z"/><path class="sp-truck-cab" d="M38 83 H77 V104 H30 Z"/><path class="sp-truck-window" d="M48 86 H69 V100 H40 Z M84 74 H107 V96 H84 Z M113 74 H139 V96 H113 Z M145 74 H171 V96 H145 Z"/><path class="sp-truck-roof" d="M76 61 H183 L190 68 H75 Z"/><path class="sp-rack" d="M83 58 V50 H177 V61 M96 50 V43 M164 50 V43"/><path class="sp-truck-open" d="M82 100 H181 V116 H82 Z"/><path class="sp-truck-rail" d="M83 106 H180 M97 100 V116 M138 100 V116 M168 100 V116"/><path class="sp-truck-step" d="M181 116 H204 V129 H176 V123 H192 V116"/><path class="sp-truck-lamp" d="M31 107 H40 M204 98 H213"/><g class="sp-wheel"><circle cx="67" cy="128" r="19"/><circle class="sp-wheel-hub" cx="67" cy="128" r="5"/><path class="sp-spoke" d="M67 111 V145 M50 128 H84 M55 116 L79 140 M79 116 L55 140"/></g><g class="sp-wheel"><circle cx="171" cy="128" r="19"/><circle class="sp-wheel-hub" cx="171" cy="128" r="5"/><path class="sp-spoke" d="M171 111 V145 M154 128 H188 M159 116 L183 140 M183 116 L159 140"/></g></g></g></svg>',
+plane:'<svg class="sp-sprite sp-plane" viewBox="0 0 240 160"><g class="sp-plane-all"><path class="sp-plane-body" d="M24 91 C31 81 45 77 67 77 H132 L165 46 H181 L164 77 H201 C211 77 218 82 221 89 C218 96 211 101 201 101 H164 L181 126 H165 L132 101 H67 C45 101 31 97 24 91 Z"/><path class="sp-plane-wing" d="M108 100 L137 129 H119 L81 101 Z"/><path class="sp-plane-tail" d="M55 78 L70 55 H82 L81 78 Z"/><path class="sp-plane-window" d="M85 86 H91 M99 86 H105 M113 86 H119 M127 86 H133 M141 86 H147"/><path class="sp-plane-line" d="M43 94 H157"/></g></svg>'
+};
+/*SPRITES-END*/
+/*THAI-START*/
+var THAI_DEFS=`<svg class="th-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+<symbol id="th-gable" viewBox="0 0 480 96"><g id="th-gable-half"><path style="fill:var(--th-2,currentColor)" d="M240 13 126 59h114zM240 29 76 77h164zM240 45 18 88h222z"/><path fill="currentColor" d="M240 9 120 57l5 6 115-43zm0 16L70 75l6 6 164-47zm0 16L12 86l7 7 221-43z"/><path fill="currentColor" d="M126 59c-17-2-22-12-13-23 2 10 8 11 15 5-3 9 4 12 12 12zm-50 18c-17-2-22-13-13-24 2 11 8 12 16 5-4 10 4 13 12 13zM18 88C2 87 0 76 9 67c1 10 7 12 15 6-4 9 2 13 10 14z"/><path fill="currentColor" d="M217 51c-15-9-12-21 1-28-5 11 3 15 12 11l10 12c-10-2-16 1-23 5zm-34 19c-15-9-12-21 1-28-5 11 3 15 12 11l12 10c-11 0-17 3-25 7zm-43 13c-13-8-10-18 1-24-4 9 3 12 11 9l11 9c-10 0-16 3-23 6z"/><path style="fill:var(--th-3,currentColor)" d="M223 54l8-15 7 11-6 11zm-34 19 8-14 7 10-6 10zm-43 13 7-11 6 7-5 7z"/></g><use href="#th-gable-half" transform="translate(480 0) scale(-1 1)"/><path fill="currentColor" d="M8 88h464v8H8z"/><path style="fill:var(--th-2,currentColor)" d="M35 89l9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8 9-8 9 8z"/><path fill="currentColor" d="M240 15c-7-9-4-22 3-31-2 12 5 17 10 21-9 0-9 8-13 10z"/></symbol>
+<symbol id="th-corner" viewBox="0 0 72 72"><path fill="currentColor" d="M3 69c23-2 42-14 51-35C47 51 35 56 24 52c12-3 18-13 17-26-6 11-15 16-25 12 8-6 10-15 7-24 14 10 19 22 16 35 9-9 13-19 11-31 12 16 10 32 1 45 8-4 14-2 18 5-14 1-30 2-46 1z"/><path style="fill:var(--th-2,currentColor)" d="M12 65c16-6 27-17 32-31-10 11-20 14-29 11 9-7 12-15 9-24 8 9 11 18 8 27 8-7 12-15 12-24 5 14 2 27-9 38z"/><path fill="currentColor" d="M4 62V45c5 8 12 10 20 6-6 8-12 11-20 11zm42 7c8-8 16-10 24-6-7 4-14 6-24 6z"/></symbol>
+<symbol id="th-divider" viewBox="0 0 320 28"><g id="th-divider-half"><path fill="currentColor" d="M0 11h73v2H0zm0 4h73v2H0zM75 14c-13-2-18-9-14-15 4 7 10 8 15 3-2 6 3 9 9 8-3 4-6 5-10 4zm16 1c-11-2-14-8-11-13 3 5 8 6 12 2-1 5 3 8 8 7-3 3-5 4-9 4zm14 0c-8-1-10-6-8-10 3 4 6 5 10 2-1 4 2 6 6 6-2 2-5 3-8 2z"/></g><use href="#th-divider-half"/><use href="#th-divider-half" transform="translate(320 0) scale(-1 1)"/><path fill="currentColor" d="m160 1 13 13-13 13-13-13z"/><path style="fill:var(--th-2,currentColor)" d="m160 5 9 9-9 9-9-9z"/><circle style="fill:var(--th-3,currentColor)" cx="160" cy="14" r="4"/></symbol>
+<symbol id="th-flower" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c3 6 7 8 12 12-5 3-9 7-12 12C9 19 5 15 0 12c5-4 9-6 12-12z"/><path style="fill:var(--th-2,currentColor)" d="M12 4c1 4 4 6 7 8-3 2-6 4-7 8-2-4-4-6-7-8 3-2 5-4 7-8z"/><circle style="fill:var(--th-3,currentColor)" cx="12" cy="12" r="3"/></symbol>
+<symbol id="th-lotus" viewBox="0 0 28 20"><path fill="currentColor" d="M1 18c1-9 5-13 11-15-1 7 0 11 2 15-6-1-9-1-13 0zm26 0c-4-1-7-1-13 0 2-4 3-8 2-15 6 2 10 6 11 15zM14 18c-4-6-4-11 0-18 4 7 4 12 0 18z"/><path style="fill:var(--th-2,currentColor)" d="M14 17c-2-5-2-8 0-12 2 4 2 7 0 12z"/><path fill="none" stroke="currentColor" stroke-width="2.5" d="M1 18h26"/></symbol>
+<symbol id="th-naga" viewBox="0 0 96 64"><path style="fill:var(--th-2,currentColor)" d="M5 59c20 0 26-12 28-26 2-14 9-21 22-23 11-2 18 4 25 12l10 3-9 7 10 5-12 3c-5 11-15 16-29 13-9-2-14 0-20 11l-9-8z"/><path fill="currentColor" d="M43 17C38 8 40 3 47 0c-1 7 2 10 7 12 0-8 4-12 10-13-3 7-1 11 4 14 3-8 8-10 14-8-6 5-7 10-4 16l-12-3c-8-5-15-5-23-1zM36 54c6-6 11-7 17-5-4 4-5 8-3 12-6-1-10-3-14-7z"/><path style="fill:var(--th-3,currentColor)" d="M17 55c6-4 10-3 14 1-6 3-10 3-14-1zm17-17c5-5 9-6 13-2-4 4-8 5-13 2zm3-12c4-5 8-6 12-2-4 4-8 5-12 2z"/><path fill="currentColor" d="M61 29c8-3 16-1 23 4l-11 3 11 3c-8 5-16 5-24 1l7-5z"/><path style="fill:var(--th-2,currentColor)" d="M67 35l15 1-11 4z"/><path fill="currentColor" d="M75 33l4 1-4 5z"/><circle style="fill:var(--th-3,currentColor)" cx="65" cy="25" r="4"/><circle fill="currentColor" cx="65" cy="25" r="1.5"/><path fill="none" stroke="currentColor" stroke-width="2.5" d="M8 58c17-2 21-13 23-25"/></symbol>
+<symbol id="th-chedi" viewBox="0 0 64 96"><path style="fill:var(--th-2,currentColor)" d="M5 91h54l-7-13H12zm8-16h38l-5-13H18zm7-16h24l-4-14H24zm6-17h12l-3-18h-6z"/><path fill="currentColor" d="M28 24 32 0l4 24zM5 91h54v5H5zm7-16h40v5H12zm7-16h26v5H19z"/><path style="fill:var(--th-3,currentColor)" d="M15 88l5-7 5 7 7-7 7 7 5-7 5 7z"/><path fill="none" stroke="currentColor" stroke-width="2.5" d="M24 59q8-8 16 0m-22 16q14-8 28 0"/></symbol>
+<symbol id="th-umbrella" viewBox="0 0 72 72"><path style="fill:var(--th-2,currentColor)" d="M5 36C13 11 59 11 67 36c-6 7-12 7-17 0-5 7-11 7-14 0-5 7-11 7-14 0-5 7-11 7-17 0z"/><path fill="currentColor" d="M35 17h3v45c0 7-5 9-10 7 5-1 6-4 6-8V36h5v26c0 3-1 5-3 6 5 1 9-2 9-7V17z"/><path style="fill:var(--th-3,currentColor)" d="m36 20 4 6 7 2-7 3-4 6-4-6-7-3 7-2z"/><path fill="none" stroke="currentColor" stroke-width="2.5" d="M11 34l13-7 12 7 12-7 13 7M18 29l6 5m24-5-6 5"/><circle fill="currentColor" cx="20" cy="32" r="2.5"/><circle fill="currentColor" cx="52" cy="32" r="2.5"/></symbol>
+<symbol id="th-arch" viewBox="0 0 360 200"><g id="th-arch-half"><path fill="currentColor" d="M20 190h42v-10H48V65c0-31 28-58 66-58 18 0 34 6 48 19l7-8C153 4 134 0 114 0 67 0 30 30 30 65v115H20z"/><path style="fill:var(--th-2,currentColor)" d="M35 177h14V63c0-34 29-62 65-62 18 0 35 7 48 20l-7 8c-12-11-26-16-41-16-32 0-59 23-59 51v113z"/><path fill="currentColor" d="M31 66c-14-9-15-21-5-31 0 11 6 15 15 13-6 9-5 15 2 21zm1 119h30v10H22zm-3-18h35v9H29z"/><path style="fill:var(--th-3,currentColor)" d="M45 72l9-10 9 10-9 10z"/></g><use href="#th-arch-half"/><use href="#th-arch-half" transform="translate(360 0) scale(-1 1)"/><path fill="currentColor" d="M176 19c-6-10-4-22 4-30-2 12 5 17 11 22-8 0-10 6-15 8z"/></symbol>
+<pattern id="th-band-yam" width="32" height="18" patternUnits="userSpaceOnUse"><path fill="currentColor" d="m0 9 9-9 7 9-7 9zm16 0 7-9 9 9-9 9z"/><path style="fill:var(--th-2,currentColor)" d="m8 4 5 5-5 5-4-5zm16 0 4 5-4 5-5-5z"/></pattern>
+<pattern id="th-band-kranok" width="36" height="18" patternUnits="userSpaceOnUse"><path fill="currentColor" d="M1 18C8 17 12 12 11 4c6 6 5 11 2 14h10c-5-4-5-9 2-16 0 9 4 14 10 16z"/><path style="fill:var(--th-2,currentColor)" d="M10 17c4-4 4-8 3-11 5 5 4 9 1 11z"/></pattern>
+<pattern id="th-band-lotus" width="22" height="16" patternUnits="userSpaceOnUse"><path fill="currentColor" d="M1 15c0-8 4-12 10-15-1 7 0 11 0 15-5-1-7-1-10 0zm20 0c-3-1-5-1-10 0 0-4 1-8 0-15 6 3 10 7 10 15zM11 15C7 8 8 4 11 0c3 4 4 8 0 15z"/><path fill="none" stroke="currentColor" stroke-width="2" d="M0 15h22"/></pattern>
+<pattern id="th-band-krajang" width="24" height="20" patternUnits="userSpaceOnUse"><path fill="currentColor" d="M0 20c7-3 10-10 12-20 2 10 5 17 12 20z"/><path style="fill:var(--th-2,currentColor)" d="M12 4v13" stroke="var(--th-2,currentColor)" stroke-width="2"/></pattern>
+<pattern id="th-weave" width="40" height="40" patternUnits="userSpaceOnUse"><path fill="currentColor" d="m20 1 19 19-19 19L1 20zM20 10l10 10-10 10L10 20z"/><path style="fill:var(--th-2,currentColor)" d="m20 14 6 6-6 6-6-6z"/></pattern>
+<pattern id="th-scale" width="20" height="14" patternUnits="userSpaceOnUse"><path fill="currentColor" d="M0 14C2 5 8 1 10 14 12 1 18 5 20 14z"/><path style="fill:var(--th-2,currentColor)" d="M5 13c2-5 4-6 5 0 1-6 3-5 5 0z"/></pattern>
+</defs></svg>`;
+/*THAI-END*/
+
+/* 地圖座標（示意，不照比例）。[x, y, 名稱, 標籤位置] */
+var P={
+  hotel:[274,198],
+  airport:[150,326,'清邁機場','b','plane'],
+  chediluang:[232,204,'柴迪隆寺','b','temple'],
+  phrasingh:[200,190,'帕邢寺','t','temple'],
+  suthep:[30,84,'素帖寺','r','hilltemple'],
+  palat:[72,134,'帕拉寺','b','temple'],
+  nimman:[112,130,'尼曼','t','shop'],
+  suandok:[140,188,'松達寺','t','temple'],
+  umong:[86,214,'悟孟寺','t','temple'],
+  bkw:[70,246,'Baan Kang Wat','b','market'],
+  jingjai:[258,62,'真心市集','t','market'],
+  warorot:[330,172,'瓦洛洛市場','t','market'],
+  riverside:[394,200,'河岸晚餐','bs','dine'],
+  chiangman:[266,150,'清曼寺','l','temple'],
+  threekings:[232,172,'三王像','b','monument'],
+  lokmoli:[204,112,'羅摩利寺','t','temple'],
+  rajapruek:[100,310,'皇家花園','t','garden'],
+  nightsafari:[68,338,'夜間動物園','r','moon'],
+  canyon:[120,364,'水上樂園','r','wave']
+};
+var SEG={
+  sunday:[290,190,202,190,'週日夜市',246,180,'middle'],
+  wualai:[236,250,206,292,'週六夜市、銀廟',208,282,'end']
+};
+var ARROW={
+  inthanon:[166,254,62,356,'茵他儂山',78,368,'start'],
+  maerim:[184,124,118,24,'湄林',130,22,'start'],
+  north:[230,122,230,16,'湄登、清道',240,28,'start']
+};
+
+/* ── 可以換的選項。key: [名稱, 泰文, 說明, [備註]] ── */
+var POOL_NAME={michelin:'米其林推薦（2027 年版）',khaosoi:'泰北咖哩麵',northern:'北泰菜與烤雞',street:'夜市小吃',river:'賓河邊',cafe:'咖啡館',massage:'按摩',klass:'體驗課'};
+var BADGE={bib:'米其林必比登',star:'米其林一星'};
+var POOLS={
+ michelin:{
+  huenmuanjai:['Huen Muan Jai','เฮือนม่วนใจ๋','柚木老屋裡的北泰家常菜。點一份拼盤，可以一次吃到香腸、兩種辣椒醬和炸豬皮。',['北泰菜，中價位','週三休，搭 Grab 10 分鐘'],'bib'],
+  huansoontaree:['Huan Soontaree','เฮือนสุนทรี','賓河邊的北泰菜餐廳，老闆是泰北民謠歌手 Soontaree，晚上有現場演唱。在古城北邊，要搭車。',['北泰菜，中價位','搭 Grab 約 15–20 分鐘'],'bib'],
+  gongkham:['Gongkham','','北泰家常菜。米其林點名的是雜菜湯（gaeng khae）和炸豬肝配青辣椒醬。',['北泰菜，平價'],'bib'],
+  euangkamsai:['Euang Kam Sai','','走傳統路線的北泰菜，招牌是牛肉版的緬式燉咖哩（hang le）。',['北泰菜，中價位'],'bib'],
+  lhongkhao:['Lhongkhao Kitchen','','平價的北泰家常菜。',['北泰菜，平價'],'bib'],
+  huenjaiyong:['Huen Jai Yong','เฮือนใจ๋ยอง','山甘烹的老木屋，做的是傣雍族的家常菜。離古城約 17 公里，要專程搭車去。',['北泰菜，平價','今年新上榜','搭 Grab 約 30 分鐘'],'bib'],
+  chawee:['CHAWEE','','家常風格的泰菜小館，菜單跟著季節換。',['泰菜，中價位'],'bib'],
+  jaanjoor:['Jaan Joor','','今年新上榜的泰菜餐廳。',['泰菜，中價位','今年新上榜'],'bib'],
+  sanae:['Sanae Thai Cuisine','','平價的泰式家常菜。',['泰菜，平價'],'bib'],
+  saiyut:['Saiyut and Doctor Sai Kitchen','','泰式家常菜。',['泰菜，中價位'],'bib'],
+  rasik:['Rasik Local Kitchen','','用在地食材做的當代泰菜。',['當代泰菜，中價位'],'bib'],
+  magnolia:['Magnolia Café','','泰菜餐廳。',['泰菜，中價位'],'bib'],
+  meena:['Meena Rice Based Cuisine','มีนา มีข้าว','山甘烹的池畔木屋餐廳，招牌是用花草染成五種顏色的米飯。離古城約 12 公里。',['泰菜，中價位','搭 Grab 約 25 分鐘'],'bib'],
+  maesai:['Khao Soi Mae Sai','ข้าวซอยแม่สาย','古城和尼曼之間的 Santitham 區，本地人排隊的泰北咖哩麵。牛肉和雞腿兩種都點來試。',['麵，平價','約 08:00–16:00，週日休'],'bib'],
+  baannamngiew:['Baan Nam Ngiew Wieng Kao','','清萊口味的番茄肉醬米線（nam ngiao），湯頭酸香。',['麵，平價','今年新上榜'],'bib'],
+  guayjub:['Guay Jub Chang Moi Tat Mai','ก๋วยจั๊บช้างม่อยตัดใหม่','粿汁：捲起來的寬米粉泡在胡椒湯裡，配脆皮燒肉。在瓦洛洛市場附近。',['麵，平價'],'bib'],
+  rotipaday:['Roti Pa Day','โรตีป้าเด','塔佩路上的煎餅攤，晚上才出來擺。香蕉加蛋、淋煉乳是基本款。',['街頭小吃，平價'],'bib'],
+  lungkhajohn:['Lung Khajohn Wat Ket','','賓河東岸、蓋寺附近的老攤，賣潤餅捲和沙嗲。',['街頭小吃，平價'],'bib'],
+  tuekako:['Tue Ka Ko Na Prince','','賓河東岸一所學校門口的炸物攤，賣炸芋頭糕和炸豆腐，沾花生甜辣醬。',['街頭小吃，平價'],'bib'],
+  danchicken:['Dan Chicken Rice (San Sai)','','海南雞飯。在東北郊的 San Sai，離古城遠。',['小吃，平價'],'bib'],
+  belen:['Belen by Paulo Airaudo','','清邁第一家米其林一星，今年剛摘星。用在地食材做歐式料理，是高價位的精緻餐廳。',['歐式料理，高價位','一定要訂位'],'star']
+ },
+ khaosoi:{
+  khunyai:['Khao Soi Khun Yai','ข้าวซอยคุณยาย','古城北側的家庭小店，湯頭濃、價錢實在。只賣午餐，賣完就收。',['一碗約 60–80 銖','約 10:00–14:00，週日休']],
+  lamduan:['Khao Soi Lam Duan','ข้าวซอยลำดวนฟ้าฮ่าม','賓河東岸開了幾十年的老字號。湯比較濃、比較甜，再加一盤烤沙嗲。',['一碗約 60–80 銖','從塔佩門搭 Grab 10 分鐘']],
+  ksnimman:['Khao Soi Nimman','ข้าวซอยนิมมาน','尼曼 7 巷。配料選擇最多，有海鮮、烤豬肋和泰北香腸的版本。有冷氣，好坐。',['一碗約 100–200 銖']],
+  islam:['Khao Soi Islam','ข้าวซอยอิสลาม','觀光夜市旁的清真老店，只賣牛肉和雞肉。另一道招牌是黃薑飯。',['一碗約 60–80 銖','塔佩門往東步行 10 分鐘']]
+ },
+ northern:{
+  huenphen:['Huen Phen','เฮือนเพ็ญ','古城裡的北泰菜老店，晚餐開在擺滿古董的內廳。點緬式燉豬肉咖哩、青辣椒醬配蔬菜、糯米飯。',['兩人約 600–800 銖','古城內，步行可到']],
+  tongtemtoh:['Tong Tem Toh','ต๋องเต็มโต๊ะ','尼曼 13 巷，年輕人排隊的北泰菜。烤豬頸肉、緬式燉豬肉咖哩、泰北香腸拼盤。',['兩人約 500–700 銖','用餐時間要排隊，11 點前到']],
+  kitipanit:['Kiti Panit','กิติพานิช','塔佩路上一棟百年老商行改的餐廳，把北泰菜做得精緻。適合想吃好一點的那一晚。',['兩人約 1,500–2,000 銖','建議訂位']],
+  gingerfarm:['Ginger Farm Kitchen','','尼曼 One Nimman 裡的農場餐廳，用自家農場的菜做泰北菜和泰式家常菜。有冷氣，環境舒服。',['兩人約 800–1,200 銖']],
+  spchicken:['SP Chicken','เอสพีไก่ย่าง','帕邢寺旁的烤雞店。整隻雞在炭火前轉著烤，配青木瓜沙拉和糯米飯。',['兩人約 400–500 銖','只開到傍晚，適合當午餐']],
+  cherngdoi:['Cherng Doi Roast Chicken','ไก่ย่างเชิงดอย','尼曼附近的烤雞名店。雞皮烤到脆，沾羅望子醬吃。',['兩人約 400–500 銖','週一休']]
+ },
+ street:{
+  changphuak:['昌普門夜市','ประตูช้างเผือก','北門外的小吃攤。戴牛仔帽的阿姨賣的滷豬腳飯（khao kha moo）是招牌。',['一份約 50–70 銖','傍晚 5 點後']],
+  cmgate:['清邁門夜市','ประตูเชียงใหม่','南門外的小吃攤，本地人下班來買。炒河粉、粥、烤肉串、現打果汁。',['每樣約 40–80 銖','傍晚 5 點後']],
+  nightbazaar:['長康路觀光夜市','ไนท์บาซาร์','塔佩門往東走 10 分鐘，每天晚上都開。逛完在夜市裡的美食廣場吃。',['兩人約 400–600 銖']]
+ },
+ river:{
+  riverside:['The Riverside','','賓河東岸最老牌的河岸餐廳。泰菜和西餐都有，晚上有現場樂團。',['兩人約 800–1,200 銖']],
+  goodview:['The Good View','','就在 The Riverside 隔壁，場地更大、更熱鬧，菜單從泰菜到日式都有。',['兩人約 800–1,200 銖']],
+  deck1:['Deck 1','','河邊的露天平台，比隔壁幾家安靜，適合慢慢吃。',['兩人約 1,200–1,800 銖']],
+  woo:['Woo Cafe','','Charoenrat 路上的花藝咖啡館兼餐廳，室內擺滿鮮花，樓上是藝廊。不在河邊，離河一條街。',['兩人約 600–900 銖']]
+ },
+ cafe:{
+  ristr8to:['Ristr8to','','尼曼的拉花名店，老闆拿過世界拉花冠軍。',['一杯約 90–130 銖']],
+  graph:['Graph','','尼曼 One Nimman 裡。招牌是加了柑橘、炭粉這類材料的創意咖啡。',['一杯約 120–180 銖']],
+  akhaama:['Akha Ama','','阿卡族青年創立的品牌，豆子來自自己的村子。古城帕邢寺附近有分店。',['一杯約 70–110 銖']],
+  fernforest:['Fern Forest Cafe','','古城西北角的花園咖啡館，坐在樹蔭和蕨類底下。有早午餐和蛋糕。',['兩人約 400–600 銖']]
+ },
+ massage:{
+  streetshop:['街邊按摩店','','塔佩門和古城巷子裡到處都是，挑店面乾淨、有人在按的進去。泰式按摩會拉筋和踩背，怕痛就說「bao bao」（輕一點）。',['泰式 1 小時約 250–350 銖','不用預約']],
+  lila:['Lila Thai Massage','ลีลานวดไทย','古城裡有好幾家分店。由前女子監獄典獄長創辦，按摩師是受過完整訓練的更生女性，手法穩定。',['泰式 1 小時約 300–400 銖','傍晚容易客滿，先去登記']],
+  blind:['盲人按摩','','視障按摩師靠手感找痠痛點，力道準。古城裡有 Perception Blind Massage。',['1 小時約 300–450 銖']],
+  temple:['寺院裡的按摩亭','','有些寺院在院子裡設按摩亭，例如古城南半邊的 Wat Pan Whaen。開放式通鋪、沒有冷氣，手法傳統，價錢最低。',['泰式 1 小時約 200 銖','傍晚前收']],
+  zira:['Zira Spa','','塔佩門附近，介於街邊店和高級 SPA 之間，有獨立房間。',['精油 1.5 小時約 1,500–2,000 銖','要預約']],
+  fahlanna:['Fah Lanna Spa','ฟ้าล้านนา สปา','蘭納風格的庭園 SPA，古城和尼曼都有店。價位中等，環境比街邊店好很多。',['套裝 2 小時約 1,500–2,500 銖','要預約']],
+  oasis:['Oasis Spa','','清邁老牌的高級 SPA，獨棟房間、兩位按摩師的四手按摩是招牌。',['套裝 2 小時約 2,500–4,000 銖','要預約，有接送']],
+  foot:['夜市路邊腳底按摩','','週日夜市整條路邊都擺著躺椅，逛累了坐下來按半小時。',['30 分鐘約 100–150 銖']]
+ },
+ klass:{
+  cookingclass:['泰菜料理課','','半日課通常先帶去市場認香料，再回教室做三到四道菜。選有教泰北咖哩麵的課程。',['約 1,000–1,500 銖／人，含接送','約 4.5 小時']],
+  muaythai:['泰拳體驗課','มวยไทย','拳館的初學者課。跳繩暖身、纏手帶，學基本的拳、肘、膝、腿，最後打手靶。',['約 500–800 銖／人','約 1.5–2 小時']],
+  indigo:['藍染手作課','','用泰北的天然藍染料染一條手帕或圍巾，當天帶走。Baan Kang Wat 一帶有工作室開課。',['約 500–1,200 銖／人','約 2–3 小時']],
+  halfspa:['半日 SPA','','把上午整個留給按摩。泰式、精油、藥草球各做一輪。',['約 2,500–4,500 銖／人','約 3–4 小時']]
+ }
+};
+var OPT={};
+var OPT_POOL={};
+Object.keys(POOLS).forEach(function(pn){Object.keys(POOLS[pn]).forEach(function(k){OPT[k]=POOLS[pn][k];OPT_POOL[k]=pn})});
+
+/* ── Google 地圖連結：用搜尋字串開啟，不需要座標 ── */
+var MQ={
+ '抵達清邁機場':'Chiang Mai International Airport','往清邁機場':'Chiang Mai International Airport',
+ '柴迪隆寺':'Wat Chedi Luang Chiang Mai','帕邢寺':'Wat Phra Singh Chiang Mai',
+ '素帖寺（雙龍寺）':'Wat Phra That Doi Suthep','帕拉寺':'Wat Pha Lat Chiang Mai',
+ '瓦萊路週六夜市':'Wualai Walking Street Chiang Mai','銀廟':'Wat Sri Suphan Chiang Mai',
+ '真心市集':'Jing Jai Market Chiang Mai','Baan Kang Wat 藝術村':'Baan Kang Wat Chiang Mai','悟孟寺':'Wat Umong Chiang Mai',
+ '週日夜市':'Tha Phae Gate Chiang Mai','在寺院中庭吃晚餐':'Wat Phan On Chiang Mai',
+ '皇家花園':'Royal Park Rajapruek Chiang Mai','大峽谷水上樂園':'Grand Canyon Water Park Chiang Mai','清邁夜間動物園':'Chiang Mai Night Safari',
+ '大象自然公園':'Elephant Nature Park Chiang Mai','瓦洛洛市場':'Warorot Market Chiang Mai',
+ '叢林飛索與叢林滑車':'Pongyang Jungle Coaster & Zipline','ATV 越野':'X-Centre Chiang Mai',
+ '尼曼巷子裡的小店':'Nimmanhaemin Road Chiang Mai','One Nimman':'One Nimman Chiang Mai','One Nimman 傍晚散步':'One Nimman Chiang Mai',
+ 'Maya 百貨和超市':'MAYA Lifestyle Shopping Center Chiang Mai',
+ '清曼寺':'Wat Chiang Man Chiang Mai','三王紀念像':'Three Kings Monument Chiang Mai','羅摩利寺':'Wat Lok Moli Chiang Mai','松達寺':'Wat Suan Dok Chiang Mai',
+ '山頂與安卡步道':'Doi Inthanon summit','國王塔與王后塔':'Phra Mahathat Naphamethanidon Doi Inthanon','Kew Mae Pan 稜線步道':'Kew Mae Pan Nature Trail','瓦吉拉坦瀑布':'Wachirathan Waterfall',
+ '詩麗吉皇后植物園':'Queen Sirikit Botanic Garden','夢占山':'Mon Jam Chiang Mai','湄沙瀑布':'Mae Sa Waterfall Chiang Mai',
+ '黏黏瀑布':'Bua Tong Sticky Waterfall','班顛寺':'Wat Ban Den Chiang Mai',
+ '清道洞':'Chiang Dao Cave','帕邦洞寺':'Wat Tham Pha Plong','清道溫泉':'Chiang Dao Hot Springs'
+};
+var OQ={
+ changphuak:'Chang Phuak Gate Night Market Chiang Mai',cmgate:'Chiang Mai Gate Market',nightbazaar:'Chiang Mai Night Bazaar',
+ streetshop:'',foot:'',lila:'Lila Thai Massage Chiang Mai',blind:'Perception Blind Massage Chiang Mai',temple:'Wat Pan Whaen Chiang Mai',
+ zira:'Zira Spa Chiang Mai',fahlanna:'Fah Lanna Spa Chiang Mai',oasis:'Oasis Spa Lanna Chiang Mai',
+ chawee:'CHAWEE restaurant Chiang Mai',danchicken:'Dan Chicken Rice San Sai Chiang Mai'
+};
+function optQ(k){
+  if(OQ[k]!==undefined)return OQ[k];
+  var pn=OPT_POOL[k];
+  return (pn==='klass'||pn==='massage'||pn==='street')?'':OPT[k][0]+' Chiang Mai';
+}
+function gmap(q,text){
+  return '<a class="gmap" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)+'" target="_blank" rel="noopener">'+text+'</a>';
+}
+
+/* ── 每日行程。項目：[時間, 類別, 名稱, 泰文, 說明, [備註], [選項池], 預設選項] ── */
+var DINNER='回到古城後吃。',LUNCH=['michelin','northern','khaosoi'],DIN=['michelin','northern','street'];
+var PLANS={
+arrive:{title:'抵達，先把古城走一圈',range:'市區，步行',book:'',
+ sum:'清晨的班機，上午就到。第一天不排遠的，把古城兩座大寺看完，晚上吃夜市。',
+ map:{pts:['airport','chediluang','phrasingh'],route:['airport','hotel','chediluang','phrasingh','hotel']},
+ items:[
+  ['04:40','車','出門往桃園機場','','機場捷運首班車大約 6 點才發，趕不上 07:20 的班機。前一晚先預約接送，或自己開車。',['起飛前 2 小時到櫃檯']],
+  ['07:20','機','華航 CI851 起飛','','桃園直飛清邁，飛行約 4 小時 5 分。航廈以電子機票為準。',[]],
+  ['10:25','機','抵達清邁機場','ท่าอากาศยานเชียงใหม่','當地時間比台灣慢 1 小時，手錶往回撥。入境時出示 TDAC 的 QR Code。',[]],
+  ['11:30','車','進古城','','機場離古城只有 4 公里。出關後搭排班計程車或叫 Grab。',['約 150–200 銖／車','車程 15–20 分鐘']],
+  ['12:15','食','午餐','','先到旅館寄行李再去吃。泰北咖哩麵（khao soi）是椰奶咖哩湯配雞蛋麵，上面鋪一把炸麵。元旦小店可能休息，沒開就換別家。',[],['khaosoi','michelin'],'khunyai'],
+  ['14:00','歇','入住，補眠','','凌晨 4 點起床的一天，睡一小時再出門，下午會好走很多。',[]],
+  ['15:30','寺','柴迪隆寺','วัดเจดีย์หลวง','15 世紀的大佛塔，1545 年地震震垮了上半截，殘塔仍有約 60 公尺高。元旦當天會有很多本地人來祈福。',['門票約 50 銖','停留 1 小時']],
+  ['16:45','寺','帕邢寺','วัดพระสิงห์','古城裡地位最高的寺。萊康殿的金漆壁畫和木雕是蘭納風格的代表，傍晚的金塔最好看。',['門票約 50 銖','從柴迪隆寺步行 10 分鐘']],
+  ['18:30','食','晚餐','','',[],DIN,'changphuak'],
+  ['20:00','歇','按摩','','按完早點睡。',[],['massage'],'streetshop']
+ ],
+ notes:[['交通','除了機場進城，今天其他路程都能用走的。古城東西向走完大約 20 分鐘。'],['住宿','建議七晚都住塔佩門內側。週日夜市就在門口，一日遊的車也都到這一帶接人。']]},
+
+suthep:{title:'清晨上素帖山，傍晚逛週六夜市',range:'山上 35 分鐘，其餘市區',book:'',
+ sum:'素帖寺要趁早，9 點以後遊覽車就到了。下午在尼曼喝咖啡，傍晚去只有週六才有的瓦萊路夜市。',
+ map:{pts:['suthep','palat','nimman'],segs:['wualai'],route:['hotel','suthep','palat','nimman','hotel']},
+ items:[
+  ['07:00','車','上素帖山','','叫 Grab，或在昌普門外包一台紅色雙條車，講好來回和等候時間。11 公里山路都是彎，容易暈車的人坐前座。',['Grab 單程約 300–400 銖','車程 35 分鐘']],
+  ['07:40','寺','素帖寺（雙龍寺）','วัดพระธาตุดอยสุเทพ','海拔 1,050 公尺。爬 306 級那伽階梯上去，金塔後方的平台可以俯瞰整個清邁盆地。早上山上只有 12 到 15°C，帶件外套。',['門票約 30–50 銖','不想爬可搭纜車 20 銖','停留 1.5 小時']],
+  ['09:30','寺','帕拉寺','วัดผาลาด','下山途中的森林寺院，溪水從寺前的岩盤流過。遊客少，是這天最安靜的一站。',['免費','停留 45 分鐘']],
+  ['11:00','食','午餐','','下山後直接到尼曼。',[],LUNCH,'tongtemtoh'],
+  ['12:45','食','咖啡','','尼曼的店留到採買那天再逛，今天喝杯咖啡就回去。',[],['cafe'],'ristr8to'],
+  ['14:00','歇','回旅館休息','','早上起得早，睡個午覺再去夜市。',[]],
+  ['17:30','市','瓦萊路週六夜市','ถนนคนเดินวัวลาย','從清邁門往西南走的一條銀器老街，每週六封街。比週日夜市小，手工銀飾和本地小吃比較多。晚餐就在夜市裡邊走邊吃。',['約 17:00–22:00']],
+  ['19:00','寺','銀廟','วัดศรีสุพรรณ','整座戒堂包著手工敲花的銀片和鋁片，晚上會打燈。依寺方規定，女性不能進入戒堂內部，可以在外面看。',['門票約 50 銖','在夜市旁的巷子裡']]
+ ],
+ notes:[['交通','紅色雙條車（rod daeng）在市區隨招隨停。上車前跟司機說目的地，同方向就載，每人 30 銖起。']]},
+
+weekend:{title:'週末市集、藝術村與週日夜市',range:'市區，Grab 串點',book:'',
+ sum:'兩個只有週末才開的地方都排在今天。中午以後放慢，把體力留給晚上的週日夜市。',
+ map:{pts:['jingjai','bkw','umong'],segs:['sunday'],route:['hotel','jingjai','bkw','umong','hotel']},
+ items:[
+  ['08:00','市','真心市集','จริงใจมาร์เก็ต','週六、日早上的農夫市集加手作市集。有機蔬果、現煮咖啡、藍染衣服，早餐直接在這裡吃。',['約 07:00–13:00','Grab 約 80–100 銖']],
+  ['10:30','市','Baan Kang Wat 藝術村','บ้านข้างวัด','名字的意思是「寺廟旁邊的家」。十幾間陶藝、木工、手作小店圍著一個小劇場。午餐可以在村裡吃。',['週一公休','從真心市集搭 Grab 約 20 分鐘']],
+  ['13:00','寺','悟孟寺','วัดอุโมงค์','14 世紀的隧道寺院。紅磚隧道裡供著佛像，外面是一大片樹林和可以餵魚的池塘。',['隨喜約 20 銖','離藝術村 1.5 公里']],
+  ['14:30','歇','按摩','','回城休息。按完睡一下再去夜市。',[],['massage'],'lila'],
+  ['16:30','市','週日夜市','ถนนคนเดินท่าแพ','從塔佩門沿拉查丹能路一路擺到帕邢寺，全長 1 公里。趁天還亮先逛，7 點以後人會擠到走不動。',['約 16:00–22:00']],
+  ['18:00','景','國歌時間','','下午 6 點整廣播會放國歌，整條街的人原地站定約 1 分鐘。跟著停下來就好。',[]],
+  ['18:30','食','在寺院中庭吃晚餐','วัดพันอ้น','沿路幾間寺院的中庭會擺成小吃區，例如盼安寺。泰式炒河粉、烤肉串、芒果糯米，每樣 40 到 80 銖。',[]]
+ ],
+ notes:[['交通','上午三個點彼此不近，用 Grab 串。回程在悟孟寺門口叫車，偶爾要等 10 分鐘。']]},
+
+southfun:{title:'皇家花園、水上樂園、夜間動物園',short:'花園、水上樂園、夜間動物園',range:'南郊，單程 30 分鐘',book:'包車',
+ sum:'三個點都在機場西南邊，彼此只隔 10 到 15 分鐘車程，全程不用爬山。上午逛花園，下午天氣最熱時玩水，天黑後坐遊園車看動物。',
+ map:{pts:['rajapruek','canyon','nightsafari'],route:['hotel','rajapruek','canyon','nightsafari','hotel']},
+ items:[
+  ['09:30','車','包車出發','','三個點之間叫車不方便，包一台車從早跑到晚最省事。',['包車約 1,800–2,300 銖／車','車程 30 分鐘']],
+  ['10:00','景','皇家花園','อุทยานหลวงราชพฤกษ์','主角是蘭納式的皇家亭 Ho Kham Luang，層層疊落的屋頂和金色山牆就在花海中央。1 月是花開得最滿的時候。園區很大，但有遊園車可以坐，不用一直走。',['門票約 200 銖','遊園車約 20 銖','停留 2 小時']],
+  ['12:15','食','午餐','','花園和水上樂園之間的杭東路上有很多本地餐廳，請司機推薦一家。',['兩人約 400–600 銖']],
+  ['13:30','景','大峽谷水上樂園','แกรนด์แคนยอน','舊採石場積水成的湖，兩邊是紅土峭壁。湖面上有一整片充氣闖關設施，還有大滑水道、高空跳水台和獨木舟。1 月的水偏涼，下午太陽最大時下水剛好。',['門票約 700–1,000 銖／人','含救生衣','停留 2.5 小時']],
+  ['16:15','歇','沖洗、換衣服','','園區有淋浴間和置物櫃。換好乾衣服再上車，晚上會涼。',[]],
+  ['17:00','景','清邁夜間動物園','เชียงใหม่ไนท์ซาฟารี','傍晚先沿湖邊的平路步道看小型動物，晚餐在園內吃。天黑後搭開放式遊園車，分草食動物和肉食動物兩條路線，每條約 30 分鐘，長頸鹿會把頭伸到車邊。',['門票約 800–1,200 銖／人，依方案','晚上只有 15°C 左右，帶外套']],
+  ['21:00','車','回旅館','','大約 21:30 回到古城。',[]]
+ ],
+ notes:[['要帶','泳衣、毛巾、替換衣服、一件外套。水上樂園的充氣設施要穿救生衣，不會游泳也能玩。'],['時間','水上樂園有來源寫週三公休，排在其他天之前先確認。夜間動物園的遊園車班次以現場公告為準。']]},
+
+inthanon:{title:'茵他儂山，泰國最高點',short:'茵他儂山',range:'郊外，單程 2 小時',book:'包車',
+ sum:'泰國最高的山，山頂比市區冷 15 度以上。整天包車，司機會照這個順序跑。',
+ map:{pts:[],arrows:[['inthanon','茵他儂山　單程約 100 公里']],route:[]},
+ trip:{name:'茵他儂山',dir:'往西南',km:100,hours:'2 小時',stops:[['古城',0,310],['瓦吉拉坦瀑布',75,750],['國王塔與王后塔',95,2150],['Kew Mae Pan 步道',96,2200],['山頂',100,2565,'2,565 公尺']]},
+ items:[
+  ['07:00','車','包車出發','','往西南開，到山頂約 100 公里。入園時在收費站買票。',['包車約 3,000–3,500 銖／車','國家公園門票外國成人 300 銖','車程 2 小時']],
+  ['09:15','景','山頂與安卡步道','ดอยอินทนนท์','海拔 2,565 公尺的泰國最高點立牌，旁邊是 15 分鐘的苔蘚林木棧道。1 月早上山頂常只有 5 到 10°C。',[]],
+  ['10:15','寺','國王塔與王后塔','พระมหาธาตุนภเมทนีดล','為慶祝國王和王后 60 歲生日，分別在 1987 年和 1992 年落成的兩座塔。涼季的花園裡開滿了花。',['門票約 100 銖']],
+  ['11:00','景','Kew Mae Pan 稜線步道','กิ่วแม่ปาน','今天的重點。約 3 公里的環狀步道，前段走雲霧林，後段走在草原稜線上看雲海。每年只在 11 月到 5 月開放，規定要請一位當地嚮導帶。',['嚮導 200 銖／組','走完約 2.5 小時']],
+  ['13:45','食','皇家計畫餐廳午餐','','山上農場自己養的虹鱒和高山蔬菜。',['兩人約 500 銖']],
+  ['15:00','景','瓦吉拉坦瀑布','น้ำตกวชิรธาร','落差約 80 公尺，水氣會噴到觀景台上。下午有陽光時常看得到彩虹。',[]],
+  ['16:00','車','回程','','大約 18:00 回到古城。',[]],
+  ['19:00','食','晚餐','','走了一天，在旅館附近簡單吃。',[],DIN,'cmgate']
+ ],
+ notes:[['穿著','洋蔥式穿法。山頂要輕羽絨加防風外套，回到瀑布只要短袖。步道穿好走的運動鞋。'],['備案','不想包車可以參加一日團，每人約 1,300–1,800 銖。多數團不走 Kew Mae Pan 全程，報名前先問清楚。']]},
+
+elephant:{title:'上午看大象，傍晚到賓河邊',short:'大象自然公園、市場、河岸',range:'郊外半日，單程 1.5 小時',book:'大象保護區',
+ sum:'只排半日的郊外行程。下午回城，去本地人買菜的市場，再到河邊吃飯。',
+ map:{pts:['warorot','riverside'],route:['hotel','warorot','riverside']},
+ trip:{name:'大象自然公園',dir:'往北',km:60,hours:'1.5 小時',stops:[['古城',0,310],['大象自然公園',60,420]]},
+ items:[
+  ['07:00','車','保護區的車到旅館接','','往北到湄登（Mae Taeng），約 60 公里。',['車程 1.5 小時']],
+  ['08:30','景','大象自然公園','','Elephant Nature Park 收容從伐木場和表演場救出來的大象。這裡不騎乘、不表演，遊客在步道上看象群自己活動。',['半日約 2,500 銖／人起，含接送','旺季至少提前 4 週訂']],
+  ['13:30','歇','回到旅館休息','','實際接送時間依訂到的方案為準。',[]],
+  ['16:00','市','瓦洛洛市場','กาดหลวง','清邁人叫它 Kad Luang，意思是大市場。一樓賣泰北香腸、青辣椒醬、龍眼乾，旁邊是花市。伴手禮在這裡買最便宜。',['約 18:00 收攤','從塔佩門步行 15 分鐘']],
+  ['17:45','食','晚餐','','從市場過橋到東岸的 Charoenrat 路。',[],['river','michelin'],'riverside'],
+  ['20:00','車','搭 Grab 回旅館','','',['約 80 銖']]
+ ],
+ notes:[['挑選','選保護區看三件事：不騎乘、不表演、不強迫大象下水陪遊客洗澡。'],['伴手禮','泰北香腸、炸豬皮這類豬肉製品不能帶回台灣，想吃就在當地吃完。龍眼乾、茶葉、香料包可以帶。']]},
+
+zipatv:{title:'湄林山區，叢林飛索與 ATV',short:'叢林飛索與 ATV',range:'郊外，單程 50 分鐘',book:'飛索、ATV 和包車',
+ sum:'全程最動的一天。上午在山裡滑飛索、坐叢林滑車，下午騎 ATV 跑越野道。兩個場地在同一條山路上，傍晚就回到城裡。',
+ map:{pts:[],arrows:[['maerim','湄林山區　單程約 35 公里']],route:[]},
+ trip:{name:'湄林山區',dir:'往西北',km:35,hours:'50 分鐘',stops:[['古城',0,310],['X-Centre ATV',20,340],['叢林飛索',35,900]]},
+ items:[
+  ['08:00','車','包車往湄林山區','แม่ริม','往北出城，再轉進 1096 號山路。兩個場地都在這條路上，包一台車最省事。',['包車約 1,500–2,000 銖／車','車程 50 分鐘']],
+  ['09:00','景','叢林飛索與叢林滑車','โป่งแยง','在 Pongyang Jungle Coaster &amp; Zipline。先聽安全講解、穿好吊帶，再一站一站從樹冠之間滑過去。叢林滑車是沿著山坡鋪的軌道車，自己拉桿控制速度。',['套餐約 2,000–3,500 銖／人，依滑索站數而定','全程約 2.5–3 小時']],
+  ['12:00','食','午餐','','部分套餐含午餐。沒含的話，場內和山路沿線都有餐廳。',[]],
+  ['13:30','景','ATV 越野','','往回開 25 分鐘到 X-Centre。教練先帶著在練習場繞幾圈，再出場地跑山腳下的土路。不需要駕照，7 歲以上可以參加。',['1 小時約 2,000–2,300 銖／人','也有雙人共乘的車']],
+  ['15:00','歇','沖洗、換衣服','','騎完全身是土，換上乾淨衣服再上車。',[]],
+  ['15:30','車','回程','','大約 16:15 回到旅館。',[]],
+  ['19:00','食','晚餐','',DINNER,[],DIN,'nightbazaar']
+ ],
+ notes:[['穿著','包鞋、長褲，帶一套替換衣服和毛巾。飛索不能穿拖鞋，手機要掛繩或放置物櫃。'],['限制','飛索通常有體重上限，孕婦和心臟、脊椎有狀況的人不能玩。訂之前先看業者的規定。'],['保險','旅平險對 ATV、飛索這類活動的理賠條件各家不同，出發前看一下保單條款。'],['加碼','X-Centre 同一個場地還有高空彈跳和卡丁車，想多玩可以現場加。']]},
+
+nimmanshop:{title:'尼曼逛街，把伴手禮買齊',short:'尼曼逛街採買',range:'市區，Grab 10 分鐘',book:'',
+ sum:'整天留給尼曼區。上午逛巷子裡的小店，下午進商場和超市把伴手禮買齊，晚上吃一頓好的。',
+ map:{pts:['nimman'],route:['hotel','nimman','hotel']},
+ items:[
+  ['09:30','食','早午餐','','睡晚一點再出門，搭 Grab 到尼曼。',[],['cafe'],'graph'],
+  ['10:30','市','尼曼巷子裡的小店','นิมมานเหมินท์','從 Soi 1 逛到 Soi 17。藍染衣服、手作皮件、設計師選物店都藏在巷子裡，上午人少好逛。',['店家大多 10 點到 11 點開門']],
+  ['12:30','食','午餐','','',[],LUNCH,'ksnimman'],
+  ['14:00','市','One Nimman','','尼曼路口的紅磚商場。這裡有 Monsoon Tea 的森林茶，樓上是本地設計師的小店，手工皂、香氛和陶器都集中在這裡。',['約 11:00–22:00']],
+  ['15:30','市','Maya 百貨和超市','','過馬路就是 Maya。地下樓的 Rimping 超市買零食、果乾、咖哩麵調理包和龍眼蜜，樓上的藥妝店補青草膏和鼻通。',['同一家店當天買滿 2,000 銖可以辦退稅，帶護照']],
+  ['17:30','歇','按摩','','提著東西回旅館前先按一下，尼曼這一帶店很多。',[],['massage'],'fahlanna'],
+  ['19:30','食','晚餐','','',[],['michelin','northern','river','street'],'huenmuanjai']
+ ],
+ notes:[['清單','要買什麼先看下面的「必買伴手禮」，勾好再出門。'],['提袋','買多了不用硬撐，One Nimman 和 Maya 門口都叫得到 Grab，先送一趟回旅館。']]},
+
+cooking:{title:'學一門手藝，逛古城北半邊',short:'體驗課與古城北半邊',range:'市區',book:'上午的體驗課',
+ sum:'留在城裡的一天。上午上課，下午看古城北半邊的三座寺，晚上吃一頓好的。',
+ map:{pts:['chiangman','threekings','lokmoli'],route:['hotel','chiangman','threekings','lokmoli','hotel']},
+ items:[
+  ['09:00','學','上午的活動','','',[],['klass'],'cookingclass'],
+  ['14:00','歇','回旅館休息','','',[]],
+  ['16:00','寺','清曼寺','วัดเชียงมั่น','1296 年建城時蓋的第一座寺。後方的象塔由 15 隻石象托著。',['免費']],
+  ['16:45','景','三王紀念像','อนุสาวรีย์สามกษัตริย์','建立清邁的明萊王和他的兩位盟友。這裡是古城的正中心，傍晚有本地人來獻花。',[]],
+  ['17:15','寺','羅摩利寺','วัดโลกโมฬี','北護城河外的一座磚塔寺，塔身沒有貼金，是古城周邊最有古味的一座。',['免費','從三王像步行 12 分鐘']],
+  ['18:15','食','晚餐','','',[],DIN,'huenphen'],
+  ['20:00','歇','按摩','','',[],['massage'],'fahlanna']
+ ],
+ notes:[['順序','體驗課大多在下午 1 點半前結束。選了泰拳或藍染這類比較短的課，中午可以多排一頓午餐。']]},
+
+monjam:{title:'夢占山與湄沙山谷',short:'夢占山、樹冠步道、瀑布',range:'郊外，單程 1 小時',book:'包車',
+ sum:'湄林山區比較靜的玩法。走樹冠上的空中步道，上夢占山看梯田菜園，回程停瀑布。',
+ map:{pts:[],arrows:[['maerim','夢占山　單程約 40 公里']],route:[]},
+ trip:{name:'夢占山',dir:'往西北',km:40,hours:'1 小時',stops:[['古城',0,310],['湄沙瀑布',22,450],['皇后植物園',27,750],['夢占山',40,1350,'約 1,350 公尺']]},
+ items:[
+  ['08:30','車','包車往湄林山區','แม่ริม','',['包車約 1,800–2,200 銖／車','車程 50 分鐘']],
+  ['09:20','景','詩麗吉皇后植物園','สวนพฤกษศาสตร์สมเด็จพระนางเจ้าสิริกิติ์','重點是離地 20 多公尺的樹冠步道，全長約 400 公尺，其中幾段是玻璃地板。山坡上還有一整排溫室。',['門票約 100 銖','停留 1.5 小時']],
+  ['11:15','景','夢占山','ม่อนแจ่ม','海拔約 1,350 公尺的苗族村落。山脊兩側是梯田菜園和花田，天氣好時看得到一層層的山。午餐在山上的景觀餐廳吃。',['車程 30 分鐘','山上比市區冷，帶外套']],
+  ['13:45','景','湄沙瀑布','น้ำตกแม่สา','沿著步道一共十層，走到第五、六層就夠了。樹蔭多，適合下午。',['門票約 100 銖','停留 1 小時']],
+  ['15:15','車','回程','','大約 16:00 回到旅館。',[]],
+  ['19:00','食','晚餐','',DINNER,[],DIN,'huenmuanjai']
+ ],
+ notes:[['順路','同一條山路上還有蘭花園和幾家景觀咖啡館，時間夠可以請司機多停一站。']]},
+
+buatong:{title:'黏黏瀑布與班顛寺',short:'黏黏瀑布、班顛寺',range:'郊外，單程 1.5 小時',book:'包車',
+ sum:'赤腳直接從瀑布底下往上爬。石灰質的岩面粗糙不滑，是清邁才有的玩法。回程看一座藍瓦大寺。',
+ map:{pts:[],arrows:[['north','黏黏瀑布　單程約 60 公里']],route:[]},
+ trip:{name:'黏黏瀑布',dir:'往北',km:60,hours:'1.5 小時',stops:[['古城',0,310],['班顛寺',45,400],['黏黏瀑布',60,500]]},
+ items:[
+  ['08:30','車','包車出發','','',['包車約 2,000–2,500 銖／車','車程 1.5 小時']],
+  ['10:00','景','黏黏瀑布','น้ำตกบัวตอง','泉水裡的石灰質在岩石上結成一層粗糙的白色表面，腳踩上去有抓地力。從最下層拉著繩子一路爬回上面，全程泡在水裡。',['免費','停留 2 小時']],
+  ['12:15','食','午餐','','瀑布入口有幾家賣烤雞和青木瓜沙拉的小店，本地人會買了在樹下野餐。',['兩人約 200–300 銖']],
+  ['14:00','寺','班顛寺','วัดบ้านเด่น','湄登的一座大寺。十幾座殿堂全蓋著藍色琉璃瓦，還有一排代表十二生肖的佛塔，可以找自己生肖的那一座拜。',['免費','從瀑布車程 45 分鐘']],
+  ['15:15','車','回程','','大約 16:15 回到旅館。',[]],
+  ['19:00','食','晚餐','',DINNER,[],DIN,'changphuak']
+ ],
+ notes:[['穿著','穿泳衣或快乾衣褲，赤腳或穿溯溪鞋，帶換洗衣物和毛巾。1 月水溫偏涼，上岸馬上擦乾。']]},
+
+chiangdao:{title:'清道，洞穴與山腳溫泉',short:'清道洞穴、懸崖寺、溫泉',range:'郊外，單程 1.5 小時',book:'包車',
+ sum:'往北 75 公里，到泰國第三高峰清道山的山腳。進鐘乳石洞、爬 510 級階梯上森林裡的寺，最後泡溪邊溫泉。',
+ map:{pts:[],arrows:[['north','清道　單程約 75 公里']],route:[]},
+ trip:{name:'清道',dir:'往北',km:75,hours:'1.5 小時',stops:[['古城',0,310],['清道洞',72,450],['帕邦洞寺',75,600]]},
+ items:[
+  ['08:00','車','包車出發','','',['包車約 2,500–3,000 銖／車','車程 1.5 小時']],
+  ['09:30','景','清道洞','ถ้ำเชียงดาว','清道山底下的鐘乳石洞。前段有燈光和佛像，可以自己走。想進沒有燈的深處，要在洞口請提油燈的嚮導帶。',['門票約 40 銖','油燈嚮導約 200 銖／組','停留 1 小時']],
+  ['11:00','寺','帕邦洞寺','วัดถ้ำผาปล่อง','從洞穴再開 5 分鐘。穿過森林爬 510 級階梯，沿路掛著佛語牌，盡頭是嵌在崖壁裡的佛殿。',['免費','來回約 1 小時']],
+  ['12:30','食','午餐','','在山腳的民宿餐廳吃，例如 Chiang Dao Nest。',['兩人約 500–800 銖']],
+  ['14:00','景','清道溫泉','บ่อน้ำร้อนเชียงดาว','溪邊一排水泥浴池，溫泉水接管直接流進來，旁邊就是冷溪。村民自己蓋的，設備很簡單。',['帶泳衣和毛巾','停留 45 分鐘']],
+  ['15:00','車','回程','','大約 16:30 回到旅館。',[]],
+  ['19:00','食','晚餐','',DINNER,[],DIN,'nightbazaar']
+ ],
+ notes:[['體力','階梯全程在樹蔭下，但坡度陡。膝蓋不好的人可以只看洞穴。']]},
+
+slow:{title:'不出城，睡飽、按摩、喝咖啡',short:'不出城的慢日子',range:'市區',book:'SPA',
+ sum:'什麼都不趕的一天。睡到自然醒，看一座安靜的寺，下午整段留給按摩。',
+ map:{pts:['suandok','nimman'],route:['hotel','suandok','nimman','hotel']},
+ items:[
+  ['09:30','食','早午餐','','睡到自然醒再出門。',[],['cafe'],'fernforest'],
+  ['11:00','寺','松達寺','วัดสวนดอก','古城西門外 1 公里。一大片白色的塔是歷代蘭納王室的骨灰塔，後面的背景就是素帖山。',['免費','從旅館搭 Grab 10 分鐘']],
+  ['12:30','食','午餐','','',[],LUNCH,'maesai'],
+  ['14:00','歇','按摩','','下午整段留在這裡，挑一個 2 小時以上的套裝。',[],['massage'],'oasis'],
+  ['17:30','市','One Nimman 傍晚散步','','尼曼路口的紅磚商場。傍晚廣場上常有市集和現場音樂。',[]],
+  ['19:00','食','晚餐','','',[],DIN,'gingerfarm']
+ ],
+ notes:[['彈性','這天沒有任何要趕的時間。前一天太累，可以把這個行程換過來。']]},
+
+depart:{title:'回程',range:'機場',book:'',
+ sum:'11:25 的班機，上午沒有時間再排景點。吃完早餐就去機場。',
+ map:{pts:['airport'],route:['hotel','airport']},
+ items:[
+  ['07:00','食','早餐、退房','','塔佩門外早上有粥和豆漿油條的攤子。',[]],
+  ['08:30','車','往清邁機場','','8:50 前到，離起飛還有 2.5 小時，夠排隊託運和過安檢。',['Grab 約 150 銖','車程 15–20 分鐘']],
+  ['11:25','機','華航 CI852 起飛','','直飛桃園，飛行約 3 小時 25 分。',[]],
+  ['15:50','機','抵達桃園機場','','台灣時間。行李裡如果還有肉類製品，在入境檢查前丟進檢疫棄置箱，不會受罰。',[]]
+ ],
+ notes:[['泰銖','管制區內的店都收現金，剩下的零錢在這裡花掉。']]}
+};
+
+var FREE=['southfun','elephant','zipatv','nimmanshop','cooking','slow','monjam','buatong','chiangdao','inthanon'];
+
+/* ── 伴手禮。[id, 名稱, 泰文, 說明, [哪裡買, 價格], 注意] ── */
+var SOUV=[
+ ['吃的',[
+  ['s_longan','龍眼乾','ลำไยอบแห้ง','清邁和隔壁的南奔是龍眼產地。挑去殼去籽、金黃色的果肉乾，泡茶或直接吃。',['瓦洛洛市場一樓','一包約 150–300 銖']],
+  ['s_dried','芒果乾和綜合果乾','','皇家計畫的品牌 Doi Kham 品質穩定，包裝小、好分送。',['超市、便利商店','一包約 60–120 銖']],
+  ['s_khaosoi','泰北咖哩麵調理包','','回家煮得出來的清邁味道。買醬料包就好，Lobo 是最常見的牌子。',['超市','一包約 30–50 銖']],
+  ['s_honey','龍眼蜜','น้ำผึ้งดอกลำไย','龍眼花期採的蜜，顏色深、香氣濃。玻璃瓶包好放託運。',['超市、瓦洛洛市場','一瓶約 150–300 銖']],
+  ['s_maca','夏威夷豆','','泰北山區種的，Doi Tung 是代表品牌。',['超市、機場','一包約 100–250 銖']],
+  ['s_snack','泰國零食','','小老闆海苔、大哥花生豆、Bento 魷魚片、泰式口味的洋芋片。',['Maya 地下樓的超市','每樣約 20–60 銖']]
+ ]],
+ ['茶和咖啡',[
+  ['s_tea','Monsoon Tea 森林茶','','用泰北山林裡半野生的茶樹做的茶，有原味，也有加花果的調味茶。罐子好看，適合送人。',['One Nimman','一罐約 250–500 銖']],
+  ['s_coffee','泰北咖啡豆','','清邁周邊山上種的阿拉比卡。Akha Ama、Ristr8to 這些咖啡館都賣自家烘的豆子。',['咖啡館門市','250 克約 300–500 銖']]
+ ]],
+ ['保養和藥妝',[
+  ['s_balm','青草膏和鼻通','','蚊蟲咬、頭暈、鼻塞都用得到。鼻通認八仙筒（Poy-Sian）和 Hong Thai 的綠色小罐。',['藥妝店、便利商店','每個約 25–100 銖'],'帶回台灣每種最多 12 個，合計不超過 36 個'],
+  ['s_aroma','泰國香氛保養品','','HARNN、THANN、Panpuri 是三個泰國品牌，護手霜和精油比在台灣買便宜。',['百貨公司專櫃、機場','護手霜約 400–900 銖']],
+  ['s_herb','手工皂和草藥按摩球','ลูกประคบ','按摩店用的那種草藥球，蒸熱了敷肩頸。手工皂有山竹、香茅、椰子各種味道。',['瓦洛洛市場、夜市','每個約 50–150 銖']]
+ ]],
+ ['手工藝和布',[
+  ['s_indigo','藍染衣服和圍巾','ม่อฮ่อม','泰北傳統的植物染，顏色越洗越好看。第一次洗會掉色，分開洗。',['真心市集、Baan Kang Wat、尼曼巷子','約 300–1,500 銖']],
+  ['s_celadon','青瓷','ศิลาดล','清邁特有的灰綠色裂紋釉陶器。小碟子和杯子最好帶，請店家包好放隨身行李。',['專賣店，例如 Siam Celadon','小件約 150–600 銖']],
+  ['s_rattan','藤編包','','昌莫路上一整排藤編店，包包、籃子、燈罩堆到天花板。',['昌莫路，瓦洛洛市場旁','約 300–1,200 銖']],
+  ['s_silver','手工銀飾','','瓦萊路是清邁的銀器街，師傅就在店裡敲。',['週六夜市','耳環約 200 銖起']],
+  ['s_hmong','苗族刺繡小包','','密密的十字繡和蠟染布做的零錢包、斜背包。',['瓦洛洛市場旁的苗族市集','約 100–500 銖']],
+  ['s_pants','大象褲','','寬鬆的薄棉褲，當睡褲或進寺院遮膝蓋都好用。',['夜市','一條約 100–150 銖']]
+ ]]
+];
+var NOPE=['泰北香腸、炸豬皮和所有肉類製品，真空包裝也不行','附肉塊調理包的泡麵','新鮮水果'];
+var DAYS=[
+ {date:'1/1',wd:'五',plan:'arrive'},
+ {date:'1/2',wd:'六',plan:'suthep'},
+ {date:'1/3',wd:'日',plan:'weekend'},
+ {date:'1/4',wd:'一',plan:'southfun',free:true},
+ {date:'1/5',wd:'二',plan:'elephant',free:true},
+ {date:'1/6',wd:'三',plan:'zipatv',free:true},
+ {date:'1/7',wd:'四',plan:'nimmanshop',free:true,extra:['行李','今晚把行李收好。醬料、精油這類液體放託運，行動電源放隨身。']},
+ {date:'1/8',wd:'五',plan:'depart'}
+];
+
+/* ── 換過的內容（只存在這台裝置） ── */
+var SKEY='cnx2027_plan_v2',state={plan:{},pick:{}};
+try{var saved=JSON.parse(localStorage.getItem(SKEY)||'null');if(saved&&saved.plan&&saved.pick)state=saved}catch(e){}
+function save(){try{localStorage.setItem(SKEY,JSON.stringify(state))}catch(e){}}
+function planOf(i){var d=DAYS[i],k=d.free?state.plan[i]:null;return (k&&FREE.indexOf(k)>=0)?k:d.plan}
+(function(){var seen={},bad=false;DAYS.forEach(function(d,i){var k=planOf(i);if(seen[k])bad=true;seen[k]=1});if(bad)state.plan={}})();
+function pickOf(slot,def){var k=state.pick[slot];return (k&&OPT[k])?k:def}
+function isChanged(){
+  if(Object.keys(state.pick).length)return true;
+  return DAYS.some(function(d,i){return planOf(i)!==d.plan});
+}
+
+/* ── 地圖 ──（層疊山形、水面、城牆角樓、地標圖示與郊外剖面圖，畫法出自和 Codex 的討論） */
+var MAP_SERIAL=0;
+var GLYPH={
+  temple:'M2 17h16M4 14h12l-2-4H6zM7 10h6L10 3z',
+  hilltemple:'M2 17h16M5 17l5-13 5 13M7 12h6M10 1v4',
+  plane:'M2 11l7-2V3h2v6l7 2v2l-7-1v5l-2-1v-4l-7 1z',
+  market:'M2 9h16l-2-5H4zM4 10h12v7H4zM7 10v7m6-7v7',
+  shop:'M3 8h14l-1-4H4zM4 9h12v8H4zM8 9v3h4V9',
+  monument:'M3 18h14M6 17V9l4-5 4 5v8M8 11h4M10 4V1',
+  dine:'M5 2v16M2 2v6c0 2 3 2 3 0M12 2v7m0 0v9m0-9c0-4 2-7 5-7v16',
+  garden:'M10 18v-7M10 11c-4 0-6-2-6-6 4 0 6 2 6 6zM10 11c4 0 6-2 6-6-4 0-6 2-6 6zM10 8V2M5 18h10',
+  moon:'M14 3a8 8 0 1 0 3 12A7 7 0 0 1 14 3z',
+  wave:'M2 7c3-3 5-3 8 0s5 3 8 0M2 13c3-3 5-3 8 0s5 3 8 0'
+};
+function f(n){return Math.round(n*10)/10}
+function tw(s){var n=0;for(var i=0;i<s.length;i++)n+=s.charCodeAt(i)>255?13.5:7.4;return n}
+function isTemple(k){return k==='temple'||k==='hilltemple'}
+function label(x,y,name,pos){
+  var tx=x,ty=y,anc='middle';
+  if(pos==='t'){ty=y-17}
+  else if(pos==='b'){ty=y+27}
+  else if(pos==='r'){tx=x+16;ty=y+5;anc='start'}
+  else if(pos==='l'){tx=x-16;ty=y+5;anc='end'}
+  else if(pos==='bs'){tx=x-12;ty=y+27;anc='start'}
+  return '<text x="'+tx+'" y="'+ty+'" text-anchor="'+anc+'">'+name+'</text>';
+}
+function icon(kind,x,y,on,i){
+  var t=isTemple(kind)?' is-temple':'',d=' style="animation-delay:'+f(.25+(i||0)*.18)+'s"';
+  if(on)return '<circle class="m-pin'+t+'"'+d+' cx="'+x+'" cy="'+y+'" r="12"/><path class="m-icon on'+t+'"'+d+' transform="translate('+(x-9)+' '+(y-9)+') scale(.9)" d="'+GLYPH[kind]+'"/>';
+  return '<path class="m-icon" transform="translate('+(x-8)+' '+(y-8)+') scale(.8)" d="'+GLYPH[kind]+'"/>';
+}
+function arrow(id,text,on){
+  var a=ARROW[id],ang=Math.atan2(a[3]-a[1],a[2]-a[0]),h=10;
+  var p1=[a[2]-h*Math.cos(ang+.42),a[3]-h*Math.sin(ang+.42)],p2=[a[2]-h*Math.cos(ang-.42),a[3]-h*Math.sin(ang-.42)];
+  return ['<g class="m-arrow'+(on?' on':'')+'"><line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+a[2]+'" y2="'+a[3]+'"/><path d="M'+a[2]+' '+a[3]+'L'+f(p1[0])+' '+f(p1[1])+'L'+f(p2[0])+' '+f(p2[1])+'Z"/></g>',
+          '<text x="'+a[5]+'" y="'+a[6]+'" text-anchor="'+a[7]+'">'+(text||a[4])+'</text>'];
+}
+function baseMap(id){
+  var grad=[['far',26,190],['mid',52,222],['near',86,250]].map(function(g){
+    return '<linearGradient id="'+id+g[0]+'" gradientUnits="userSpaceOnUse" x1="0" y1="'+g[1]+'" x2="0" y2="'+g[2]+'"><stop class="m-g-'+g[0]+'" offset="0"/><stop class="m-g-'+g[0]+'" offset=".5"/><stop class="m-g-'+g[0]+'" offset="1" stop-opacity="0"/></linearGradient>';
+  }).join('');
+  var trees=[[102,158],[116,168],[106,186],[120,208],[108,232],[94,270],[114,258],[126,238]];
+  return '<defs>'+grad+'</defs>'
+    +'<path fill="url(#'+id+'far)" d="M0 52L20 26l20 24 18-16 34 50 38 106H0z"/>'
+    +'<path fill="url(#'+id+'mid)" d="M0 84l24-32 22 34 18-20 34 52 34 104H0z"/>'
+    +'<path fill="url(#'+id+'near)" d="M0 122l22-36 24 40 20-22 30 48 30 98H0z"/>'
+    +trees.map(function(t){return '<path class="m-tree" d="M'+t[0]+' '+t[1]+'l-5 9h3l-4 7h12l-4-7h3z"/>'}).join('')
+    +'<path class="m-river" d="M372 -6C356 90 388 160 368 240S378 340 364 386"/>'
+    +'<path class="m-river-shine" transform="translate(3 0)" d="M372 -6C356 90 388 160 368 240S378 340 364 386"/>'
+    +'<rect class="m-moat" x="170" y="130" width="120" height="120" rx="2"/>'
+    +'<path class="m-grid" d="M178 160h104M178 190h104M178 220h104M205 138v104M232 138v104M259 138v104"/>'
+    +'<rect class="m-wall" x="176.5" y="136.5" width="107" height="107"/>'
+    +'<path class="m-gate" d="M290 184v12M170 184v12M224 130h12M230 250h12"/>'
+    +'<g class="m-towers"><rect x="165.5" y="125.5" width="9" height="9"/><rect x="285.5" y="125.5" width="9" height="9"/><rect x="165.5" y="245.5" width="9" height="9"/><rect x="285.5" y="245.5" width="9" height="9"/></g>';
+}
+function mapSVG(m,alt){
+  var id='m'+(++MAP_SERIAL),s='<svg viewBox="0 0 440 380" role="img" aria-label="'+alt+'">'+baseMap(id),labels='';
+  if(m.overview){
+    Object.keys(P).forEach(function(k){if(k!=='hotel')s+=icon(P[k][4],P[k][0],P[k][1],false)});
+    Object.keys(ARROW).forEach(function(k){var a=arrow(k,'',false);s+=a[0];labels+=a[1]});
+    labels+='<text class="m-region" x="230" y="238" text-anchor="middle">古城</text>'
+          +'<text class="m-region" x="112" y="112" text-anchor="middle">尼曼</text>'
+          +'<text class="m-region" x="42" y="178" text-anchor="middle">素帖山</text>'
+          +'<text class="m-region" x="150" y="350" text-anchor="middle">機場</text>'
+          +'<text class="m-region" x="388" y="300" text-anchor="start">賓河</text>'
+          +'<text x="300" y="195" text-anchor="start">塔佩門</text>';
+  }else{
+    if(m.route&&m.route.length>1){
+      s+='<polyline class="m-route" points="'+m.route.map(function(k){return P[k][0]+','+P[k][1]}).join(' ')+'"/>';
+    }
+    (m.segs||[]).forEach(function(k){var g=SEG[k];
+      s+='<line class="m-seg" x1="'+g[0]+'" y1="'+g[1]+'" x2="'+g[2]+'" y2="'+g[3]+'"/>';
+      labels+='<text x="'+g[5]+'" y="'+g[6]+'" text-anchor="'+g[7]+'">'+g[4]+'</text>';});
+    (m.arrows||[]).forEach(function(a){var r=arrow(a[0],a[1],true);s+=r[0];labels+=r[1]});
+    (m.pts||[]).forEach(function(k,i){var p=P[k];
+      s+=icon(p[4],p[0],p[1],true,i);
+      labels+=label(p[0],p[1],p[2],p[3]);});
+  }
+  s+='<rect class="m-hotel" x="'+(P.hotel[0]-5)+'" y="'+(P.hotel[1]-5)+'" width="10" height="10"/>';
+  s+='<g class="m-north"><path d="M424 344l-4 8h8z"/><line x1="424" y1="352" x2="424" y2="362"/></g>';
+  labels+='<text class="m-north-t" x="424" y="376" text-anchor="middle">北</text>';
+  return s+labels+'</svg>';
+}
+
+/* 郊外日的路線剖面圖。t = {name, dir, km, hours, stops:[[名稱, 公里, 海拔, 標在名稱後面的文字]]} */
+function tripSVG(t,alt){
+  var st=t.stops,lo=st[0][2],hi=lo,X0=40,W=360,BASE=292,H=118;
+  st.forEach(function(q){if(q[2]>hi)hi=q[2];if(q[2]<lo)lo=q[2]});
+  var rng=Math.max(hi-lo,500);
+  var pts=st.map(function(q){return [f(X0+q[1]/t.km*W),f(BASE-12-(q[2]-lo)/rng*H)]});
+  var line=pts.map(function(p){return p[0]+' '+p[1]}).join('L');
+  var s='<svg viewBox="0 0 440 340" role="img" aria-label="'+alt+'">'
+    +'<path class="t-far" d="M14 '+BASE+'L88 226l52 42 72-80 66 72 80-60 54 92z"/>'
+    +'<path class="t-area" d="M'+X0+' '+BASE+'L'+line+'L'+(X0+W)+' '+BASE+'Z"/>'
+    +'<path class="t-line" pathLength="1" d="M'+line+'"/>'
+    +'<line class="t-axis" x1="'+X0+'" y1="'+BASE+'" x2="'+(X0+W)+'" y2="'+BASE+'"/>';
+  var boxes=[],leads='',texts='',marks='';
+  pts.forEach(function(p,i){
+    var q=st[i],txt=q[0]+(q[3]?'　'+q[3]:''),w=tw(txt);
+    var x0=Math.max(14,Math.min(p[0]-w+12,426-w)),y=p[1]-18,hit=true;
+    while(hit){
+      hit=boxes.some(function(b){return x0-4<b[2]&&x0+w+4>b[0]&&y-14<b[3]&&y+5>b[1]});
+      if(hit)y-=18;
+    }
+    boxes.push([x0,y-14,x0+w,y+5]);
+    if(y<p[1]-20)leads+='<line class="t-lead" x1="'+p[0]+'" y1="'+(p[1]-7)+'" x2="'+p[0]+'" y2="'+(y+6)+'"/>';
+    texts+='<text x="'+f(x0)+'" y="'+f(y)+'">'+txt+'</text>';
+    marks+=i===0?'<rect class="t-city" x="'+(p[0]-6)+'" y="'+(p[1]-6)+'" width="12" height="12"/>'
+               :'<circle class="t-stop" style="animation-delay:'+f(.5+i/pts.length*1.1)+'s" cx="'+p[0]+'" cy="'+p[1]+'" r="5"/>';
+  });
+  s+=leads+marks
+    +'<text class="t-title" x="'+X0+'" y="46">'+t.name+'</text>'
+    +'<text class="t-meta" x="'+X0+'" y="70">'+t.dir+'　單程約 '+t.km+' 公里　車程約 '+t.hours+'</text>'
+    +'<text class="t-tick" x="'+X0+'" y="'+(BASE+20)+'">0</text>'
+    +'<text class="t-tick" x="'+(X0+W)+'" y="'+(BASE+20)+'" text-anchor="end">'+t.km+' 公里</text>'
+    +texts;
+  return s+'</svg>';
+}
+
+/* ── 產生頁面 ── */
+var bkk=new Date(Date.now()+7*3600e3).toISOString().slice(0,10);
+var root=document.documentElement,closedSet={};
+/*PHOTO-START*/
+/* 行程地點 → [檔名, 作者, 授權, 維基共享資源的檔案名稱, 替代文字]。照片都來自維基共享資源，逐張看過並核對過檔名。 */
+var PHOTO_SRC={
+ '柴迪隆寺':['chediluang','Jakub Hałun','CC BY-SA 4.0','20171105 Wat Chedi Luang Chiang Mai 9897 DxO.jpg'],
+ '帕邢寺':['phrasingh','Stefan Fussan','CC BY-SA 3.0','Chiang Mai - Wat Phra Singh - 0001.jpg'],
+ '素帖寺（雙龍寺）':['suthep','Vyacheslav Argenberg','CC BY 4.0','Wat Phra That Doi Suthep, Golden Buddha, Doi Suthep, Thailand.jpg'],
+ '帕拉寺':['palat','Supanut Arunoprayote','CC BY 4.0','Wat Pha Lat, Chiang Mai 20250116.jpg'],
+ '銀廟':['silver','Immanuelle','CC BY 4.0','Silver Reliefs of Wat Sri Suphan, Chiang Mai-ship 1.jpg'],
+ '週日夜市':['sunday','Takeaway','CC BY-SA 4.0','Chiang Mai sunday evening walking street.jpg'],
+ '在寺院中庭吃晚餐':['phanon','Stefan Fussan','CC BY-SA 3.0','Chiang Mai - Wat Phan On - 0017.jpg','盼安寺'],
+ '清邁夜間動物園':['nightsafari','KungDekZa','CC BY-SA 3.0','Chiang Mai Night Safari Savanna Safari.JPG'],
+ '大象自然公園':['enp','Chirstelle EL JAMALI','CC BY 4.0','Elephant d\'Asie (Elephant nature park, Thaïlande).jpg'],
+ '瓦洛洛市場':['warorot','Department of Tourism Thailand, LannaPhoto','CC BY-SA 3.0','Warorot Market 01.jpg'],
+ '悟孟寺':['umong','Supanut Arunoprayote','CC BY 4.0','Wat Umong (II).jpg'],
+ '皇家花園':['rajapruek','Iain Cameron','CC BY 2.0','Royal Park Rajapruek, Chiang Mai (32) (12301739553).jpg'],
+ '尼曼巷子裡的小店':['nimman','กสิณธร ราชโอรส','CC BY-SA 4.0','ถนนนิมมานเหมินท์ อ.เมือง จ.เชียงใหม่ (1).jpg','尼曼路'],
+ 'One Nimman':['onenimman','F.Borromini','CC BY-SA 4.0','One Nimman.jpg'],
+ 'One Nimman 傍晚散步':['onenimman','F.Borromini','CC BY-SA 4.0','One Nimman.jpg','One Nimman'],
+ 'Maya 百貨和超市':['maya','กสิณธร ราชโอรส','CC BY-SA 4.0','เมญ่า ไลฟ์สไตล์ ชอปปิง เซ็นเตอร์ Maya Lifestyle Shopping Center Chiangmai (16).jpg','Maya 百貨'],
+ '清曼寺':['chiangman','Stefan Fussan','CC BY-SA 3.0','Chiang Mai - Wat Chiang Man - 0001.jpg'],
+ '三王紀念像':['threekings','iTenz（Pixabay）','CC0','Three Kings Monument Chiang Mai.jpg'],
+ '羅摩利寺':['lokmoli','Flying Pharmacist','CC BY 3.0','Wat lok molee - Vihara.jpg'],
+ '松達寺':['suandok','Setawut','CC BY-SA 4.0','Wat Suan Dok 2026 (325013).jpg'],
+ 'Kew Mae Pan 稜線步道':['kewmaepan','Douglas Perkins','CC BY 4.0','Kew Mae Pan Nature Trail Hikers.jpg'],
+ '瓦吉拉坦瀑布':['wachirathan','Wanwipu Ratchamueangfang','CC BY-SA 4.0','Wachirathan Waterfall 2.jpg'],
+ '詩麗吉皇后植物園':['qsbg','Amada44','CC BY-SA 4.0','The Queen Sirikit Botanic Garden - Chiang Mai 2013 2651.jpg'],
+ '夢占山':['monjam','Supanut Arunoprayote','CC BY 4.0','Mon Cham (I).jpg'],
+ '湄沙瀑布':['maesa','Iscreams','CC BY-SA 3.0','MAE SA WATERFALL.jpg'],
+ '班顛寺':['banden','FredTC','CC BY-SA 4.0','Wat Ban Den, the Ubosot building and surrounding buildings P 20180109 134854 1 p.jpg'],
+ '清道洞':['chiangdao','Starfizzure','CC BY-SA 4.0','Chiang Dao Cave, January 2025 01.jpg'],
+ '帕邦洞寺':['phaplong','Andrea Schaffer','CC BY 2.0','Wat Tham Pha Plong (11899653855).jpg'],
+ '@khaosoi':['khaosoi','Takeaway','CC BY-SA 3.0','Khao soi Chiang Mai.jpg','泰北咖哩麵'],
+ '@nightbazaar':['nightbazaar','calflier001','CC BY-SA 2.0','CHIANG MAI NIGHT BAZAAR THAILAND FEB 2012 (6869571256).jpg','長康路觀光夜市']
+};
+var PHOTO={};
+Object.keys(PHOTO_SRC).forEach(function(k){var p=PHOTO_SRC[k];
+  PHOTO[k]=[p[0],p[1],p[2],'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(p[3].replace(/ /g,'_')),p[4]||k];
+});
+/*PHOTO-END*/
+/* 照片來自維基共享資源，檔案放在網頁旁的 img/ 資料夾 */
+function photoHTML(name){
+  var p=PHOTO[name];if(!p)return '';
+  return '<figure class="ph"><img src="img/'+p[0]+'.jpg" alt="'+p[4]+'" loading="lazy" width="640" height="427">'
+    +'<figcaption><a href="'+p[3]+'" target="_blank" rel="noopener">照片：'+p[1]+(p[2]?'，'+p[2]:'')+'</a></figcaption></figure>';
+}
+function $(id){return document.getElementById(id)}
+function metaHTML(arr){return arr.length?'<p class="tl-meta">'+arr.map(function(x){return '<span>'+x+'</span>'}).join('')+'</p>':''}
+function thHTML(s){return s?'<span class="th" lang="th">'+s+'</span>':''}
+
+/* 泰式紋樣的小零件（圖形出自 Codex，定義在 THAI_DEFS） */
+function orn(id,cls,vb){return '<svg class="'+cls+'" viewBox="'+vb+'" aria-hidden="true" focusable="false"><use href="#'+id+'"/></svg>'}
+function band(id,cls){return '<svg class="th-band '+cls+'" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#'+id+')"/></svg>'}
+function frame(inner,extra){
+  return '<div class="th-frame'+(extra?' '+extra:'')+'">'+orn('th-gable','th-gable','0 0 480 96')
+    +'<div class="th-box">'+band('th-band-yam','top')
+    +orn('th-corner','th-c c1','0 0 72 72')+orn('th-corner','th-c c2','0 0 72 72')+orn('th-corner','th-c c3','0 0 72 72')+orn('th-corner','th-c c4','0 0 72 72')
+    +'<div class="th-inner">'+inner+'</div>'+band('th-band-lotus','bottom')+'</div></div>';
+}
+var DIVIDER=orn('th-divider','th-divider','0 0 320 28');
+
+/* 行程表：每個項目一列，有說明的可以點開 */
+function costOf(meta){
+  for(var i=0;i<meta.length;i++){if(meta[i].indexOf('銖')>=0||meta[i].indexOf('免費')===0)return meta[i]}
+  return '';
+}
+function itemHTML(planKey,idx,it){
+  var key=planKey+':'+idx,row,more,cost,q;
+  if(!it[6]){
+    row='<span class="tl-title"><span>'+it[2]+'</span>'+thHTML(it[3])+'</span>';
+    more=photoHTML(it[2])+(it[4]?'<p class="tl-desc">'+it[4]+'</p>':'')+metaHTML(it[5]);
+    cost=costOf(it[5]);q=MQ[it[2]]||'';
+  }else{
+    var cur=pickOf(key,it[7]),o=OPT[cur],n=0,list='';
+    it[6].forEach(function(pn){
+      if(it[6].length>1)list+='<p class="swap-group">'+POOL_NAME[pn]+'</p>';
+      Object.keys(POOLS[pn]).forEach(function(k){var x=POOLS[pn][k];n++;
+        list+='<button type="button" class="swap-opt" data-slot="'+key+'" data-def="'+it[7]+'" data-opt="'+k+'" aria-pressed="'+(k===cur)+'">'
+          +'<span class="o-name"><span>'+x[0]+'</span>'+thHTML(x[1])+(x[4]?'<span class="badge">'+BADGE[x[4]]+'</span>':'')+(k===it[7]?'<span class="o-def">原本的安排</span>':'')+'</span>'
+          +'<span class="o-desc">'+x[2]+'</span><span class="o-meta">'+x[3].map(function(m){return '<span>'+m+'</span>'}).join('')+'</span></button>';
+      });
+    });
+    row='<span class="tl-title"><span class="slot">'+it[2]+'</span><span>'+o[0]+'</span>'+thHTML(o[1])
+      +(o[4]?'<span class="badge">'+BADGE[o[4]]+'</span>':'')+(cur!==it[7]?'<span class="changed">已換</span>':'')+'</span>';
+    more=photoHTML(OPT_POOL[cur]==='khaosoi'||cur==='maesai'?'@khaosoi':'@'+cur)+(it[4]?'<p class="tl-desc">'+it[4]+'</p>':'')+'<p class="tl-desc">'+o[2]+'</p>'+metaHTML(o[3])
+      +'<div class="swap"><button type="button" class="swap-btn" id="sw_'+key+'" data-swap aria-expanded="false">換一個，共 '+n+' 個選項</button>'
+      +'<div class="swap-list" hidden>'+list+'</div></div>';
+    cost=costOf(o[3]);q=optQ(cur);
+  }
+  var open=!closedSet[key];
+  return '<tr class="row'+(more?' can':'')+(open?' open':'')+'"'+(more?' data-k="'+key+'"':'')+'>'
+    +'<td class="c-time">'+it[0]+'</td>'
+    +'<td class="c-seal"><span class="seal '+SEAL[it[1]]+'" aria-hidden="true">'+it[1]+'</span></td>'
+    +'<td class="c-what"><div class="what-in">'+(more?'<button type="button" class="row-btn" aria-expanded="'+open+'">'+row+'</button>':row)+(q?gmap(q,'地圖'):'')+'</div></td>'
+    +'<td class="c-cost">'+cost+'</td></tr>'
+    +(more?'<tr class="more"'+(open?'':' hidden')+'><td colspan="4"><div class="more-in">'+more+'</div></td></tr>':'');
+}
+
+function dayHTML(i){
+  var d=DAYS[i],n=i+1,k=planOf(i),p=PLANS[k],pick='';
+  if(d.free){
+    var used={};DAYS.forEach(function(x,j){if(x.free&&j!==i)used[planOf(j)]=x.date});
+    pick='<p class="plan-pick"><label for="plan'+n+'">這天可以整天換</label><select id="plan'+n+'" data-day="'+i+'">'
+      +FREE.map(function(fk){return '<option value="'+fk+'"'+(fk===k?' selected':'')+'>'+PLANS[fk].short+(used[fk]?'（現在排在 '+used[fk]+'，選了會互換）':'')+'</option>'}).join('')
+      +'</select></p>';
+  }
+  var notes=p.notes.concat(d.extra?[d.extra]:[]).map(function(x){return '<tr><th scope="row">'+x[0]+'</th><td>'+x[1]+'</td></tr>'}).join('');
+  return '<div class="wrap"><div class="panel">'+frame(
+     '<header class="day-head"><p class="day-date"><span class="num">'+d.date+'</span><span>週'+d.wd+'，第 '+n+' 天</span>'
+    +(bkk==='2027-01-0'+n?'<span class="today">今天</span>':'')+(d.free&&k!==d.plan?'<span class="changed">已換</span>':'')+'</p>'
+    +'<h2>'+p.title+'</h2>'+DIVIDER+'<p class="day-sum">'+p.sum+'</p>'+pick+'</header>'
+    +'<p class="tl-tools"><button type="button" class="text-btn" data-expand>全部收合</button></p>'
+    +'<table class="ttable"><thead><tr><th scope="col">時間</th><th scope="col">類別</th><th scope="col">行程</th><th scope="col" class="c-cost">花費</th></tr></thead>'
+    +'<tbody>'+p.items.map(function(it,idx){return itemHTML(k,idx,it)}).join('')+'</tbody></table>'
+    +'<table class="ntable"><caption>這天要注意</caption><tbody>'+notes+'</tbody></table>'
+  )+'</div></div>';
+}
+
+function renderGlance(){
+  $('glance-list').innerHTML='<table class="gtable"><thead><tr><th scope="col">日期</th><th scope="col">行程</th><th scope="col" class="c-range">範圍</th><th scope="col">要先訂</th></tr></thead><tbody>'
+    +DAYS.map(function(d,i){var p=PLANS[planOf(i)];
+      return '<tr><td class="g-date">'+d.date+'<small>週'+d.wd+'</small></td><td><a class="g-title" href="#d'+(i+1)+'">'+p.title+'</a></td>'
+        +'<td class="c-range">'+p.range+'</td><td class="book">'+(p.book||'')+'</td></tr>';
+    }).join('')+'</tbody></table>';
+  $('reset').hidden=!isChanged();
+}
+
+var done={},DKEY='cnx2027_todo';
+try{done=JSON.parse(localStorage.getItem(DKEY)||'{}')||{}}catch(e){done={}}
+function renderTodo(){
+  var early=[],later=[];
+  DAYS.forEach(function(d,i){var k=planOf(i),p=PLANS[k];if(!p.book)return;
+    (k==='elephant'?early:later).push(['bk_'+k,k==='elephant'?'12 月 4 日前':'12 月 18 日前','訂 '+d.date+' 的'+p.book]);});
+  var rows=[
+    ['t1','現在','訂華航 CI851、CI852 機票。元旦連假座位少、票價高'],
+    ['t2','現在','訂塔佩門一帶的旅館 7 晚（1/1 入住，1/8 退房）']
+  ].concat(early,later,[
+    ['t5','12 月 25 日前','買 eSIM、換泰銖、保旅平險'],
+    ['t6','12 月 25 日前','預約 1/1 清晨往桃園機場的接送'],
+    ['t7','12 月 29–31 日','上網填 TDAC 數位入境卡，把 QR Code 存進手機']
+  ]);
+  $('todo').innerHTML=rows.map(function(t){
+    return '<label for="'+t[0]+'"><input type="checkbox" id="'+t[0]+'"'+(done[t[0]]?' checked':'')+'><span class="when">'+t[1]+'</span><span class="what">'+t[2]+'</span></label>';
+  }).join('');
+}
+function renderDay(i){$('d'+(i+1)).innerHTML=dayHTML(i)}
+function renderAll(){DAYS.forEach(function(d,i){renderDay(i)});renderGlance();renderTodo();if(typeof renderBg==='function')renderBg()}
+
+/* ── 版面骨架：日期列在最上面，中間是可捲動的頁面區，最下面是換頁列 ── */
+var hero=$('cover'),mainEl=document.querySelector('main'),navEl=document.querySelector('.daynav'),pager=$('pager'),host=hero.parentNode;
+host.insertAdjacentHTML('afterbegin',THAI_DEFS);
+var pagesEl=document.createElement('div');pagesEl.className='pages';pagesEl.id='pages';
+host.insertBefore(navEl,hero);host.insertBefore(pagesEl,hero);pagesEl.appendChild(hero);pagesEl.appendChild(mainEl);
+
+var secs='';
+DAYS.forEach(function(d,i){secs+='<section class="day" id="d'+(i+1)+'"></section>'});
+$('days').innerHTML=secs;
+renderAll();
+
+var PAGES=[{id:'cover',name:'封面',chip:['封面','出發'],els:[hero]},{id:'glance',name:'八天一覽',chip:['一覽','八天'],els:[$('glance')]}]
+  .concat(DAYS.map(function(d,i){return {id:'d'+(i+1),name:d.date+' 週'+d.wd,chip:[d.date,'週'+d.wd],els:[$('d'+(i+1))],split:true,day:i,wk:d.wd==='六'||d.wd==='日'}}))
+  .concat([
+    {id:'michelin',name:'米其林推薦',chip:['吃','米其林'],els:[$('michelin')]},
+    {id:'souvenir',name:'必買伴手禮',chip:['買','伴手禮'],els:[$('souvenir')]},
+    {id:'prep',name:'出發前與預算',chip:['行前','準備'],els:[$('prep'),$('budget'),$('credits')]}
+  ]);
+PAGES.forEach(function(p){if(p.split)p.els.forEach(function(e){e.classList.add('split')})});
+function pageIndex(id){for(var i=0;i<PAGES.length;i++)if(PAGES[i].id===id)return i;return -1}
+$('daynav').innerHTML=PAGES.map(function(p){
+  return '<li><a href="#'+p.id+'"'+(p.wk?' class="wkend"':'')+'><b>'+p.chip[0]+'</b><span>'+p.chip[1]+'</span></a></li>';
+}).join('');
+
+/* ── 背景地圖：跟著目前這一頁換 ── */
+var bg=$('bgmap'),cur=-1;
+bg.classList.add('inview');
+function renderBg(){
+  if(!(cur>=0))return;
+  var pg=PAGES[cur],h='';
+  if(pg.id==='cover'){
+    h='';
+  }else if(pg.day===undefined){
+    h=mapSVG({overview:true},'')+'<p class="map-cap">位置示意圖，沒有照比例畫。<i></i>建議住宿：塔佩門內側</p>';
+  }else{
+    var p=PLANS[planOf(pg.day)],narrow=window.matchMedia&&window.matchMedia('(max-width:899px)').matches;
+    if(p.trip)h+=tripSVG(p.trip,'');
+    if(!p.trip||(p.map.pts.length&&!narrow))h+=mapSVG(p.map,'');
+    h+='<p class="map-cap">'+(p.trip?'路線剖面是示意，距離和海拔都是概略值。':'<i></i>旅館。圓圈是今天的停留點，虛線是大致的移動順序。')+'</p>';
+  }
+  bg.innerHTML=h;
+}
+
+/* ── 米其林名單與伴手禮 ── */
+$('mlist').innerHTML='<table class="mtable"><thead><tr><th scope="col">店名</th><th scope="col">菜系</th><th scope="col">價位</th></tr></thead><tbody>'
+  +Object.keys(POOLS.michelin).map(function(k){var x=POOLS.michelin[k],tp=x[3][0].split('，');
+    return '<tr><td><span class="o-name"><span>'+x[0]+'</span>'+thHTML(x[1])+'<span class="badge">'+BADGE[x[4]]+'</span></span>'
+      +'<span class="o-desc">'+x[2]+'</span><span class="o-meta">'+x[3].slice(1).map(function(m){return '<span>'+m+'</span>'}).join('')+gmap(optQ(k),'Google 地圖')+'</span></td>'
+      +'<td class="m-type">'+tp[0]+'</td><td class="m-price">'+(tp[1]||'')+'</td></tr>';
+  }).join('')+'</tbody></table>';
+
+/* 其他頁面也放進同一種框 */
+['glance','michelin','souvenir','prep','budget'].forEach(function(id){
+  var w=$(id).querySelector('.wrap'),tmp=document.createElement('div');
+  tmp.innerHTML=frame('','wide-frame');
+  var fr=tmp.firstChild,inner=fr.querySelector('.th-inner');
+  while(w.firstChild)inner.appendChild(w.firstChild);
+  w.appendChild(fr);
+  var h=inner.querySelector('.sec-title');if(h)h.insertAdjacentHTML('afterend',DIVIDER);
+});
+var want={},WKEY='cnx2027_souv';
+try{want=JSON.parse(localStorage.getItem(WKEY)||'{}')||{}}catch(e){want={}}
+$('souv').innerHTML=SOUV.map(function(g){
+  return '<div class="sgroup"><h3>'+g[0]+'</h3>'+g[1].map(function(s){
+    return '<label class="sitem" for="'+s[0]+'"><input type="checkbox" id="'+s[0]+'"'+(want[s[0]]?' checked':'')+'><span class="s-body">'
+      +'<span class="o-name"><span>'+s[1]+'</span>'+thHTML(s[2])+'</span>'
+      +'<span class="o-desc">'+s[3]+'</span><span class="o-meta">'+s[4].map(function(m){return '<span>'+m+'</span>'}).join('')+'</span>'
+      +(s[5]?'<span class="warn">'+s[5]+'</span>':'')+'</span></label>';
+  }).join('')+'</div>';
+}).join('')+'<div class="sgroup nope"><h3>不能帶回台灣</h3><ul>'+NOPE.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';
+$('souv').addEventListener('change',function(e){
+  if(!e.target.id)return;
+  want[e.target.id]=e.target.checked;
+  try{localStorage.setItem(WKEY,JSON.stringify(want))}catch(err){}
+});
+
+/* ── 置換的操作 ── */
+var daysEl=$('days');
+function setRow(r,open){
+  var k=r.getAttribute('data-k'),b=r.querySelector('.row-btn');
+  r.classList.toggle('open',open);r.nextElementSibling.hidden=!open;
+  if(b)b.setAttribute('aria-expanded',String(open));
+  if(open)delete closedSet[k];else closedSet[k]=1;
+}
+daysEl.addEventListener('click',function(e){
+  if(e.target.closest('a.gmap'))return;
+  var ex=e.target.closest('[data-expand]');
+  if(ex){var all=ex.closest('.panel').querySelectorAll('tr.row.can'),openAll=ex.textContent==='全部展開';
+    all.forEach(function(r){setRow(r,openAll)});ex.textContent=openAll?'全部收合':'全部展開';return}
+  var rw=e.target.closest('tr.row.can');
+  if(rw){setRow(rw,!rw.classList.contains('open'));return}
+  var sw=e.target.closest('[data-swap]');
+  if(sw){var open=sw.getAttribute('aria-expanded')==='true';
+    sw.setAttribute('aria-expanded',String(!open));sw.nextElementSibling.hidden=open;return}
+  var op=e.target.closest('[data-opt]');
+  if(op){var slot=op.getAttribute('data-slot'),k=op.getAttribute('data-opt');
+    if(k===op.getAttribute('data-def'))delete state.pick[slot];else state.pick[slot]=k;
+    save();delete closedSet[slot];
+    var sec=op.closest('.day');renderDay(Number(sec.id.slice(1))-1);renderGlance();
+    var b=$('sw_'+slot);if(b)b.focus({preventScroll:true});
+  }
+});
+daysEl.addEventListener('change',function(e){
+  var sel=e.target.closest('select[data-day]');if(!sel)return;
+  var i=Number(sel.getAttribute('data-day')),k=sel.value,was=planOf(i),now={};
+  DAYS.forEach(function(d,j){if(d.free)now[j]=planOf(j)});
+  Object.keys(now).forEach(function(j){if(Number(j)!==i&&now[j]===k)now[j]=was});
+  now[i]=k;state.plan=now;save();renderAll();
+  var s=$('plan'+(i+1));if(s)s.focus({preventScroll:true});
+});
+$('reset').addEventListener('click',function(){
+  state={plan:{},pick:{}};save();renderAll();
+});
+$('todo').addEventListener('change',function(e){
+  if(!e.target.id)return;
+  done[e.target.id]=e.target.checked;
+  try{localStorage.setItem(DKEY,JSON.stringify(done))}catch(err){}
+});
+
+/* ── 倒數 ── */
+var left=Math.ceil((Date.UTC(2027,0,1)-8*3600e3-Date.now())/864e5),count=$('count');
+if(left>0){count.innerHTML='距離出發還有<b>'+left+'</b>天。去回都搭華航直飛，七晚住同一間旅館。'}
+else if(bkk>='2027-01-01'&&bkk<='2027-01-08'){count.innerHTML='今天是第<b>'+Number(bkk.slice(8))+'</b>天。'}
+
+/* ── 背景的天燈與動畫開關 ── */
+var lan='';
+for(var li=0;li<14;li++){
+  var sz=7+(li*5)%7,dur=30+(li*7)%22;
+  lan+='<span class="lantern" style="left:'+((li*37+11)%96+2)+'%;width:'+sz+'px;height:'+f(sz*1.3)+'px;animation-duration:'+dur+'s;animation-delay:-'+f(dur*((li*29)%100)/100)+'s"></span>';
+}
+$('sky').innerHTML='<svg class="weave" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#th-weave)"/></svg>'+lan;
+/* 封面飄落的大象：每落完一趟換一個水平位置 */
+/* 三隻大小不同、時間錯開，所以任何時候畫面上都有大象在飄；每一頁都有 */
+var snow=$('snow');
+snow.innerHTML=[['',26,-7,58,5.5],['s2',34,-20,14,6.5],['s3',30,-2,36,4.8]].map(function(s){
+  return '<div class="snow '+s[0]+'" style="left:'+s[3]+'%;animation-duration:'+s[1]+'s;animation-delay:'+s[2]+'s">'
+    +'<div class="snow-sway" style="animation-duration:'+s[4]+'s">'+SPRITE.elephant+'</div></div>';
+}).join('');
+snow.addEventListener('animationiteration',function(e){
+  if(e.animationName==='snowfall')e.target.style.left=(6+Math.random()*64)+'%';
+});
+var mBtn=$('motion'),MKEY='cnx2027_motion',mOff=false;
+function setMotion(off){root.classList.toggle('no-motion',off);mBtn.textContent=off?'播放動畫':'暫停動畫';mBtn.setAttribute('aria-pressed',String(off))}
+try{mOff=localStorage.getItem(MKEY)==='off'}catch(e){}
+setMotion(mOff);
+mBtn.addEventListener('click',function(){mOff=!mOff;setMotion(mOff);try{localStorage.setItem(MKEY,mOff?'off':'on')}catch(e){}});
+function motionOff(){return mOff||(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)}
+
+/* ── 換頁 ── */
+var stage=$('stage'),runner=$('runner'),prevBtn=$('prev'),nextBtn=$('next'),nowEl=$('pager-now'),busy=false;
+var CITY={suthep:1,weekend:1,nimmanshop:1,cooking:1,slow:1};
+function spriteFor(pg){
+  if(pg.id==='cover')return 'plane';
+  if(pg.day===undefined)return 'elephant';
+  var k=planOf(pg.day);
+  if(k==='arrive'||k==='depart')return 'plane';
+  return CITY[k]?'songthaew':'elephant';
+}
+function show(i){
+  cur=i;var pg=PAGES[i];
+  PAGES.forEach(function(p){p.els.forEach(function(e){e.hidden=p!==pg})});
+  root.setAttribute('data-layout',pg.id==='cover'?'cover':pg.split?'split':'wide');
+  renderBg();
+  pagesEl.scrollTop=0;
+  document.querySelectorAll('#daynav a').forEach(function(a,j){
+    if(j===i){a.setAttribute('aria-current','true');
+      var ol=a.closest('ol');if(ol.scrollWidth>ol.clientWidth)ol.scrollLeft=a.parentNode.offsetLeft-ol.clientWidth/2+a.offsetWidth/2;
+    }else a.removeAttribute('aria-current');
+  });
+  prevBtn.disabled=i===0;nextBtn.disabled=i===PAGES.length-1;
+  nowEl.innerHTML='<b>'+(i+1)+' / '+PAGES.length+'</b>'+pg.name+(pg.day!==undefined?'　'+PLANS[planOf(pg.day)].title:'');
+  if(location.hash.slice(1)!==pg.id){try{history.replaceState(null,'','#'+pg.id)}catch(e){try{location.hash=pg.id}catch(e2){}}}
+}
+function go(i){
+  if(i<0||i>=PAGES.length||i===cur||busy)return;
+  if(motionOff()||cur<0){show(i);return}
+  busy=true;
+  var kind=spriteFor(PAGES[i]);
+  runner.innerHTML=SPRITE[kind]||'';
+  stage.className='stage is-'+kind+(i<cur?' rev':'');
+  void stage.offsetWidth;
+  stage.classList.add('go');
+  setTimeout(function(){show(i)},700);
+  setTimeout(function(){stage.className='stage';runner.innerHTML='';busy=false},1450);
+}
+prevBtn.addEventListener('click',function(){go(cur-1)});
+nextBtn.addEventListener('click',function(){go(cur+1)});
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+  var i=pageIndex(a.getAttribute('href').slice(1));
+  if(i>=0){e.preventDefault();go(i)}
+});
+window.addEventListener('hashchange',function(){var i=pageIndex(location.hash.slice(1));if(i>=0&&i!==cur)go(i)});
+document.addEventListener('keydown',function(e){
+  var t=e.target.tagName;if(t==='SELECT'||t==='INPUT'||t==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(cur+1)}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+});
+var tx=0,ty=0;
+pagesEl.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+pagesEl.addEventListener('touchend',function(e){
+  var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*2.2)go(dx<0?cur+1:cur-1);
+},{passive:true});
+
+navEl.insertAdjacentHTML('beforeend',band('th-band-krajang','bar-band'));
+/* 封面也放進框裡：長幡掛在框的上緣 */
+(function(){
+  var grid=hero.querySelector('.hero-grid'),tmp=document.createElement('div');
+  tmp.innerHTML=frame('','cover-frame');
+  var fr=tmp.firstChild,inner=fr.querySelector('.th-inner');
+  inner.classList.add('hero-inner');
+  while(grid.firstChild)inner.appendChild(grid.firstChild);
+  grid.appendChild(fr);
+})();
+function measure(){root.style.setProperty('--nav-h',navEl.offsetHeight+'px');root.style.setProperty('--bar-h',pager.offsetHeight+'px')}
+var wasNarrow=null;
+window.addEventListener('resize',function(){
+  measure();
+  var n=window.matchMedia&&window.matchMedia('(max-width:899px)').matches;
+  if(n!==wasNarrow){wasNarrow=n;renderBg()}
+});
+measure();setTimeout(measure,900);
+
+var first=pageIndex(location.hash.slice(1));
+if(first<0)first=(bkk>='2027-01-01'&&bkk<='2027-01-08')?pageIndex('d'+Number(bkk.slice(8))):0;
+show(first);
+})();
+</script>
+</body>
+</html>
