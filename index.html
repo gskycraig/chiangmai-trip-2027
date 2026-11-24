@@ -531,6 +531,9 @@ tfoot td{border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,transparent)}
 .ph img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1.5px solid var(--gold);background:var(--line)}
 .ph figcaption{font-size:.75rem;line-height:1.4;color:var(--ink-soft);padding-top:.2rem}
 .ph figcaption a{color:inherit;text-underline-offset:.15em}
+.book-line{font-size:var(--s-1);display:flex;flex-wrap:wrap;gap:.15rem .9rem;align-items:baseline}
+.book-line span{color:var(--ink-soft)}
+.book-line a{color:var(--red);font-weight:500;text-underline-offset:.2em}
 .what-in{display:flex;align-items:flex-start;gap:.6rem}
 .what-in > .row-btn,.what-in > .tl-title{flex:1 1 auto;min-width:0}
 .gmap{flex:none;font-size:var(--s-1);font-weight:500;color:var(--celadon);white-space:nowrap;text-underline-offset:.2em}
@@ -642,6 +645,16 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
 
       <div class="topics">
         <div class="topic">
+          <h3>可以先在 KKday、Klook 訂的</h3>
+          <ul>
+            <li>1/5 晚上的蘭納帝王餐晚餐秀：<a href="https://www.kkday.com/zh-tw/product/136203" target="_blank" rel="noopener">KKday 含接送</a>。旺季的好位子要早訂。</li>
+            <li>1/4 的<a href="https://www.kkday.com/zh-tw/product/20563" target="_blank" rel="noopener">夜間動物園門票（KKday）</a>和<a href="https://www.klook.com/zh-TW/activity/29557-grand-canyon-water-park-ticket-chiang-mai/" target="_blank" rel="noopener">大峽谷水上樂園門票（Klook）</a>，線上買通常比現場便宜，也不用排隊。</li>
+            <li>1/6 的 <a href="https://www.kkday.com/zh-tw/product/20649" target="_blank" rel="noopener">X-Centre ATV（KKday）</a>和叢林飛索。</li>
+            <li>1/2 的料理課、各天的包車、SPA 套裝、機場接送和泰國 eSIM，兩個平台都有，可以比價後再訂。</li>
+            <li>每天行程表裡能線上訂的項目，展開後都有「線上訂」的連結。價格和場次以訂票頁當下為準。</li>
+          </ul>
+        </div>
+        <div class="topic">
           <h3>入境</h3>
           <ul>
             <li>台灣護照免簽，每次可停留 30 天（2026 年 9 月 15 日起的規定）。</li>
@@ -707,13 +720,14 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
             <tr><td>飛索與 ATV</td><td class="amt">4,000–5,800</td><td class="why">飛索套餐 2,000–3,500 銖，ATV 1 小時 2,000–2,300 銖</td></tr>
             <tr><td>大象保護區</td><td class="amt">2,500–3,500</td><td class="why">半日到全日方案</td></tr>
             <tr><td>體驗課</td><td class="amt">1,000–1,500</td><td class="why">週六上午的半日料理課，含接送</td></tr>
+            <tr><td>晚上的表演</td><td class="amt">1,050–1,350</td><td class="why">帝王餐晚餐秀含晚餐，加一場歌舞秀</td></tr>
             <tr><td>三餐</td><td class="amt">4,000–7,000</td><td class="why">每天 500–900 銖，小吃和餐廳各半</td></tr>
             <tr><td>門票</td><td class="amt">2,000–2,700</td><td class="why">水上樂園、夜間動物園、皇家花園和幾座寺院</td></tr>
             <tr><td>按摩</td><td class="amt">1,200–2,000</td><td class="why">三到四次</td></tr>
             <tr><td>市區交通</td><td class="amt">1,200–1,800</td><td class="why">Grab 和雙條車</td></tr>
             <tr><td>網路</td><td class="amt">約 300</td><td class="why">8 天 eSIM</td></tr>
           </tbody>
-          <tfoot><tr><td>合計</td><td class="amt">約 23,000–40,000</td><td class="why">不含機票和伴手禮。元旦連假是旺季，機票以華航官網當下的報價為準。</td></tr></tfoot>
+          <tfoot><tr><td>合計</td><td class="amt">約 24,000–41,000</td><td class="why">不含機票和伴手禮。元旦連假是旺季，機票以華航官網當下的報價為準。</td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -825,7 +839,7 @@ var ARROW={
 };
 
 /* ── 可以換的選項。key: [名稱, 泰文, 說明, [備註]] ── */
-var POOL_NAME={michelin:'米其林推薦（2027 年版）',khaosoi:'泰北咖哩麵',northern:'北泰菜與烤雞',street:'夜市小吃',river:'賓河邊',cafe:'咖啡館',massage:'按摩',klass:'體驗課'};
+var POOL_NAME={show:'晚餐秀與夜間表演',michelin:'米其林推薦（2027 年版）',khaosoi:'泰北咖哩麵',northern:'北泰菜與烤雞',street:'夜市小吃',river:'賓河邊',cafe:'咖啡館',massage:'按摩',klass:'體驗課'};
 var BADGE={bib:'米其林必比登',star:'米其林一星'};
 var POOLS={
  michelin:{
@@ -850,6 +864,12 @@ var POOLS={
   tuekako:['Tue Ka Ko Na Prince','','賓河東岸一所學校門口的炸物攤，賣炸芋頭糕和炸豆腐，沾花生甜辣醬。',['街頭小吃，平價'],'bib'],
   danchicken:['Dan Chicken Rice (San Sai)','','海南雞飯。在東北郊的 San Sai，離古城遠。',['小吃，平價'],'bib'],
   belen:['Belen by Paulo Airaudo','','清邁第一家米其林一星，今年剛摘星。用在地食材做歐式料理，是高價位的精緻餐廳。',['歐式料理，高價位','一定要訂位'],'star']
+ },
+ show:{
+  khantoke:['蘭納帝王餐晚餐秀','ขันโตก','在老清邁文化中心。席地坐在矮圓桌（khantoke）旁，吃一整盤泰北菜：燉豬肉咖哩、青辣椒醬、炸雞、糯米飯，吃完可以再加。邊吃邊看蘭納傳統舞蹈，有指甲舞、蠟燭舞、劍舞，最後是山地民族的表演。',['約 700–1,000 銖／人，依是否含接送','含接送的方案約 17:30 到旅館接','18:30 入場，19:15 開演，約 21:00 結束']],
+  cabaret:['清邁人妖歌舞秀','','觀光夜市裡 Anusarn 市場的 Chiang Mai Cabaret Show。一小時的華麗歌舞秀，票價含一杯飲料。先在夜市吃完晚餐再進場。',['約 350 銖／人','每晚約 21:30 開演','可以現場買票，旺季早一點去劃位']],
+  miracle:['Miracle Cabaret 歌舞秀','','有冷氣的室內劇場，場地比夜市那一家大，在古城北邊的昌普區。',['票價和場次以訂票頁為準','從塔佩門搭 Grab 約 10 分鐘']],
+  thaiboxing:['泰拳比賽','มวยไทย','塔佩門旁的 Thapae Boxing Stadium，從旅館走路就到。一個晚上連打好幾場，有一般席、擂台邊和 VIP 包廂。',['一般席約 600 銖起','約 21:00 開打，全程約 3 小時']]
  },
  khaosoi:{
   khunyai:['Khao Soi Khun Yai','ข้าวซอยคุณยาย','古城北側的家庭小店，湯頭濃、價錢實在。只賣午餐，賣完就收。',['一碗約 60–80 銖','約 10:00–14:00，週日休']],
@@ -926,8 +946,37 @@ var OQ={
  changphuak:'Chang Phuak Gate Night Market Chiang Mai',cmgate:'Chiang Mai Gate Market',nightbazaar:'Chiang Mai Night Bazaar',
  streetshop:'',foot:'',lila:'Lila Thai Massage Chiang Mai',blind:'Perception Blind Massage Chiang Mai',temple:'Wat Pan Whaen Chiang Mai',
  zira:'Zira Spa Chiang Mai',fahlanna:'Fah Lanna Spa Chiang Mai',oasis:'Oasis Spa Lanna Chiang Mai',
- chawee:'CHAWEE restaurant Chiang Mai',danchicken:'Dan Chicken Rice San Sai Chiang Mai'
+ chawee:'CHAWEE restaurant Chiang Mai',danchicken:'Dan Chicken Rice San Sai Chiang Mai',
+ khantoke:'Old Chiang Mai Cultural Center',cabaret:'Chiang Mai Cabaret Show Anusarn Market',miracle:'Miracle Cabaret Chiang Mai',thaiboxing:'Thapae Boxing Stadium Chiang Mai'
 };
+
+/* ── 線上訂票連結（KKday、Klook）。商品頁是查到的實際頁面；沒有固定商品的用平台的搜尋或清邁專區 ── */
+function klook(q){return ['Klook 搜尋','https://www.klook.com/zh-TW/search/result/?query='+encodeURIComponent(q)]}
+var KKCM=['KKday 清邁專區','https://www.kkday.com/zh-tw/destination/th-chiang-mai'];
+var OBOOK={
+ khantoke:[['KKday（含接送）','https://www.kkday.com/zh-tw/product/136203'],['KKday（不含接送）','https://www.kkday.com/zh-tw/product/184215'],klook('清邁 帝王餐')],
+ cabaret:[klook('Chiang Mai Cabaret Show')],
+ miracle:[['Klook','https://www.klook.com/zh-TW/activity/33760-miracle-caberet-show-chiang-mai/']],
+ thaiboxing:[['Klook','https://www.klook.com/zh-TW/activity/80758-thapae-boxing-stadium-ticket-chiang-mai/'],KKCM],
+ cookingclass:[klook('清邁 料理課'),KKCM],
+ muaythai:[klook('清邁 泰拳課'),KKCM],
+ halfspa:[klook('清邁 SPA'),KKCM],
+ fahlanna:[klook('Fah Lanna Spa')],
+ oasis:[klook('Oasis Spa Chiang Mai')]
+};
+var BOOKQ={
+ '清邁夜間動物園':[['KKday','https://www.kkday.com/zh-tw/product/20563'],['Klook','https://www.klook.com/zh-TW/destination/p50052640-chiang-mai-night-safari/']],
+ '大峽谷水上樂園':[['Klook','https://www.klook.com/zh-TW/activity/29557-grand-canyon-water-park-ticket-chiang-mai/'],KKCM],
+ 'ATV 越野':[['KKday','https://www.kkday.com/zh-tw/product/20649'],klook('X-Centre Chiang Mai ATV')],
+ '叢林飛索與叢林滑車':[klook('Pongyang Jungle Coaster Zipline'),KKCM],
+ '大象自然公園':[['保護區官網','https://www.elephantnaturepark.org/'],klook('Elephant Nature Park')],
+ '包車出發':[klook('清邁 包車'),KKCM],
+ '包車往湄林山區':[klook('清邁 包車'),KKCM]
+};
+function bookHTML(links){
+  if(!links||!links.length)return '';
+  return '<p class="book-line"><span>線上訂</span>'+links.map(function(l){return '<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+'</a>'}).join('')+'</p>';
+}
 function optQ(k){
   if(OQ[k]!==undefined)return OQ[k];
   var pn=OPT_POOL[k];
@@ -1029,17 +1078,17 @@ inthanon:{title:'茵他儂山，泰國最高點',short:'茵他儂山',range:'郊
  ],
  notes:[['穿著','洋蔥式穿法。山頂要輕羽絨加防風外套，回到瀑布只要短袖。步道穿好走的運動鞋。'],['備案','不想包車可以參加一日團，每人約 1,300–1,800 銖。多數團不走 Kew Mae Pan 全程，報名前先問清楚。']]},
 
-elephant:{title:'上午看大象，傍晚到賓河邊',short:'大象自然公園、市場、河岸',range:'郊外半日，單程 1.5 小時',book:'大象保護區',
- sum:'只排半日的郊外行程。下午回城，去本地人買菜的市場，再到河邊吃飯。',
- map:{pts:['warorot','riverside'],route:['hotel','warorot','riverside']},
+elephant:{title:'上午看大象，晚上吃帝王餐看表演',short:'大象自然公園、市場、帝王餐晚餐秀',range:'郊外半日，單程 1.5 小時',book:'大象保護區和帝王餐晚餐秀',
+ sum:'只排半日的郊外行程。下午回城逛本地人買菜的市場，晚上坐下來吃一頓泰北帝王餐，邊吃邊看蘭納傳統舞蹈。',
+ map:{pts:['warorot'],route:['hotel','warorot','hotel']},
  trip:{name:'大象自然公園',dir:'往北',km:60,hours:'1.5 小時',stops:[['古城',0,310],['大象自然公園',60,420]]},
  items:[
   ['07:00','車','保護區的車到旅館接','','往北到湄登（Mae Taeng），約 60 公里。',['車程 1.5 小時']],
   ['08:30','景','大象自然公園','','Elephant Nature Park 收容從伐木場和表演場救出來的大象。這裡不騎乘、不表演，遊客在步道上看象群自己活動。',['半日約 2,500 銖／人起，含接送','旺季至少提前 4 週訂']],
   ['13:30','歇','回到旅館休息','','實際接送時間依訂到的方案為準。',[]],
-  ['16:00','市','瓦洛洛市場','กาดหลวง','清邁人叫它 Kad Luang，意思是大市場。一樓賣泰北香腸、青辣椒醬、龍眼乾，旁邊是花市。伴手禮在這裡買最便宜。',['約 18:00 收攤','從塔佩門步行 15 分鐘']],
-  ['17:45','食','晚餐','','從市場過橋到東岸的 Charoenrat 路。',[],['river','michelin'],'riverside'],
-  ['20:00','車','搭 Grab 回旅館','','',['約 80 銖']]
+  ['15:30','市','瓦洛洛市場','กาดหลวง','清邁人叫它 Kad Luang，意思是大市場。一樓賣泰北香腸、青辣椒醬、龍眼乾，旁邊是花市。伴手禮在這裡買最便宜。17:00 前回到旅館，等表演的車來接。',['約 18:00 收攤','從塔佩門步行 15 分鐘']],
+  ['18:30','食','晚餐與表演','','不想看秀的話，這一格可以換成賓河邊的餐廳。',[],['show','river','michelin'],'khantoke'],
+  ['21:30','車','回旅館','','含接送的方案會送回旅館，自己去的話搭 Grab。',['Grab 約 100 銖']]
  ],
  notes:[['挑選','選保護區看三件事：不騎乘、不表演、不強迫大象下水陪遊客洗澡。'],['伴手禮','泰北香腸、炸豬皮這類豬肉製品不能帶回台灣，想吃就在當地吃完。龍眼乾、茶葉、香料包可以帶。']]},
 
@@ -1054,7 +1103,8 @@ zipatv:{title:'湄林山區，叢林飛索與 ATV',short:'叢林飛索與 ATV',r
   ['13:30','景','ATV 越野','','往回開 25 分鐘到 X-Centre。教練先帶著在練習場繞幾圈，再出場地跑山腳下的土路。不需要駕照，7 歲以上可以參加。',['1 小時約 2,000–2,300 銖／人','也有雙人共乘的車']],
   ['15:00','歇','沖洗、換衣服','','騎完全身是土，換上乾淨衣服再上車。',[]],
   ['15:30','車','回程','','大約 16:15 回到旅館。',[]],
-  ['19:00','食','晚餐','',DINNER,[],DIN,'nightbazaar']
+  ['19:00','食','晚餐','',DINNER,[],DIN,'nightbazaar'],
+  ['21:15','景','晚上的表演','','在夜市吃完走過去就到。白天玩累了也可以直接回旅館，這一格不用先訂。',[],['show'],'cabaret']
  ],
  notes:[['穿著','包鞋、長褲，帶一套替換衣服和毛巾。飛索不能穿拖鞋，手機要掛繩或放置物櫃。'],['限制','飛索通常有體重上限，孕婦和心臟、脊椎有狀況的人不能玩。訂之前先看業者的規定。'],['保險','旅平險對 ATV、飛索這類活動的理賠條件各家不同，出發前看一下保單條款。'],['加碼','X-Centre 同一個場地還有高空彈跳和卡丁車，想多玩可以現場加。']]},
 
@@ -1400,7 +1450,7 @@ function itemHTML(planKey,idx,it){
   var key=planKey+':'+idx,row,more,cost,q;
   if(!it[6]){
     row='<span class="tl-title"><span>'+it[2]+'</span>'+thHTML(it[3])+'</span>';
-    more=photoHTML(it[2])+(it[4]?'<p class="tl-desc">'+it[4]+'</p>':'')+metaHTML(it[5]);
+    more=photoHTML(it[2])+(it[4]?'<p class="tl-desc">'+it[4]+'</p>':'')+metaHTML(it[5])+bookHTML(BOOKQ[it[2]]);
     cost=costOf(it[5]);q=MQ[it[2]]||'';
   }else{
     var cur=pickOf(key,it[7]),o=OPT[cur],n=0,list='';
@@ -1414,7 +1464,7 @@ function itemHTML(planKey,idx,it){
     });
     row='<span class="tl-title"><span class="slot">'+it[2]+'</span><span>'+o[0]+'</span>'+thHTML(o[1])
       +(o[4]?'<span class="badge">'+BADGE[o[4]]+'</span>':'')+(cur!==it[7]?'<span class="changed">已換</span>':'')+'</span>';
-    more=photoHTML(OPT_POOL[cur]==='khaosoi'||cur==='maesai'?'@khaosoi':'@'+cur)+(it[4]?'<p class="tl-desc">'+it[4]+'</p>':'')+'<p class="tl-desc">'+o[2]+'</p>'+metaHTML(o[3])
+    more=photoHTML(OPT_POOL[cur]==='khaosoi'||cur==='maesai'?'@khaosoi':'@'+cur)+(it[4]?'<p class="tl-desc">'+it[4]+'</p>':'')+'<p class="tl-desc">'+o[2]+'</p>'+metaHTML(o[3])+bookHTML(OBOOK[cur])
       +'<div class="swap"><button type="button" class="swap-btn" id="sw_'+key+'" data-swap aria-expanded="false">換一個，共 '+n+' 個選項</button>'
       +'<div class="swap-list" hidden>'+list+'</div></div>';
     cost=costOf(o[3]);q=optQ(cur);
