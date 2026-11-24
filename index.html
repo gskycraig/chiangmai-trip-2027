@@ -571,7 +571,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
     <div class="hero-text">
       <p class="hero-thai" lang="th">เชียงใหม่</p>
       <p class="hero-dates"><span>2027 年 1 月 1 日（五）出發，</span><span>1 月 8 日（五）回台</span></p>
-      <p class="hero-lede">涼季的清邁白天 28°C、清晨 15°C，幾乎不下雨。行程以古城為圓心：四天在城裡慢慢走，三天往郊外的山裡去，週六、週日兩個夜市都排進去了。</p>
+      <p class="hero-lede">涼季的清邁白天 28°C、清晨 15°C，幾乎不下雨。行程以古城為圓心：四天在城裡慢慢走，三天往郊外去，全程不排爬山，週六、週日兩個夜市都排進去了。</p>
       <p class="hero-count" id="count">去回都搭華航直飛，七晚住同一間旅館。</p>
       <p><button type="button" class="motion-btn" id="motion" aria-pressed="false">暫停動畫</button></p>
       <p class="sync-line" id="sync" hidden></p>
@@ -670,7 +670,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
           <h3>衣服</h3>
           <ul>
             <li>市區白天 28–30°C、清晨 14–16°C，日夜差 15 度。短袖加一件薄外套。</li>
-            <li>清晨的素帖山和晚上的夜間動物園只有 12–15°C，那兩天多帶一件外套。</li>
+            <li>晚上的夜間動物園只有 15°C 左右，那天多帶一件外套。</li>
             <li>進寺院要遮住肩膀和膝蓋，進殿脫鞋。帶一條薄圍巾，穿好穿脫的鞋。</li>
           </ul>
         </div>
@@ -706,13 +706,14 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
             <tr><td>兩天包車</td><td class="amt">1,650–2,150</td><td class="why">南郊和湄林山區各一天，兩人分攤</td></tr>
             <tr><td>飛索與 ATV</td><td class="amt">4,000–5,800</td><td class="why">飛索套餐 2,000–3,500 銖，ATV 1 小時 2,000–2,300 銖</td></tr>
             <tr><td>大象保護區</td><td class="amt">2,500–3,500</td><td class="why">半日到全日方案</td></tr>
+            <tr><td>體驗課</td><td class="amt">1,000–1,500</td><td class="why">週六上午的半日料理課，含接送</td></tr>
             <tr><td>三餐</td><td class="amt">4,000–7,000</td><td class="why">每天 500–900 銖，小吃和餐廳各半</td></tr>
             <tr><td>門票</td><td class="amt">2,000–2,700</td><td class="why">水上樂園、夜間動物園、皇家花園和幾座寺院</td></tr>
             <tr><td>按摩</td><td class="amt">1,200–2,000</td><td class="why">三到四次</td></tr>
             <tr><td>市區交通</td><td class="amt">1,200–1,800</td><td class="why">Grab 和雙條車</td></tr>
             <tr><td>網路</td><td class="amt">約 300</td><td class="why">8 天 eSIM</td></tr>
           </tbody>
-          <tfoot><tr><td>合計</td><td class="amt">約 22,000–38,000</td><td class="why">不含機票和伴手禮。元旦連假是旺季，機票以華航官網當下的報價為準。</td></tr></tfoot>
+          <tfoot><tr><td>合計</td><td class="amt">約 23,000–40,000</td><td class="why">不含機票和伴手禮。元旦連假是旺季，機票以華航官網當下的報價為準。</td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -956,6 +957,19 @@ arrive:{title:'抵達，先把古城走一圈',range:'市區，步行',book:'',
  ],
  notes:[['交通','除了機場進城，今天其他路程都能用走的。古城東西向走完大約 20 分鐘。'],['住宿','建議七晚都住塔佩門內側。週日夜市就在門口，一日遊的車也都到這一帶接人。']]},
 
+saturday:{title:'上午學做泰菜，傍晚逛週六夜市',range:'市區',book:'上午的體驗課',
+ sum:'不上山，整天留在城裡。上午去上一堂課，下午按摩休息，傍晚逛只有週六才有的瓦萊路夜市。',
+ map:{pts:['chiangman'],segs:['wualai'],route:['hotel','chiangman','hotel']},
+ items:[
+  ['09:00','學','上午的活動','','',[],['klass'],'cookingclass'],
+  ['13:30','歇','回旅館休息','','料理課會吃自己做的午餐。選了泰拳或藍染這類比較短的課，中午就在古城裡找一家吃。',[]],
+  ['15:00','歇','按摩','','',[],['massage'],'lila'],
+  ['16:30','寺','清曼寺','วัดเชียงมั่น','1296 年建城時蓋的第一座寺，全在平地上。後方的象塔由 15 隻石象托著。',['免費','停留 30 分鐘','從塔佩門步行 12 分鐘']],
+  ['17:30','市','瓦萊路週六夜市','ถนนคนเดินวัวลาย','從清邁門往西南走的一條銀器老街，每週六封街。比週日夜市小，手工銀飾和本地小吃比較多。晚餐就在夜市裡邊走邊吃。',['約 17:00–22:00']],
+  ['19:00','寺','銀廟','วัดศรีสุพรรณ','整座戒堂包著手工敲花的銀片和鋁片，晚上會打燈。依寺方規定，女性不能進入戒堂內部，可以在外面看。',['門票約 50 銖','在夜市旁的巷子裡']]
+ ],
+ notes:[['交通','今天都在市區。紅色雙條車（rod daeng）隨招隨停，上車前跟司機說目的地，同方向就載，每人 30 銖起。']]},
+
 suthep:{title:'清晨上素帖山，傍晚逛週六夜市',range:'山上 35 分鐘，其餘市區',book:'',
  sum:'素帖寺要趁早，9 點以後遊覽車就到了。下午在尼曼喝咖啡，傍晚去只有週六才有的瓦萊路夜市。',
  map:{pts:['suthep','palat','nimman'],segs:['wualai'],route:['hotel','suthep','palat','nimman','hotel']},
@@ -1140,7 +1154,8 @@ depart:{title:'回程',range:'機場',book:'',
  notes:[['泰銖','管制區內的店都收現金，剩下的零錢在這裡花掉。']]}
 };
 
-var FREE=['southfun','elephant','zipatv','nimmanshop','cooking','slow','monjam','buatong','chiangdao','inthanon'];
+/* 要爬山、爬瀑布、爬長階梯的三個行程（inthanon、buatong、chiangdao）資料還留著，但不放進可選清單 */
+var FREE=['southfun','elephant','zipatv','nimmanshop','cooking','slow','monjam'];
 
 /* ── 伴手禮。[id, 名稱, 泰文, 說明, [哪裡買, 價格], 注意] ── */
 var SOUV=[
@@ -1173,7 +1188,7 @@ var SOUV=[
 var NOPE=['泰北香腸、炸豬皮和所有肉類製品，真空包裝也不行','附肉塊調理包的泡麵','新鮮水果'];
 var DAYS=[
  {date:'1/1',wd:'五',plan:'arrive'},
- {date:'1/2',wd:'六',plan:'suthep'},
+ {date:'1/2',wd:'六',plan:'saturday'},
  {date:'1/3',wd:'日',plan:'weekend'},
  {date:'1/4',wd:'一',plan:'southfun',free:true},
  {date:'1/5',wd:'二',plan:'elephant',free:true},
@@ -1615,7 +1630,7 @@ function motionOff(){return mOff||(window.matchMedia&&window.matchMedia('(prefer
 
 /* ── 換頁 ── */
 var stage=$('stage'),runner=$('runner'),prevBtn=$('prev'),nextBtn=$('next'),nowEl=$('pager-now'),busy=false;
-var CITY={suthep:1,weekend:1,nimmanshop:1,cooking:1,slow:1};
+var CITY={saturday:1,suthep:1,weekend:1,nimmanshop:1,cooking:1,slow:1};
 function spriteFor(pg){
   if(pg.id==='cover')return 'plane';
   if(pg.day===undefined)return 'elephant';
