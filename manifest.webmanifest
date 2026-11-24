@@ -1,0 +1,17 @@
+{
+  "name": "清邁八日",
+  "short_name": "清邁行程",
+  "description": "2027/1/1–1/8 清邁八日：每日行程、地圖、米其林、伴手禮與行前清單，離線可用。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "zh-Hant",
+  "background_color": "#E7EEE6",
+  "theme_color": "#B3222B",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

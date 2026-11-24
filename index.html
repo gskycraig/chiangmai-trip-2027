@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>清邁八日</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#B3222B">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
 /* 版面概念：一面直書的紅色蘭納長幡掛在頁首；之後每一天都是「方城示意圖＋時間軸」，全部靠左對齊，其餘保持安靜。 */
@@ -454,6 +458,12 @@ summary.tl-row:hover .tl-title > span:not(.slot):not(.th):not(.badge):not(.chang
 .no-motion .snow{display:none}
 @media (prefers-reduced-motion: reduce){.snow{display:none}}
 
+/* 同步狀態與小提示 */
+.sync-line{font-size:var(--s-1);line-height:1.6;color:var(--celadon);display:grid;gap:.2rem}
+.sync-line .bad{color:var(--red)}
+.toast{position:fixed;left:50%;bottom:calc(var(--bar-h,3.2rem) + 1rem);transform:translateX(-50%);z-index:40;max-width:90vw;background:var(--ink);color:var(--ground);border:1px solid var(--gold);border-radius:2px;font-size:var(--s-1);font-weight:500;padding:.5rem 1rem;text-align:center;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+
 /* ── 泰式框架與表格（紋樣圖形出自 Codex）────────── */
 .th-defs{position:absolute;width:0;height:0;overflow:hidden;color:var(--gold);--th-1:var(--gold);--th-2:var(--tung);--th-3:var(--celadon)}
 .th-frame{position:relative;color:var(--gold);--th-1:var(--gold);--th-2:var(--tung);--th-3:var(--celadon)}
@@ -564,6 +574,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
       <p class="hero-lede">涼季的清邁白天 28°C、清晨 15°C，幾乎不下雨。行程以古城為圓心：四天在城裡慢慢走，三天往郊外的山裡去，週六、週日兩個夜市都排進去了。</p>
       <p class="hero-count" id="count">去回都搭華航直飛，七晚住同一間旅館。</p>
       <p><button type="button" class="motion-btn" id="motion" aria-pressed="false">暫停動畫</button></p>
+      <p class="sync-line" id="sync" hidden></p>
     </div>
 
     <div class="flights">
@@ -599,7 +610,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   <section class="band" id="glance">
     <div class="wrap">
       <h2 class="sec-title">八天一覽</h2>
-      <p class="sec-lede">點任何一天直接翻到那一頁，也可以用下方的上一頁、下一頁，或左右滑動。1/4 到 1/7 這四天可以整天換成別的行程，每一餐和每次按摩也都能換一家，換過的內容只存在這台裝置。標紅字的項目要在出發前訂好。</p>
+      <p class="sec-lede">點任何一天直接翻到那一頁，也可以用下方的上一頁、下一頁，或左右滑動。1/4 到 1/7 這四天可以整天換成別的行程，每一餐和每次按摩也都能換一家。<span class="local-note" data-shared="換過的內容會和所有打開這個網址的旅伴同步，按「全部恢復成原本的安排」也會重設所有人的。">換過的內容只存在這台裝置。</span>標紅字的項目要在出發前訂好。</p>
       <div class="glance" id="glance-list"></div>
       <button type="button" class="reset" id="reset" hidden>全部恢復成原本的安排</button>
     </div>
@@ -618,7 +629,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   <section class="band" id="souvenir">
     <div class="wrap">
       <h2 class="sec-title">必買伴手禮</h2>
-      <p class="sec-lede">想買的先打勾，到尼曼採買那天照著清單走。打勾的紀錄只存在這台裝置。</p>
+      <p class="sec-lede">想買的先打勾，到尼曼採買那天照著清單走。<span class="local-note" data-shared="清單會和旅伴同步，是大家共用的一份。">打勾的紀錄只存在這台裝置。</span></p>
       <div class="souv" id="souv"></div>
     </div>
   </section>
@@ -626,7 +637,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   <section class="band" id="prep">
     <div class="wrap">
       <h2 class="sec-title">出發前</h2>
-      <p class="sec-lede">照期限排好了。打勾的紀錄只存在這台裝置的瀏覽器裡。</p>
+      <p class="sec-lede">照期限排好了。<span class="local-note" data-shared="打勾的紀錄會和旅伴同步，誰辦好了打個勾，大家都看得到。">打勾的紀錄只存在這台裝置的瀏覽器裡。</span></p>
       <div class="todo" id="todo"></div>
 
       <div class="topics">
@@ -730,6 +741,11 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
 (function(){
 document.documentElement.lang='zh-Hant';
 var SEAL={'機':'move','車':'move','寺':'temple','食':'food','景':'nature','市':'market','學':'market','歇':'rest'};
+
+/* 旅伴同步與離線。只有放在自己的網站（GitHub Pages）時才開；claude.ai 版建置時這一行會被換成關閉，
+   直接用檔案開啟（file://）時也不開，免得測試時動到大家共用的資料。 */
+var SHARE_DB='https://tokyo-trip-9fe07-default-rtdb.asia-southeast1.firebasedatabase.app',SHARE_TRIP='chiangmai-tU2KteZfFbtfAKYv',PWA=true;
+if(!/^https?:$/.test(location.protocol)){SHARE_DB='';PWA=false}
 
 /*SPRITES-START*/
 /* 串場角色。雙條車和飛機是 Codex 畫的；大象是在它的版本之後重畫的扁平剪影。 */
@@ -1169,7 +1185,7 @@ var DAYS=[
 /* ── 換過的內容（只存在這台裝置） ── */
 var SKEY='cnx2027_plan_v2',state={plan:{},pick:{}};
 try{var saved=JSON.parse(localStorage.getItem(SKEY)||'null');if(saved&&saved.plan&&saved.pick)state=saved}catch(e){}
-function save(){try{localStorage.setItem(SKEY,JSON.stringify(state))}catch(e){}}
+function save(){try{localStorage.setItem(SKEY,JSON.stringify(state))}catch(e){}shareLocal('plan')}
 function planOf(i){var d=DAYS[i],k=d.free?state.plan[i]:null;return (k&&FREE.indexOf(k)>=0)?k:d.plan}
 (function(){var seen={},bad=false;DAYS.forEach(function(d,i){var k=planOf(i);if(seen[k])bad=true;seen[k]=1});if(bad)state.plan={}})();
 function pickOf(slot,def){var k=state.pick[slot];return (k&&OPT[k])?k:def}
@@ -1521,6 +1537,7 @@ $('souv').addEventListener('change',function(e){
   if(!e.target.id)return;
   want[e.target.id]=e.target.checked;
   try{localStorage.setItem(WKEY,JSON.stringify(want))}catch(err){}
+  shareLocal('souv');
 });
 
 /* ── 置換的操作 ── */
@@ -1564,6 +1581,7 @@ $('todo').addEventListener('change',function(e){
   if(!e.target.id)return;
   done[e.target.id]=e.target.checked;
   try{localStorage.setItem(DKEY,JSON.stringify(done))}catch(err){}
+  shareLocal('todo');
 });
 
 /* ── 倒數 ── */
@@ -1670,6 +1688,109 @@ window.addEventListener('resize',function(){
   if(n!==wasNarrow){wasNarrow=n;renderBg()}
 });
 measure();setTimeout(measure,900);
+
+/* ── 小提示 ── */
+var toastEl=null,toastTimer=0;
+function toast(msg){
+  if(!toastEl){toastEl=document.createElement('div');toastEl.className='toast';toastEl.setAttribute('role','status');host.appendChild(toastEl)}
+  toastEl.textContent=msg;toastEl.classList.add('on');
+  clearTimeout(toastTimer);toastTimer=setTimeout(function(){toastEl.classList.remove('on')},3200);
+}
+
+/* ── 旅伴同步（Firebase Realtime Database：REST 寫入、串流接收，每一份資料「最後改的人為準」）──
+   共用三份：行程的置換（plan）、行前清單（todo）、伴手禮清單（souv）。動畫開關各自保存。 */
+var SHARE_KEYS={plan:SKEY,todo:DKEY,souv:WKEY},STKEY='cnx2027_share_t',shareT={},shareTimers={};
+var shareState=SHARE_DB?'connecting':'off',offlineReady=false,clientId=null,lastSyncToast=0;
+try{shareT=JSON.parse(localStorage.getItem(STKEY)||'{}')||{}}catch(e){shareT={}}
+try{clientId=localStorage.getItem('cnx2027_client');offlineReady=localStorage.getItem('cnx2027_offline')==='1'}catch(e){}
+if(!clientId){clientId='c'+Math.random().toString(36).slice(2,10);try{localStorage.setItem('cnx2027_client',clientId)}catch(e){}}
+function shareUrl(name){return SHARE_DB.replace(/\/+$/,'')+'/trips/'+SHARE_TRIP+(name?'/'+name:'')+'.json'}
+function shareVal(name){return name==='plan'?state:name==='todo'?done:want}
+function saveShareT(){try{localStorage.setItem(STKEY,JSON.stringify(shareT))}catch(e){}}
+function shareLocal(name){
+  if(!SHARE_DB)return;
+  shareT[name]=Date.now();saveShareT();shareQueue(name,700);
+}
+function shareQueue(name,delay){clearTimeout(shareTimers[name]);shareTimers[name]=setTimeout(function(){sharePush(name,0)},delay)}
+function sharePush(name,attempt){
+  if(!SHARE_DB)return;
+  var t=shareT[name]||Date.now();
+  fetch(shareUrl(name),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({t:t,by:clientId,v:JSON.stringify(shareVal(name))})})
+    .then(function(r){if(!r.ok)throw new Error('http '+r.status);setShare('live')})
+    .catch(function(){setShare('retry');if(attempt<5)shareTimers[name]=setTimeout(function(){sharePush(name,attempt+1)},4000*(attempt+1))});
+}
+function shareApply(name,rec){
+  if(!SHARE_KEYS[name]||!rec||typeof rec.v!=='string'||typeof rec.t!=='number')return false;
+  if(rec.t<=(shareT[name]||0))return false;
+  var val;try{val=JSON.parse(rec.v)}catch(e){return false}
+  if(!val||typeof val!=='object')return false;
+  if(name==='plan'){
+    if(!val.plan||!val.pick||typeof val.plan!=='object'||typeof val.pick!=='object')return false;
+    state=val;
+    var seen={},bad=false;DAYS.forEach(function(d,i){var k=planOf(i);if(seen[k])bad=true;seen[k]=1});
+    if(bad)state.plan={};
+  }else if(name==='todo'){done=val}else{want=val}
+  try{localStorage.setItem(SHARE_KEYS[name],JSON.stringify(shareVal(name)))}catch(e){}
+  shareT[name]=rec.t;saveShareT();
+  return rec.by!==clientId;
+}
+function shareRefresh(){
+  renderAll();
+  document.querySelectorAll('#souv input').forEach(function(i){i.checked=!!want[i.id]});
+  if(Date.now()-lastSyncToast>4000){lastSyncToast=Date.now();toast('已同步旅伴的更新')}
+}
+function setShare(s){if(shareState!==s){shareState=s;renderShare()}}
+function renderShare(){
+  var el=$('sync'),h='';
+  if(shareState==='live')h+='<span>已和旅伴同步。換行程、換餐廳、行前清單和伴手禮清單，所有打開這個網址的人看到的是同一份。</span>';
+  else if(shareState==='retry')h+='<span class="bad">同步連線中斷，恢復網路後會自動補上。</span>';
+  else if(shareState==='connecting')h+='<span>正在連線同步…</span>';
+  if(PWA)h+='<span>'+(offlineReady?'離線資料已存好，沒有網路也能打開。':'正在準備離線資料…')+'用瀏覽器的「加入主畫面」可以把它裝成 App。</span>';
+  el.innerHTML=h;el.hidden=!h;
+}
+function shareInit(){
+  renderShare();
+  if(SHARE_DB){
+    document.querySelectorAll('.local-note').forEach(function(n){n.textContent=n.getAttribute('data-shared')});
+  }
+  if(!SHARE_DB||typeof EventSource!=='function')return;
+  try{
+    var es=new EventSource(shareUrl(''));
+    var onData=function(ev){
+      var msg;try{msg=JSON.parse(ev.data)}catch(e){return}
+      if(!msg||typeof msg.path!=='string')return;
+      setShare('live');
+      var parts=msg.path.split('/').filter(Boolean),changed=false;
+      if(!parts.length){
+        Object.keys(SHARE_KEYS).forEach(function(n){
+          var rec=msg.data&&msg.data[n];
+          if(rec&&shareApply(n,rec))changed=true;
+          else if((shareT[n]||0)>(rec&&typeof rec.t==='number'?rec.t:0))shareQueue(n,200);
+        });
+      }else if(parts.length===1){changed=shareApply(parts[0],msg.data)}
+      if(changed)shareRefresh();
+    };
+    es.addEventListener('put',onData);es.addEventListener('patch',onData);
+    es.onerror=function(){setShare('retry')};
+  }catch(e){setShare('retry')}
+}
+
+/* ── 離線：註冊 service worker，並請它先把照片和樣式存起來 ── */
+function pwaInit(){
+  if(!PWA||!('serviceWorker' in navigator))return;
+  window.addEventListener('offline',function(){toast('目前離線，行程照常可以看；恢復連線後會自動同步')});
+  window.addEventListener('online',function(){toast('已恢復連線')});
+  navigator.serviceWorker.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='warmed'){offlineReady=true;try{localStorage.setItem('cnx2027_offline','1')}catch(x){}renderShare()}
+  });
+  navigator.serviceWorker.register('sw.js').then(function(){return navigator.serviceWorker.ready}).then(function(reg){
+    var seen={},urls=[];
+    Object.keys(PHOTO).forEach(function(k){var u='img/'+PHOTO[k][0]+'.jpg';if(!seen[u]){seen[u]=1;urls.push(u)}});
+    document.querySelectorAll('link[rel="stylesheet"][href]').forEach(function(n){urls.push(n.href)});
+    if(reg.active)reg.active.postMessage({type:'warm',urls:urls});
+  }).catch(function(){});
+}
+shareInit();pwaInit();
 
 var first=pageIndex(location.hash.slice(1));
 if(first<0)first=(bkk>='2027-01-01'&&bkk<='2027-01-08')?pageIndex('d'+Number(bkk.slice(8))):0;
