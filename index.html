@@ -574,6 +574,36 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
 .day-inmap{margin-top:1.5rem;display:grid;gap:.5rem}
 .inmap-title{font-family:var(--f-display);font-weight:700;color:var(--celadon)}
 .day-inmap svg + svg{border-top:1px solid var(--line)}
+/* 米其林名單：分三級，附地點與訂位方式 */
+.mtable .m-group th{width:auto;white-space:normal;background:color-mix(in srgb,var(--gold) 16%,transparent);color:var(--ink);font-size:var(--s1);padding:.5rem .6rem}
+.mtable .m-group small{font-family:var(--f-body);font-weight:400;font-size:var(--s-1);color:var(--ink-soft);margin-left:.8em}
+.mtable .m-area{font-size:var(--s-1);width:6.2rem}
+.mtable .m-resv{font-size:var(--s-1);width:5.4rem}
+.mtable td small{display:block;color:var(--ink-soft);font-size:.75rem;line-height:1.5}
+.mtable .m-links{column-gap:1rem;padding-top:.15rem}
+.mtable .m-links .gmap{white-space:normal}
+.m-tel{display:block;font-family:var(--f-num);font-size:.75rem;color:var(--ink-soft);text-underline-offset:.15em}
+.m-book{color:var(--red);font-weight:500;text-underline-offset:.2em}
+.mtable .need{margin-right:0}
+.sec-lede a{text-underline-offset:.2em}
+@media (min-width:760px){
+  .mtable .m-area{width:11rem}
+  .mtable .m-resv{width:8.5rem}
+}
+@media (max-width:560px){
+  /* 手機：三欄擠不下，地點和訂位改排在店名下面 */
+  .mtable thead{display:none}
+  .mtable,.mtable tbody,.mtable tr,.mtable td,.mtable .m-group th{display:block;width:auto}
+  .mtable tr{border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,transparent)}
+  .mtable td{border:0;padding:.1rem .6rem}
+  .mtable td:first-child{display:grid;padding-top:.6rem}
+  .mtable td:last-child{padding-bottom:.7rem}
+  .mtable .m-area,.mtable .m-resv{width:auto;display:flex;flex-wrap:wrap;column-gap:.7em;align-items:baseline}
+  .mtable .m-area::before,.mtable .m-resv::before{font-family:var(--f-display);font-weight:700;color:var(--celadon)}
+  .mtable .m-area::before{content:"地點"}
+  .mtable .m-resv::before{content:"訂位"}
+  .mtable td small,.m-tel{display:inline}
+}
 @media (max-width:899px){
   .split{padding-top:0}
   [data-layout="split"] .bgmap{height:auto;bottom:var(--bar-h,3.2rem);opacity:.14}
@@ -653,7 +683,8 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   <section class="band" id="michelin">
     <div class="wrap">
       <h2 class="sec-title">米其林推薦</h2>
-      <p class="sec-lede">《米其林指南泰國》2027 年版在清邁選出 20 家必比登推介和 1 家一星。必比登給的是價錢實在的好味道，路邊攤也在榜上。這 21 家都放進了每一餐的「換一個」清單，這裡是完整名單。</p>
+      <p class="sec-lede">《米其林指南》在清邁一共列了 54 家：1 家一星、20 家必比登推介、33 家入選餐廳。必比登給的是價錢實在的好味道，路邊攤也在榜上。54 家都放進了每一餐的「換一個」清單，這裡是完整名單，每一級由離塔佩門近的排到遠的。</p>
+      <p class="sec-lede">地點、營業時間和訂位方式取自<a href="https://guide.michelin.com/tw/zh_TW/chiang-mai-region/chiang-mai/restaurants" target="_blank" rel="noopener">米其林官網</a>各店的頁面（2026 年 11 月 25 日查），距離是直線距離。小吃攤和麵店標「不用訂」是照店型判斷的。餐廳的照片有版權，沒有放進這一頁，點「米其林頁面」或「Google 地圖」可以看。</p>
       <div class="mlist" id="mlist"></div>
     </div>
   </section>
@@ -868,32 +899,10 @@ var ARROW={
 };
 
 /* ── 可以換的選項。key: [名稱, 泰文, 說明, [備註]] ── */
-var POOL_NAME={show:'晚餐秀與夜間表演',michelin:'米其林推薦（2027 年版）',khaosoi:'泰北咖哩麵',northern:'北泰菜與烤雞',street:'夜市小吃',river:'賓河邊',cafe:'咖啡館',massage:'按摩',klass:'體驗課'};
-var BADGE={bib:'米其林必比登',star:'米其林一星'};
+var POOL_NAME={show:'晚餐秀與夜間表演',michelin:'米其林指南（一星、必比登、入選）',khaosoi:'泰北咖哩麵',northern:'北泰菜與烤雞',street:'夜市小吃',river:'賓河邊',cafe:'咖啡館',massage:'按摩',klass:'體驗課'};
+var BADGE={bib:'米其林必比登',star:'米其林一星',sel:'米其林入選'};
 var POOLS={
- michelin:{
-  huenmuanjai:['Huen Muan Jai','เฮือนม่วนใจ๋','柚木老屋裡的北泰家常菜。點一份拼盤，可以一次吃到香腸、兩種辣椒醬和炸豬皮。',['北泰菜，中價位','週三休，搭 Grab 10 分鐘'],'bib'],
-  huansoontaree:['Huan Soontaree','เฮือนสุนทรี','賓河邊的北泰菜餐廳，老闆是泰北民謠歌手 Soontaree，晚上有現場演唱。在古城北邊，要搭車。',['北泰菜，中價位','搭 Grab 約 15–20 分鐘'],'bib'],
-  gongkham:['Gongkham','','北泰家常菜。米其林點名的是雜菜湯（gaeng khae）和炸豬肝配青辣椒醬。',['北泰菜，平價'],'bib'],
-  euangkamsai:['Euang Kam Sai','','走傳統路線的北泰菜，招牌是牛肉版的緬式燉咖哩（hang le）。',['北泰菜，中價位'],'bib'],
-  lhongkhao:['Lhongkhao Kitchen','','平價的北泰家常菜。',['北泰菜，平價'],'bib'],
-  huenjaiyong:['Huen Jai Yong','เฮือนใจ๋ยอง','山甘烹的老木屋，做的是傣雍族的家常菜。離古城約 17 公里，要專程搭車去。',['北泰菜，平價','今年新上榜','搭 Grab 約 30 分鐘'],'bib'],
-  chawee:['CHAWEE','','家常風格的泰菜小館，菜單跟著季節換。',['泰菜，中價位'],'bib'],
-  jaanjoor:['Jaan Joor','','今年新上榜的泰菜餐廳。',['泰菜，中價位','今年新上榜'],'bib'],
-  sanae:['Sanae Thai Cuisine','','平價的泰式家常菜。',['泰菜，平價'],'bib'],
-  saiyut:['Saiyut and Doctor Sai Kitchen','','泰式家常菜。',['泰菜，中價位'],'bib'],
-  rasik:['Rasik Local Kitchen','','用在地食材做的當代泰菜。',['當代泰菜，中價位'],'bib'],
-  magnolia:['Magnolia Café','','泰菜餐廳。',['泰菜，中價位'],'bib'],
-  meena:['Meena Rice Based Cuisine','มีนา มีข้าว','山甘烹的池畔木屋餐廳，招牌是用花草染成五種顏色的米飯。離古城約 12 公里。',['泰菜，中價位','搭 Grab 約 25 分鐘'],'bib'],
-  maesai:['Khao Soi Mae Sai','ข้าวซอยแม่สาย','古城和尼曼之間的 Santitham 區，本地人排隊的泰北咖哩麵。牛肉和雞腿兩種都點來試。',['麵，平價','約 08:00–16:00，週日休'],'bib'],
-  baannamngiew:['Baan Nam Ngiew Wieng Kao','','清萊口味的番茄肉醬米線（nam ngiao），湯頭酸香。',['麵，平價','今年新上榜'],'bib'],
-  guayjub:['Guay Jub Chang Moi Tat Mai','ก๋วยจั๊บช้างม่อยตัดใหม่','粿汁：捲起來的寬米粉泡在胡椒湯裡，配脆皮燒肉。在瓦洛洛市場附近。',['麵，平價'],'bib'],
-  rotipaday:['Roti Pa Day','โรตีป้าเด','塔佩路上的煎餅攤，晚上才出來擺。香蕉加蛋、淋煉乳是基本款。',['街頭小吃，平價'],'bib'],
-  lungkhajohn:['Lung Khajohn Wat Ket','','賓河東岸、蓋寺附近的老攤，賣潤餅捲和沙嗲。',['街頭小吃，平價'],'bib'],
-  tuekako:['Tue Ka Ko Na Prince','','賓河東岸一所學校門口的炸物攤，賣炸芋頭糕和炸豆腐，沾花生甜辣醬。',['街頭小吃，平價'],'bib'],
-  danchicken:['Dan Chicken Rice (San Sai)','','海南雞飯。在東北郊的 San Sai，離古城遠。',['小吃，平價'],'bib'],
-  belen:['Belen by Paulo Airaudo','','清邁第一家米其林一星，今年剛摘星。用在地食材做歐式料理，是高價位的精緻餐廳。',['歐式料理，高價位','一定要訂位'],'star']
- },
+ michelin:{},
  show:{
   khantoke:['蘭納帝王餐晚餐秀','ขันโตก','在老清邁文化中心。席地坐在矮圓桌（khantoke）旁，吃一整盤泰北菜：燉豬肉咖哩、青辣椒醬、炸雞、糯米飯，吃完可以再加。邊吃邊看蘭納傳統舞蹈，有指甲舞、蠟燭舞、劍舞，最後是山地民族的表演。',['約 700–1,000 銖／人，依是否含接送','含接送的方案約 17:30 到旅館接','18:30 入場，19:15 開演，約 21:00 結束']],
   cabaret:['清邁人妖歌舞秀','','觀光夜市裡 Anusarn 市場的 Chiang Mai Cabaret Show。一小時的華麗歌舞秀，票價含一杯飲料。先在夜市吃完晚餐再進場。',['約 350 銖／人','每晚約 21:30 開演','可以現場買票，旺季早一點去劃位']],
@@ -909,7 +918,6 @@ var POOLS={
  northern:{
   huenphen:['Huen Phen','เฮือนเพ็ญ','古城裡的北泰菜老店，晚餐開在擺滿古董的內廳。點緬式燉豬肉咖哩、青辣椒醬配蔬菜、糯米飯。',['兩人約 600–800 銖','古城內，步行可到']],
   tongtemtoh:['Tong Tem Toh','ต๋องเต็มโต๊ะ','尼曼 13 巷，年輕人排隊的北泰菜。烤豬頸肉、緬式燉豬肉咖哩、泰北香腸拼盤。',['兩人約 500–700 銖','用餐時間要排隊，11 點前到']],
-  kitipanit:['Kiti Panit','กิติพานิช','塔佩路上一棟百年老商行改的餐廳，把北泰菜做得精緻。適合想吃好一點的那一晚。',['兩人約 1,500–2,000 銖','建議訂位']],
   gingerfarm:['Ginger Farm Kitchen','','尼曼 One Nimman 裡的農場餐廳，用自家農場的菜做泰北菜和泰式家常菜。有冷氣，環境舒服。',['兩人約 800–1,200 銖']],
   spchicken:['SP Chicken','เอสพีไก่ย่าง','帕邢寺旁的烤雞店。整隻雞在炭火前轉著烤，配青木瓜沙拉和糯米飯。',['兩人約 400–500 銖','只開到傍晚，適合當午餐']],
   cherngdoi:['Cherng Doi Roast Chicken','ไก่ย่างเชิงดอย','尼曼附近的烤雞名店。雞皮烤到脆，沾羅望子醬吃。',['兩人約 400–500 銖','週一休']]
@@ -948,6 +956,84 @@ var POOLS={
   halfspa:['半日 SPA','','把上午整個留給按摩。泰式、精油、藥草球各做一輪。',['約 2,500–4,500 銖／人','約 3–4 小時']]
  }
 };
+/*MICH-START*/
+/* 米其林指南的清邁名單：1 家一星、20 家必比登推介、33 家入選，共 54 家。
+   地址、營業時間、訂位方式、座標取自米其林官網各店的頁面（2026-11-25 查），說明是照評語改寫的。
+   欄位：[代號, 店名, 泰文, 等級, 菜系, 價位 1–4, 地點, 營業時間, 訂位, 電話, 官網頁面代稱, 緯度, 經度, 說明, 其他備註]
+   訂位：o 米其林頁面可線上訂、p 打電話訂、m 一定要先訂、w 小吃攤或麵店，現場候位（這一類是依店型判斷的） */
+var MICH=[
+ ['belen','Belén by Paulo Airaudo','','star','當代歐陸菜',4,'長康路，洲際酒店 2 樓','17:30–23:00，週三休','m','+66 96 254 7899','belen-by-paulo-airaudo',18.7831233,98.9979993,'清邁第一家米其林一星。只有 18 個吧檯座位，廚師在客人面前用歐式技法料理清邁在地的蔬果、茶和起司。米其林點名山羊起司布丁配當季水果。'],
+
+ ['huenmuanjai','Huen Muan Jai','เฮือนม่วนใจ๋','bib','泰北菜',2,'古城西北，昌普區','11:00–21:00，週三休','p','+66 98 261 8029','huen-muan-jai',18.8001080,98.9756279,'花園裡的蘭納木屋，有室內、戶外和涼亭座位，泰北菜色齊全。米其林推薦南薑辣醬配蒸菇、蛇頭魚辣蔬菜湯。'],
+ ['huansoontaree','Huan Soontaree','เฮือนสุนทรี','bib','泰北菜',2,'古城北邊，賓河畔','16:30–23:00，週日休','p','+66 83 860 8196','huan-soontaree',18.8310278,98.9937575,'泰北民謠歌手 Soontaree 開的河畔餐廳，她每晚在店裡演唱。招牌是豬肉鑲無骨蛇頭魚。只做晚餐。'],
+ ['gongkham','Gongkham','','bib','泰北菜',1,'湄林，市區往北約 30 分鐘車程','09:00–21:00','p','+66 84 040 5515','gongkham',18.9100083,98.9510357,'蘭納木屋，像在朋友家吃飯。雜菜湯（kaeng khae）、青辣椒醬配炸豬肝都是現點現做。'],
+ ['euangkamsai','Euang Kam Sai','','bib','泰北菜',2,'古城南邊，瓦萊路','11:00–21:00','p','+66 95 145 0296','euang-kam-sai',18.7715808,98.9802040,'同一個家族傳了上百年的泰北菜。米其林推薦現做的米皮捲（khao bai）和本地牛腩煮的泰北咖哩。週六夜市就在同一條路上。'],
+ ['lhongkhao','Lhongkhao Kitchen','','bib','泰北菜',1,'湄林，市區往北約 30 分鐘車程','10:30–19:00','p','+66 83 476 3421','krua-lawng-khao',18.9170868,98.9514748,'看得到稻田的兩層木屋，菜單跟著季節換。米其林推薦山陀兒沙拉和香辣炒蛙腿。'],
+ ['huenjaiyong','Huen Jai Yong','เฮือนใจ๋ยอง','bib','泰北菜',1,'山甘烹，市區往東約 30 分鐘車程','09:00–17:00，週二休','p','+66 86 671 8710','huen-jai-yong',18.7253037,99.1028776,'2002 年開到現在的柚木老屋，香腸和辣椒醬都是手工做的。米其林推薦香草蒸雞、加螞蟻蛋的甜菜湯。只收現金。',['今年新上榜']],
+ ['chawee','CHAWEE','','bib','泰國菜',2,'古城北邊，昌普區','11:00–15:00、17:00–21:00，週二休','p','+66 84 324 9363','chawee',18.8268146,98.9795731,'用主廚祖母的名字當店名。菜單每個月跟著季節換，先上幾道開胃小點，最後是一桌配飯的共享菜。'],
+ ['jaanjoor','Jaan Joor','','bib','泰國菜',2,'古城北邊，蘭納高爾夫球場附近','米其林頁面沒列營業時間','o','+66 83 577 4948','jaan-joor',18.8238868,98.9801034,'白牆藍門的泰菜餐廳，份量大，適合幾個人分著吃。招牌是烤辣椒醬炒蝦和 Jaan Joor 炒牛肉。只收現金。',['今年新上榜']],
+ ['sanae','Sanae','','bib','泰國菜',1,'古城西南，素帖山腳','11:30–21:00，週一休','p','+66 81 159 0435','sanae-thai-cuisine',18.7768678,98.9460387,'專做牛肉的小館，里肌、牛小排、牛舌各有做法。招牌是牛油炒飯配半熟蛋黃，還有酸辣牛小排湯。'],
+ ['saiyut','Saiyut and Doctor Sai Kitchen','','bib','泰國菜',2,'古城北邊，Chotana 路','10:00–21:00，週三休','p','+66 81 530 1172','saiyut-and-doctor-sai-kitchen',18.8220401,98.9872543,'民宅改的餐廳，有五間可以當包廂的用餐室。重點是做工細的宮廷式泰國前菜，記得留肚子吃泰式甜點。'],
+ ['rasik','Rasik Local Kitchen','','bib','當代泰國菜',2,'長康路南邊，Sridonchai 路','17:00–21:00，週二休','m','+66 83 269 6632','rasik-local-kitchen',18.7810595,98.9957522,'每個時段只收 14 到 16 人，一晚三輪，一定要先訂。用當季泰國食材做的創意泰菜，可以問當天的漁獲。只做晚餐。'],
+ ['magnolia','Magnolia Café','','bib','泰國菜',2,'古城東北，Rattanakosin 路','17:00–22:00，週日休','p','+66 61 684 8222','magnolia-cafe',18.8005618,98.9971014,'只有四張大共桌的小店，菜色涵蓋泰國各地。米其林點名炸魷魚乾配花生醬、西瓜配魚乾，最後送一份斑蘭布丁。只做晚餐。'],
+ ['meena','Meena Rice Based Cuisine','มีนา มีข้าว','bib','泰國菜',2,'山甘烹，市區往東約 25 分鐘車程','10:00–20:30','p','+66 95 693 9586','meena-rice-based-cuisine',18.7333200,99.0868650,'創意聚落 Lhong Him Kaw 裡的鄉村風餐廳，招牌是五種顏色的米飯。米其林點名龍眼咖哩豬肋排，還有幾款龍眼甜點。'],
+ ['maesai','Khao Soi Mae Sai','ข้าวซอยแม่สาย','bib','麵食',1,'古城西北，Santitham','08:00–16:00，週日休','w','+66 53 213 284','khao-soi-mae-sai',18.8041250,98.9851300,'本地人排隊的泰北咖哩麵，咖哩濃、微辣，肉可以自己選。一碗不大，很多人會再點一碗。只收現金。'],
+ ['baannamngiew','Baan Nam Ngiew Wieng Kao','','bib','麵食',1,'東郊 Nong Pa Khrang','米其林頁面沒列營業時間','w','+66 83 575 5823','baan-nam-ngiew-wieng-kao',18.8016510,99.0245595,'樹蔭下的小店，賣清萊口味的番茄肉醬米線（nam ngiao），湯頭濃、微酸。中午人多要排隊。只收現金。',['今年新上榜']],
+ ['guayjub','Guay Jub Chang Moi Tat Mai','ก๋วยจั๊บช้างม่อยตัดใหม่','bib','麵食',1,'塔佩門外，瓦洛洛市場附近','10:00–15:00','w','+66 53 251 451','guay-jub-chang-moi-tat-mai',18.7901443,98.9987035,'1977 年開到現在的家族老店。粿汁是捲起來的米粉泡在胡椒湯裡，配豬肉；也有不加粉的版本和鮮春捲。只收現金。'],
+ ['rotipaday','Roti Pa Day','โรตีป้าเด','bib','街頭小吃',1,'塔佩路 4 巷口，Wat Mahawan 前','18:30–24:00','w','+66 81 021 9496','rotee-pa-day',18.7880650,98.9958975,'晚上才擺的煎餅攤。麵團不加蛋，用椰子油慢慢煎，外酥內軟。推薦加蛋和香蕉的口味，配料有二十種左右。只收現金。'],
+ ['lungkhajohn','Lung Khajohn Wat Ket','','bib','街頭小吃',1,'賓河東岸，蓋寺對面','06:00–14:30，週日休','w','+66 53 243 157','lung-khajohn-wat-ket',18.7923130,99.0022428,'蓋寺對面的小店，賣淋椰奶的蒸米皮餃（khao kriap pak mo），還有包甜鹹豬肉花生餡的木薯粉餃。只收現金。'],
+ ['tuekako','Tue Ka Ko Na Prince','','bib','街頭小吃',1,'賓河東岸，Kaeonawarat 路','09:00–16:00，週日休','w','+66 91 072 5891','tue-ka-ko-na-prince',18.7962375,99.0062067,'幾十年的炸物攤，現點現炸的芋頭糕沾甜辣醬和花生，炸豆腐也好吃。賣完就收，早點去。只收現金。'],
+ ['danchicken','Dan Chicken Rice (San Sai)','','bib','小吃',1,'東北郊 San Sai','07:30–14:00','w','+66 81 022 1128','dan-chicken-rice-san-sai',18.8218137,99.0332853,'開了二十多年的海南雞飯，分店很多，米其林選的是 San Sai 路的老店。雞肝會先賣完，中午前到。只收現金。'],
+
+ ['kitipanit','Kiti Panit','กิติพานิช','sel','泰北菜',2,'塔佩路','11:30–15:00、17:00–21:30','p','+66 80 191 7996','kiti-panit',18.7879459,99.0004847,'1880 年代的老宅改成的餐廳，做新式的蘭納菜。米其林提到緬式燉咖哩（hang le）、香菜烤雞沙拉、花椒炒牛肉。'],
+ ['phukhaofai','Phu Khao Fai Udomphon Pork Noodles','','sel','街頭小吃',1,'古城內，Ratvithi 路','米其林頁面沒列營業時間','w','+66 82 620 4674','phu-khao-fai-udomphon-noodles',18.7906375,98.9918764,'酸辣湯頭的豬肉麵，招牌 phu khao fai 麵又辣又香，可以加點豬腸。很快客滿，熱門的品項會賣完，早點到。只收現金。'],
+ ['pari','Pari-','','sel','亞洲菜',2,'尼曼西側，Sirimangkalajarn 路','11:00–15:00、18:00–23:00','p','+66 81 116 9671','pari',18.7942640,98.9724203,'吧檯式小店，日式居酒屋的做法配泰國食材。米其林推薦雲南火腿玉米炒飯。'],
+ ['namngiaoyong','Nam Ngiao Yong','','sel','街頭小吃',1,'古城北邊，Siri Wattana 市場','08:00–17:30','w','+66 95 661 6959','nam-ngiao-yong',18.8044477,98.9838626,'市場裡的小攤，只賣兩種米線：番茄湯頭配豬肋排的 nam ngiao，和椰奶紅咖哩雞配魚丸。只收現金。'],
+ ['maadae','Maadae Slow Fish','','sel','海鮮',2,'塔佩路','11:00–22:00，週三休','p','+66 92 669 0514','maadae-slow-fish-kitchen',18.7880740,99.0009199,'向春蓬府的漁民進貨的海鮮餐廳，菜單跟著漁獲換。晚上有現烤海鮮配辣醬。'],
+ ['moopingkhunpor','Moo Ping Khun Por','','sel','街頭小吃',1,'尼曼 11 巷','06:30–13:30，週二休','w','+66 65 645 2650','moo-ping-khun-por',18.7969467,98.9689771,'早餐時段的炭烤豬肉串，甜鹹口味，配糯米飯。熱門部位中午前賣完。只收現金。'],
+ ['blackitch','Blackitch Artisan Kitchen','','sel','當代亞洲菜',3,'尼曼 7 巷','11:30–14:00、17:00–22:00，週三休','p','+66 93 695 6464','blackitch-artisan-kitchen',18.7981264,98.9695355,'只有 16 個座位，吃十道以上的季節套餐。蔬果、黃豆的發酵品都是自己做的，可以問自製的發酵飲料。'],
+ ['busarin','Busarin Cuisine','','sel','泰北菜',2,'古城東北，Rattanakosin 路','11:00–17:00，週日休','p','+66 81 671 2846','busarin-cuisine',18.8006357,98.9972692,'像到主廚家裡作客。家傳的泰北菜配麵條或烙餅，不配飯。招牌是用 hang le 咖哩燉兩天的五花肉。只收現金，只做到下午。'],
+ ['yangzijiang','Yangzi Jiang','','sel','中菜',3,'尼曼 5 巷','11:30–14:30、17:30–21:30','p','+66 53 225 313','yangzi-jiang',18.7985983,98.9680476,'香港主廚開的中餐廳，手工點心全天供應，還有脆皮燒腩肉。份量大、大桌多，米其林建議提前訂位。'],
+ ['redbox','Redbox','','sel','當代泰國菜',4,'尼曼北邊，Huai Kaeo 路','11:30–14:00、17:30–22:00，週二休','o','+66 92 979 4542','redbox',18.8013718,98.9696259,'只供應套餐。用歐式技法做現代泰菜，米其林推薦加點豬肉沙嗲配自製花生醬。'],
+ ['ekachan','Ekachan','','sel','泰國菜',2,'長康路一帶，Charoenprathet 路','11:00–15:00、17:00–22:00','p','+66 97 962 6445','ekachan',18.7833776,99.0035298,'泰國各地口味的菜，黑板上寫每日特餐，有戶外座位。米其林推薦蝦醬甜蝦炒飯、薑黃辣牛肉咖哩。'],
+ ['kangjingjai','Kang Jing Jai','','sel','東南亞菜',2,'古城東北，真心市集內','11:00–21:00，週末 10:00 起','p','+66 65 241 8555','kang',18.8059769,98.9957837,'開在真心市集（Jing Jai Market）裡，賣印尼、馬來西亞和泰國菜。米其林推薦椰漿飯。現點現做，要等一下。'],
+ ['sukjai','Sukjai by Pata Obasan','','sel','素食',2,'賓河東岸，Charoen Muang 路','11:00–21:00，週四休','p','+66 65 054 6266','sukjai-by-pata-obasan',18.7872759,99.0063650,'百年老屋裡的素食餐廳，不加味精。米其林推薦用香蕉粉麵條炒的泰式炒河粉。只收現金。'],
+ ['witheelaab','Withee Laab Charoen Muang','','sel','泰北菜',1,'賓河東岸，Charoen Muang 路','11:00–22:00，週一休','p','+66 93 192 2596','withee-laab',18.7871149,99.0073360,'窄巷裡的木造老屋，賣泰北的香料拌剁肉（laab）。米其林點名辣的水牛肉和酸香的熟豬肉兩種。只收現金。'],
+ ['sanpakoi','Sanpakoi Kanomjeen','','sel','街頭小吃',1,'賓河東岸，Thongkam 市場','11:00–23:00，週日休','w','+66 61 301 8000','sanpakoi-kanomjeen',18.7859078,99.0086633,'1977 年開的米線攤，新鮮米線配各種咖哩，配菜吃到飽。米其林推薦豬肉、雞肉兩種辣醬混在一起的 nam lo。只收現金。'],
+ ['kruaphech','Krua Phech Doi Ngam','','sel','泰北菜',1,'古城南邊，Mahidol 路','10:30–21:30','p','+66 53 204 517','krua-phech-doi-ngam-krua-mueang-classic',18.7621072,98.9951792,'開了三十多年的露天餐廳，照傳統蘭納食譜做，用本地香草和少見的野菜，份量大。招牌是 lap pla phia。'],
+ ['talung','Talung','','sel','泰南菜',2,'古城北邊，Chotana 路','10:30–21:00，週一休','o','+66 83 578 4948','talung',18.8238549,98.9864371,'家庭經營的泰南菜小店。米其林推薦墨汁炒魷魚，還有用自製蝦醬和臭豆炒的蝦。'],
+ ['tubping','Tub Ping','','sel','當代泰國菜',2,'古城南邊，賓河畔','10:00–23:00','p','+66 95 975 0838','tub-ping',18.7552351,98.9942404,'賓河邊的餐廳，泰國食材配歐式做法。招牌有酸豬肉腸青醬筆管麵、脆皮油封鴨紅咖哩配荔枝。米其林建議坐河畔露台。'],
+ ['aeeen','Aeeen','','sel','素食',2,'古城西南，素帖山腳','11:00–17:00，只開週四到週日','p','+66 97 943 7039','aeeen-japanese-vegan-neo-shokudo',18.7707417,98.9484343,'日本夫妻開的素食小館，以自製豆腐和麴發酵調味為主。米其林推薦厚炸豆腐，另有手切烏龍麵。只收現金。'],
+ ['lumdee','Lumdee Te Khuadang','','sel','泰北菜',2,'東郊 San Sai，外環路旁','10:30–21:00','p','+66 86 688 3688','lumdee-te-khuadang',18.7984704,99.0331342,'坐得下 200 人的蘭納木造餐廳，有冷氣室內座位和露台。米其林點名白蟻菇炒香草、酸辣豬肋排。'],
+ ['laabtonyang','Laab Ton Yang (San Phi Suea)','','sel','泰北菜',1,'古城北邊 San Phi Suea','10:00–21:00','p','+66 89 433 9786','laab-ton-yang-san-phi-suea',18.8333582,99.0034507,'本地人擠滿的開放式小店，小份的泰北菜大家分著吃。米其林提到 kaeng om 湯和牛肉 laab（有生的也有熟的）。只收現金。'],
+ ['larbduangdee','Larb Duang Dee Mee Sook','','sel','泰北菜',2,'西南郊，素帖山腳','11:00–22:00','p','+66 80 889 4595','larb-duang-dee-mee-sook',18.7592878,98.9429191,'專做泰北 laab 的小館。米其林說酸辣的牛肉湯是必點。只收現金。'],
+ ['thakham','Tha Kham','','sel','泰北菜',1,'南郊 Mae Hia，和皇家花園同一區','米其林頁面沒列營業時間','p','+66 92 353 1123','tha-kham',18.7461948,98.9533401,'泰北家常菜，適合幾個人分著吃。米其林說豬肋排 kaeng salae 湯是必點，旺季建議訂位。'],
+ ['rongcheng','Rong Cheng','','sel','川菜',2,'東郊，Kad Dhara Dhevi','米其林頁面沒列營業時間','p','+66 80 029 3828','rong-cheng',18.7785318,99.0387374,'成都主廚掌廚的川菜館。米其林推薦脆皮乳鴿和水煮魚；海鮮要先打電話訂。'],
+ ['chum','Chum (Saraphi)','','sel','泰北菜',2,'南郊 Saraphi','10:00–21:00','p','+66 53 106 530','chum-saraphi',18.7242045,99.0086570,'照祖母的食譜做泰北菜。米其林提到野胡椒葉炒豬肉豬肝，還有配青辣椒醬的泰北開胃拼盤。'],
+ ['poondang','Poondang Kaengron','','sel','泰國菜',2,'東南郊 Saraphi','10:30–22:00','p','+66 80 287 1666','poondang-kaengron',18.7525141,99.0527803,'老木屋裡的泰菜，帶一點泰北口味，炒和炸的菜做得好。米其林點名椒鹽炸小蝦。'],
+ ['cuisinedegarden','Cuisine de Garden','','sel','創新菜',3,'南郊 Hang Dong','18:00–22:00，週五到週日加開午餐 12:30–14:30','o','+66 65 661 5646','cuisine-de-garden1184019',18.7176251,98.9359574,'用北歐風格的手法處理泰國在地食材，吃季節品嚐菜單。一道菜剩下的部分會用到另一道，盡量不浪費。'],
+ ['kinlumkindee','Kinlum Kindee','','sel','泰北菜',2,'東北郊 San Sai','10:00–19:00，週五到週日到 21:00','o','+66 82 656 3941','kinlum-kindee',18.8608398,99.0656193,'用自家菜園的蔬果香草做傳統泰北菜，口味重、很道地。米其林提到發酵魚辣椒醬、螞蟻蛋甜菜湯。'],
+ ['friendstable',"Friend's Table",'','sel','創新菜',3,'南郊 Hang Dong','18:30–22:30，週一休','m','+66 90 321 3344','friend-s-table',18.7033953,98.9091961,'開在主廚自己家裡的玻璃屋，兩位主廚在客人面前做菜。晚餐 19:00 準時開始。'],
+ ['guaytiewpet','Guay Tiew Pet Tun Saraphi','','sel','街頭小吃',1,'南郊 Saraphi','09:00–16:00','w','+66 91 079 3973','guay-tiew-pet-tun-saraphi',18.6802540,99.0446951,'老字號的燉鴨麵，湯頭鮮、鴨肉軟，鴨肝處理得好，也賣烤鴨。'],
+ ['khao','Khao','','sel','泰國菜',4,'湄林，四季度假酒店內','07:00–21:45','o','+66 53 298 181','khao1183932',18.9163599,98.9315887,'四季酒店裡的餐廳，用現代手法做泰北菜。露台看得到稻田和山。'],
+ ['navan','NAVAN NAVAN','','sel','創新菜',3,'湄林','17:00–24:00，週一、週二休','p','+66 65 664 5391','navan-navan',18.9331204,98.9606077,'稻田中間的水泥建築，開放式廚房，用炭火烤在地食材。米其林建議日落前到，先看花園。'],
+ ['baansuanmaerim','Baan Suan Mae Rim','','sel','泰國菜',2,'湄林','10:00–22:00','p','+66 53 297 421','baan-suan-mae-rim',18.9443268,98.9453950,'2004 年開到現在，泰北菜和一般泰菜都有，肉和淡水魚做得多。米其林推薦炸辣椒豬肉末、酸辣魚湯。']
+];
+var PRICE_W=['','平價','中價位','高價位','最高價位'],RESV_W={o:'可線上訂位',p:'電話訂位',m:'一定要先訂位',w:'不用訂位，現場候位'},MI={};
+(function(){
+  /* 距離從塔佩門算起（直線），每一級由近到遠排 */
+  var G=[18.7877,98.9933],R=Math.PI/180,rank={star:0,bib:1,sel:2};
+  MICH.forEach(function(m){var x=(m[12]-G[1])*R*Math.cos((m[11]+G[0])/2*R),y=(m[11]-G[0])*R;m.km=Math.sqrt(x*x+y*y)*6371});
+  MICH.sort(function(a,b){return rank[a[3]]-rank[b[3]]||a.km-b.km});
+  MICH.forEach(function(m){
+    var km=m.km<10?Math.round(m.km*10)/10:Math.round(m.km),far='離塔佩門約 '+km+' 公里';
+    MI[m[0]]={area:m[6],far:far,hours:m[7],resv:m[8],phone:m[9],cuisine:m[4],price:PRICE_W[m[5]],
+      url:'https://guide.michelin.com/tw/zh_TW/chiang-mai-region/chiang-mai/restaurant/'+m[10]};
+    POOLS.michelin[m[0]]=[m[1],m[2],m[13],
+      [m[4]+'，'+PRICE_W[m[5]],m[6]+'，'+far,m[7],RESV_W[m[8]]+(m[8]==='p'||m[8]==='m'?' '+m[9]:'')].concat(m[14]||[]),m[3]];
+  });
+})();
+/*MICH-END*/
 var OPT={};
 var OPT_POOL={};
 Object.keys(POOLS).forEach(function(pn){Object.keys(POOLS[pn]).forEach(function(k){OPT[k]=POOLS[pn][k];OPT_POOL[k]=pn})});
@@ -976,6 +1062,9 @@ var OQ={
  streetshop:'',foot:'',lila:'Lila Thai Massage Chiang Mai',blind:'Perception Blind Massage Chiang Mai',temple:'Wat Pan Whaen Chiang Mai',
  zira:'Zira Spa Chiang Mai',fahlanna:'Fah Lanna Spa Chiang Mai',oasis:'Oasis Spa Lanna Chiang Mai',
  chawee:'CHAWEE restaurant Chiang Mai',danchicken:'Dan Chicken Rice San Sai Chiang Mai',
+ khao:'Khao restaurant Four Seasons Resort Chiang Mai',pari:'Pari- restaurant Sirimangkalajarn Chiang Mai',sanae:'Sanae Thai Cuisine Chiang Mai',chum:'Chum restaurant Saraphi Chiang Mai',talung:'Talung restaurant Chiang Mai',aeeen:'Aeeen Japanese Vegan Neo Shokudo Chiang Mai',
+ kangjingjai:'Kang restaurant Jing Jai Market Chiang Mai',redbox:'Redbox restaurant Chiang Mai',navan:'NAVAN NAVAN Mae Rim Chiang Mai',thakham:'Tha Kham restaurant Mae Hia Chiang Mai',
+ maadae:'Maadae Slow Fish Kitchen Chiang Mai',rongcheng:'Rong Cheng Kad Dhara Dhevi Chiang Mai',belen:'Belen by Paulo Airaudo InterContinental Chiang Mai',
  khantoke:'Old Chiang Mai Cultural Center',cabaret:'Chiang Mai Cabaret Show Anusarn Market',miracle:'Miracle Cabaret Chiang Mai',thaiboxing:'Thapae Boxing Stadium Chiang Mai'
 };
 
@@ -1612,12 +1701,28 @@ function renderBg(){
 }
 
 /* ── 米其林名單與伴手禮 ── */
-$('mlist').innerHTML='<table class="mtable"><thead><tr><th scope="col">店名</th><th scope="col">菜系</th><th scope="col">價位</th></tr></thead><tbody>'
-  +Object.keys(POOLS.michelin).map(function(k){var x=POOLS.michelin[k],tp=x[3][0].split('，');
-    return '<tr><td><span class="o-name"><span>'+x[0]+'</span>'+thHTML(x[1])+'<span class="badge">'+BADGE[x[4]]+'</span></span>'
-      +'<span class="o-desc">'+x[2]+'</span><span class="o-meta">'+x[3].slice(1).map(function(m){return '<span>'+m+'</span>'}).join('')+gmap(optQ(k),'Google 地圖')+'</span></td>'
-      +'<td class="m-type">'+tp[0]+'</td><td class="m-price">'+(tp[1]||'')+'</td></tr>';
-  }).join('')+'</tbody></table>';
+var GROUP_W={star:'米其林一星',bib:'必比登推介',sel:'入選餐廳'};
+function resvHTML(i){
+  var tel='<a class="m-tel" href="tel:'+i.phone.replace(/ /g,'')+'">'+i.phone+'</a>';
+  if(i.resv==='o')return '<a class="m-book" href="'+i.url+'" target="_blank" rel="noopener">線上訂位</a><small>在米其林頁面訂</small>';
+  if(i.resv==='m')return '<span class="need">一定要訂</span>'+tel;
+  if(i.resv==='p')return '電話訂位'+tel;
+  return '不用訂<small>現場候位</small>';
+}
+$('mlist').innerHTML='<table class="mtable"><thead><tr><th scope="col">店名</th><th scope="col">地點</th><th scope="col">訂位</th></tr></thead><tbody>'
+  +(function(){var last='',h='';
+    Object.keys(POOLS.michelin).forEach(function(k){var x=POOLS.michelin[k],i=MI[k];
+      if(x[4]!==last){last=x[4];
+        h+='<tr class="m-group"><th colspan="3" scope="colgroup">'+GROUP_W[last]+'<small>'+MICH.filter(function(m){return m[3]===last}).length+' 家'+(last==='star'?'':'，由近到遠')+'</small></th></tr>';}
+      h+='<tr><td><span class="o-name"><span>'+x[0]+'</span>'+thHTML(x[1])+'</span>'
+        +'<span class="o-desc">'+x[2]+'</span>'
+        +'<span class="o-meta"><span>'+i.cuisine+'</span><span>'+i.price+'</span><span>'+i.hours+'</span>'+x[3].slice(4).map(function(m){return '<span>'+m+'</span>'}).join('')+'</span>'
+        +'<span class="o-meta m-links">'+gmap(optQ(k),'Google 地圖')+'<a class="gmap" href="'+i.url+'" target="_blank" rel="noopener">米其林頁面（有照片）</a></span></td>'
+        +'<td class="m-area">'+i.area+'<small>'+i.far+'</small></td>'
+        +'<td class="m-resv">'+resvHTML(i)+'</td></tr>';
+    });
+    return h;
+  })()+'</tbody></table>';
 
 /* 其他頁面也放進同一種框 */
 ['glance','michelin','souvenir','prep','budget'].forEach(function(id){
