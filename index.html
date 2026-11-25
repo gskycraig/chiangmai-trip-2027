@@ -569,7 +569,8 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
 .flight{padding-block:.7rem;gap:.35rem}
 .f-pt b{font-size:var(--s2)}
 .f-note{padding-top:.6rem;font-size:.75rem;line-height:1.6}
-.cover-ph{display:none;margin:0;max-width:none}
+.cover-ph{display:grid;grid-area:photo;gap:.2rem;margin:0;max-width:none}
+.hero-inner{grid-template-areas:"tung text" "photo photo" "flights flights"}
 .day-inmap{margin-top:1.5rem;display:grid;gap:.5rem}
 .inmap-title{font-family:var(--f-display);font-weight:700;color:var(--celadon)}
 .day-inmap svg + svg{border-top:1px solid var(--line)}
@@ -583,7 +584,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   .gtable td.book{width:12.5rem}
   .cover-frame{max-width:60rem}
   .hero-inner{grid-template-columns:var(--tung-w) minmax(0,1fr) minmax(0,21rem);grid-template-areas:"tung text photo" "tung flights flights";column-gap:1.75rem}
-  .cover-ph{display:grid;grid-area:photo;gap:.2rem;align-content:start}
+  .cover-ph{align-content:start}
   .cover-ph img{aspect-ratio:1/1}
   .flights{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
   .f-note{grid-column:1/-1}
