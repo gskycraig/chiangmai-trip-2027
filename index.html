@@ -11,6 +11,10 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
+/* Leaflet 1.9.4 的樣式（BSD-2-Clause），原樣放進來：claude.ai 的版本不能載入外部樣式表 */
+.leaflet-image-layer,.leaflet-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane,.leaflet-pane>canvas,.leaflet-pane>svg,.leaflet-tile,.leaflet-tile-container,.leaflet-zoom-box{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:0 0}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}svg.leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-control,.leaflet-popup-pane{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-image-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-image-layer.leaflet-interactive,.leaflet-marker-icon.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a{color:#0078a8}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-size:12px;font-size:.75rem;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:focus,.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in,.leaflet-touch .leaflet-control-zoom-out{font-size:22px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:url(images/layers.png);width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:url(images/layers-2x.png);background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:13px;font-size:1.08333em}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:url(images/marker-icon.png)}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;line-height:1.4}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:focus,.leaflet-control-attribution a:hover{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:1em;height:.6669em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;white-space:nowrap;-moz-box-sizing:border-box;box-sizing:border-box;background:rgba(255,255,255,.8);text-shadow:1px 1px #fff}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers{box-shadow:none}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-layers{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;font-size:1.08333em;min-height:1px}.leaflet-popup-content p{margin:17px 0;margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:0 0}.leaflet-container a.leaflet-popup-close-button:focus,.leaflet-container a.leaflet-popup-close-button:hover{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto}.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before,.leaflet-tooltip-top:before{position:absolute;pointer-events:none;border:6px solid transparent;background:0 0;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}@media print{.leaflet-control{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<style>
 /* 版面概念：一面直書的紅色蘭納長幡掛在頁首；之後每一天都是「方城示意圖＋時間軸」，全部靠左對齊，其餘保持安靜。 */
 :root{
   --ground:#E7EEE6;      /* 青瓷霧：涼季早晨的底色 */
@@ -586,6 +590,40 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
 .m-book{color:var(--red);font-weight:500;text-underline-offset:.2em}
 .mtable .need{margin-right:0}
 .sec-lede a{text-underline-offset:.2em}
+/* 米其林位置圖（Leaflet） */
+.mmap-wrap{margin-top:1.25rem;display:grid;gap:.5rem;scroll-margin-top:.5rem}
+.mmap-tools{display:flex;flex-wrap:wrap;gap:.4rem .5rem;align-items:center}
+.chip-btn{font:inherit;font-size:var(--s-1);font-weight:500;color:var(--ink);background:var(--paper);border:1px solid var(--gold);border-radius:2px;padding:.3rem .7rem;cursor:pointer}
+.chip-btn:hover{border-color:var(--red)}
+.chip-btn[aria-pressed="true"]{background:var(--tung);color:var(--on-tung);border-color:var(--tung)}
+.mmap-legend{font-size:var(--s-1);color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.1rem .8rem;margin-left:auto}
+.mmap-legend span{display:inline-flex;align-items:center;gap:.3rem;white-space:nowrap}
+.lg{display:inline-block;width:.8rem;height:.8rem;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
+.mmap{height:min(62vh,34rem);min-height:20rem;border:1.5px solid var(--gold);background:color-mix(in srgb,var(--celadon) 10%,var(--paper));isolation:isolate}
+.mmap.leaflet-container{font-family:var(--f-body);font-size:var(--s-1)}
+.mm{border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.45),0 1px 4px rgba(0,0,0,.45);color:#fff;font-size:13px;line-height:20px;text-align:center}
+.mm-star{background:#b8860b}
+.mm-bib{background:#b3202a}
+.mm-sel{background:#2f7a66}
+.lg.mm-gate,.leaflet-marker-icon.mm-gate{background:#1d2440;border:2px solid #fff;border-radius:0;box-shadow:0 0 0 1px rgba(0,0,0,.45)}
+.mm-me{fill:#1a73e8;fill-opacity:1;stroke:#fff;stroke-width:3}
+.mm-river{stroke:color-mix(in srgb,var(--moat) 60%,var(--paper));stroke-width:9;fill:none}
+.mm-moat{stroke:color-mix(in srgb,var(--moat) 75%,var(--paper));stroke-width:5;fill:var(--ground);fill-opacity:.6}
+.mm-label{font-family:var(--f-display);font-weight:700;color:var(--ink-soft);text-align:center}
+.mmap .leaflet-popup-content-wrapper,.mmap .leaflet-popup-tip{background:var(--paper);color:var(--ink)}
+.mmap .leaflet-popup-content-wrapper{border-radius:3px;border:1px solid var(--gold)}
+.mmap .leaflet-popup-content{margin:.6rem .8rem;line-height:1.55;font-size:var(--s-1)}
+.mmap .leaflet-container a,.mmap a.gmap{color:var(--celadon)}
+.mp-name{display:block;font-family:var(--f-display);font-size:var(--s0);padding-right:1rem}
+.mp-tier{display:inline-block;font-size:.75rem;font-weight:500;color:#fff;border-radius:2px;padding:0 .4em;line-height:1.6;margin:.1rem 0 .2rem}
+.mp-star{background:#b8860b}.mp-bib{background:#b3202a}.mp-sel{background:#2f7a66}
+.mp-line{display:block;color:var(--ink-soft)}
+.mp-links{display:flex;gap:1rem;padding-top:.3rem}
+.mmap .leaflet-bar a{color:#1d2440}
+.mmap .leaflet-control-attribution{font-size:.6875rem}
+.mmap .leaflet-tile-pane{filter:var(--tile-filter,none)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--tile-filter:brightness(.78) saturate(.8)}}
+:root[data-theme="dark"]{--tile-filter:brightness(.78) saturate(.8)}
 @media (min-width:760px){
   .mtable .m-area{width:11rem}
   .mtable .m-resv{width:8.5rem}
@@ -685,6 +723,16 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
       <h2 class="sec-title">米其林推薦</h2>
       <p class="sec-lede">《米其林指南》在清邁一共列了 54 家：1 家一星、20 家必比登推介、33 家入選餐廳。必比登給的是價錢實在的好味道，路邊攤也在榜上。54 家都放進了每一餐的「換一個」清單，這裡是完整名單，每一級由離塔佩門近的排到遠的。</p>
       <p class="sec-lede">地點、營業時間和訂位方式取自<a href="https://guide.michelin.com/tw/zh_TW/chiang-mai-region/chiang-mai/restaurants" target="_blank" rel="noopener">米其林官網</a>各店的頁面（2026 年 11 月 25 日查），距離是直線距離。小吃攤和麵店標「不用訂」是照店型判斷的。餐廳的照片有版權，沒有放進這一頁，點「米其林頁面」或「Google 地圖」可以看。</p>
+      <div class="mmap-wrap" id="mmap-wrap">
+        <div class="mmap-tools">
+          <button type="button" class="chip-btn" data-mview="city" aria-pressed="true">市區</button>
+          <button type="button" class="chip-btn" data-mview="all" aria-pressed="false">全部 54 家</button>
+          <button type="button" class="chip-btn" id="mlocate">我的位置</button>
+          <span class="mmap-legend"><span><i class="lg mm-star"></i>一星</span><span><i class="lg mm-bib"></i>必比登</span><span><i class="lg mm-sel"></i>入選</span><span><i class="lg mm-gate"></i>塔佩門</span></span>
+        </div>
+        <div class="mmap" id="mmap" role="group" aria-label="米其林餐廳位置圖"></div>
+        <p class="map-cap" id="mmap-note">點圓點看店名、營業時間和訂位方式。用手指或滑鼠拖動，按 ＋ － 縮放。</p>
+      </div>
       <div class="mlist" id="mlist"></div>
     </div>
   </section>
@@ -1717,12 +1765,97 @@ $('mlist').innerHTML='<table class="mtable"><thead><tr><th scope="col">店名</t
       h+='<tr><td><span class="o-name"><span>'+x[0]+'</span>'+thHTML(x[1])+'</span>'
         +'<span class="o-desc">'+x[2]+'</span>'
         +'<span class="o-meta"><span>'+i.cuisine+'</span><span>'+i.price+'</span><span>'+i.hours+'</span>'+x[3].slice(4).map(function(m){return '<span>'+m+'</span>'}).join('')+'</span>'
-        +'<span class="o-meta m-links">'+gmap(optQ(k),'Google 地圖')+'<a class="gmap" href="'+i.url+'" target="_blank" rel="noopener">米其林頁面（有照片）</a></span></td>'
+        +'<span class="o-meta m-links"><button type="button" class="text-btn" data-mfocus="'+k+'">看位置圖</button>'+gmap(optQ(k),'Google 地圖')+'<a class="gmap" href="'+i.url+'" target="_blank" rel="noopener">米其林頁面（有照片）</a></span></td>'
         +'<td class="m-area">'+i.area+'<small>'+i.far+'</small></td>'
         +'<td class="m-resv">'+resvHTML(i)+'</td></tr>';
     });
     return h;
   })()+'</tbody></table>';
+
+/* ── 米其林位置圖：Leaflet 加 OpenStreetMap 底圖。第一次翻到這一頁才下載地圖元件。
+      底圖抓不到的時候（離線、claude.ai 的版本）改畫護城河和賓河的示意線，圓點的相對位置仍然是對的。 ── */
+var LEAFLET='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',LEAFLET_SRI='sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO';
+var mmap=null,mmarks={},mmapState=0,meMark=null,GATE_LL=[18.7877,98.9933];
+function mpopHTML(k){
+  var x=POOLS.michelin[k],i=MI[k];
+  return '<b class="mp-name">'+x[0]+'</b><span class="mp-tier mp-'+x[4]+'">'+BADGE[x[4]]+'</span>'
+    +'<span class="mp-line">'+i.cuisine+'，'+i.price+'</span>'
+    +'<span class="mp-line">'+i.area+'，'+i.far+'</span>'
+    +'<span class="mp-line">'+i.hours+'</span>'
+    +'<span class="mp-line">'+RESV_W[i.resv]+(i.resv==='p'||i.resv==='m'?' '+i.phone:'')+'</span>'
+    +'<span class="mp-links">'+gmap(optQ(k),'Google 地圖')+'<a class="gmap" href="'+i.url+'" target="_blank" rel="noopener">米其林頁面</a></span>';
+}
+function michView(v){
+  if(!mmap)return;
+  var pts=MICH.filter(function(m){return v==='all'||m.km<3.2}).map(function(m){return [m[11],m[12]]});
+  mmap.closePopup();
+  mmap.fitBounds(pts,{padding:[22,22]});
+  document.querySelectorAll('[data-mview]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-mview')===v)});
+}
+function buildMichMap(){
+  var L=window.L,note=$('mmap-note');
+  mmap=L.map('mmap',{scrollWheelZoom:false,zoomSnap:0.25});
+  mmap.attributionControl.setPrefix('');
+  var ok=false,fell=false;
+  var tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,
+    attribution:'底圖 &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'});
+  tiles.on('tileload',function(){ok=true});
+  tiles.on('tileerror',function(){
+    if(ok||fell)return;fell=true;
+    mmap.removeLayer(tiles);mmap.attributionControl.remove();
+    L.polyline([[18.8310,98.9945],[18.8060,98.9995],[18.7945,99.0012],[18.7880,99.0037],[18.7835,99.0047],[18.7740,99.0040],[18.7655,99.0020],[18.7552,98.9952],[18.7400,98.9900]],{className:'mm-river',interactive:false}).addTo(mmap);
+    L.rectangle([[18.7812,98.9780],[18.7956,98.9937]],{className:'mm-moat',interactive:false}).addTo(mmap);
+    L.marker([18.7884,98.9858],{icon:L.divIcon({className:'mm-label',html:'古城',iconSize:[40,18]}),interactive:false,keyboard:false}).addTo(mmap);
+    note.textContent='街道底圖載入不了，現在只畫出護城河和賓河的示意線。圓點之間的相對位置是照實際座標排的。';
+  });
+  tiles.addTo(mmap);
+  L.marker(GATE_LL,{icon:L.divIcon({className:'mm-gate',iconSize:[14,14]}),keyboard:false,zIndexOffset:900}).addTo(mmap).bindTooltip('塔佩門，住宿在這附近');
+  MICH.forEach(function(m){
+    var star=m[3]==='star',mk=L.marker([m[11],m[12]],{icon:L.divIcon({className:'mm mm-'+m[3],iconSize:star?[24,24]:[18,18],html:star?'★':''}),
+      title:m[1],alt:m[1],zIndexOffset:star?600:m[3]==='bib'?300:0}).addTo(mmap);
+    mk.bindPopup(function(){return mpopHTML(m[0])},{maxWidth:250,minWidth:180});
+    mmarks[m[0]]=mk;
+  });
+  michView('city');
+}
+function initMichMap(then){
+  if(mmapState===2){mmap.invalidateSize();if(then)then();return}
+  if(mmapState===1)return;
+  mmapState=1;
+  var sc=document.createElement('script');
+  sc.src=LEAFLET;sc.integrity=LEAFLET_SRI;sc.crossOrigin='anonymous';
+  sc.onload=function(){
+    try{buildMichMap();mmapState=2;if(then)then()}
+    catch(err){mmapState=0;$('mmap-note').textContent='位置圖畫不出來，下面的名單不受影響。'}
+  };
+  sc.onerror=function(){mmapState=0;$('mmap-note').textContent='地圖元件下載不了。連上網路後，再翻到這一頁就會重試；下面的名單不受影響。'};
+  document.body.appendChild(sc);
+}
+document.querySelectorAll('[data-mview]').forEach(function(b){
+  b.addEventListener('click',function(){michView(b.getAttribute('data-mview'))});
+});
+$('mlocate').addEventListener('click',function(){
+  if(mmapState!==2){toast('位置圖還沒載入');return}
+  if(!navigator.geolocation){toast('這個瀏覽器不能定位');return}
+  toast('正在找你的位置');
+  navigator.geolocation.getCurrentPosition(function(p){
+    var ll=[p.coords.latitude,p.coords.longitude];
+    if(!meMark)meMark=window.L.circleMarker(ll,{radius:8,className:'mm-me'}).addTo(mmap).bindTooltip('你在這裡');
+    else meMark.setLatLng(ll);
+    /* 人不在清邁的時候不把地圖拉走 */
+    if(Math.abs(ll[0]-GATE_LL[0])>0.4||Math.abs(ll[1]-GATE_LL[1])>0.4)toast('你現在不在清邁一帶，地圖留在原地');
+    else{mmap.setView(ll,15);toast('藍點是你的位置')}
+  },function(){toast('拿不到位置，請允許瀏覽器使用定位')},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
+});
+$('mlist').addEventListener('click',function(e){
+  var b=e.target.closest('[data-mfocus]');if(!b)return;
+  var k=b.getAttribute('data-mfocus');
+  initMichMap(function(){
+    $('mmap-wrap').scrollIntoView({block:'start'});
+    var mk=mmarks[k];if(!mk)return;
+    mmap.setView(mk.getLatLng(),16);mk.openPopup();
+  });
+});
 
 /* 其他頁面也放進同一種框 */
 ['glance','michelin','souvenir','prep','budget'].forEach(function(id){
@@ -1847,6 +1980,7 @@ function show(i){
   prevBtn.disabled=i===0;nextBtn.disabled=i===PAGES.length-1;
   nowEl.innerHTML='<b>'+(i+1)+' / '+PAGES.length+'</b>'+pg.name+(pg.day!==undefined?'　'+PLANS[planOf(pg.day)].title:'');
   if(location.hash.slice(1)!==pg.id){try{history.replaceState(null,'','#'+pg.id)}catch(e){try{location.hash=pg.id}catch(e2){}}}
+  if(pg.id==='michelin')initMichMap();
 }
 function go(i){
   if(i<0||i>=PAGES.length||i===cur||busy)return;
@@ -1870,12 +2004,14 @@ document.addEventListener('click',function(e){
 window.addEventListener('hashchange',function(){var i=pageIndex(location.hash.slice(1));if(i>=0&&i!==cur)go(i)});
 document.addEventListener('keydown',function(e){
   var t=e.target.tagName;if(t==='SELECT'||t==='INPUT'||t==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey)return;
+  if(e.target.closest&&e.target.closest('.mmap'))return;   /* 位置圖裡的方向鍵是移動地圖 */
   if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(cur+1)}
   else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
 });
-var tx=0,ty=0;
-pagesEl.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+var tx=0,ty=0,inMap=false;
+pagesEl.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;inMap=!!(e.target.closest&&e.target.closest('.mmap'))},{passive:true});
 pagesEl.addEventListener('touchend',function(e){
+  if(inMap)return;   /* 在位置圖上滑是拖地圖，不換頁 */
   var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
   if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*2.2)go(dx<0?cur+1:cur-1);
 },{passive:true});
@@ -2000,6 +2136,7 @@ function pwaInit(){
     var seen={},urls=[];
     Object.keys(PHOTO).forEach(function(k){var u='img/'+PHOTO[k][0]+'.jpg';if(!seen[u]){seen[u]=1;urls.push(u)}});
     document.querySelectorAll('link[rel="stylesheet"][href]').forEach(function(n){urls.push(n.href)});
+    urls.push(LEAFLET);
     if(reg.active)reg.active.postMessage({type:'warm',urls:urls});
   }).catch(function(){});
 }

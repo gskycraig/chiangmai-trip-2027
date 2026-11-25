@@ -1,9 +1,9 @@
 // 清邁行程網頁的離線快取。VERSION 由 build_site.ps1 在建置時填入。
-const VERSION = '20261125-111417';
+const VERSION = '20261125-112435';
 const CACHE = 'chiangmai-trip-' + VERSION;   // 頁面與字型樣式，每次改版換新
 const IMG_CACHE = 'chiangmai-trip-img';       // 照片，跨版本保留，避免重複下載
 const PRECACHE = ['./', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-180.png'];
-const CDN_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
+const CDN_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com', 'cdnjs.cloudflare.com'];   // 字型，以及米其林位置圖用的 Leaflet
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
@@ -56,7 +56,8 @@ self.addEventListener('message', e => {
         const name = same && url.pathname.includes('/img/') ? IMG_CACHE : CACHE;
         const cache = await caches.open(name);
         if (await cache.match(url.href)) { ok++; continue; }
-        const res = await fetch(url.href, same ? {} : { mode: 'no-cors' });
+        // Leaflet 之後是以 CORS 模式載入的（有完整性檢查），預先存的也要是 CORS 回應才用得上
+        const res = await fetch(url.href, same ? {} : { mode: url.hostname === 'cdnjs.cloudflare.com' ? 'cors' : 'no-cors' });
         if (res.ok || res.type === 'opaque') { await cache.put(url.href, res); ok++; }
       } catch (err) { }
     }
