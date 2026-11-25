@@ -561,6 +561,33 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   .ttable .c-time{width:3.3rem}
   .ttable .c-seal{width:3rem}
 }
+
+/* ── 版面調整：需預約標籤、航班縮小、桌機封面放寬加照片、手機先看行程再看地圖 ── */
+.need{display:inline-block;font-family:var(--f-body);font-size:.75rem;font-weight:500;line-height:1.6;color:var(--on-fill);background:var(--red);border-radius:2px;padding:0 .4em;margin-right:.45em;white-space:nowrap}
+.gtable td.book{color:var(--ink)}
+.day-book{font-size:var(--s-1);color:var(--ink-soft)}
+.flight{padding-block:.7rem;gap:.35rem}
+.f-pt b{font-size:var(--s2)}
+.f-note{padding-top:.6rem;font-size:.75rem;line-height:1.6}
+.cover-ph{display:none;margin:0;max-width:none}
+.day-inmap{margin-top:1.5rem;display:grid;gap:.5rem}
+.inmap-title{font-family:var(--f-display);font-weight:700;color:var(--celadon)}
+.day-inmap svg + svg{border-top:1px solid var(--line)}
+@media (max-width:899px){
+  .split{padding-top:0}
+  [data-layout="split"] .bgmap{height:auto;bottom:var(--bar-h,3.2rem);opacity:.14}
+  [data-layout="split"] .bgmap .map-cap{display:none}
+}
+@media (min-width:900px){
+  .day-inmap{display:none}
+  .gtable td.book{width:12.5rem}
+  .cover-frame{max-width:60rem}
+  .hero-inner{grid-template-columns:var(--tung-w) minmax(0,1fr) minmax(0,21rem);grid-template-areas:"tung text photo" "tung flights flights";column-gap:1.75rem}
+  .cover-ph{display:grid;grid-area:photo;gap:.2rem;align-content:start}
+  .cover-ph img{aspect-ratio:1/1}
+  .flights{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
+  .f-note{grid-column:1/-1}
+}
 </style>
 </head>
 <body>
@@ -600,7 +627,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
           <span class="f-pt end"><b>15:50</b>桃園 TPE</span>
         </div>
       </div>
-      <p class="f-note">時間都是當地時間，清邁比台灣慢 1 小時。時刻取自華航上一個冬季班表與 2026 年 11 月的實際航班，2027 年 1 月的班表請在訂票時到華航官網確認。</p>
+      <p class="f-note">都是當地時間，清邁比台灣慢 1 小時。時刻取自上一個冬季班表，訂票時請到華航官網確認 2027 年 1 月的班表。</p>
     </div>
 
   </div>
@@ -614,7 +641,7 @@ tr.more > td{background:color-mix(in srgb,var(--ground) 75%,transparent);border-
   <section class="band" id="glance">
     <div class="wrap">
       <h2 class="sec-title">八天一覽</h2>
-      <p class="sec-lede">點任何一天直接翻到那一頁，也可以用下方的上一頁、下一頁，或左右滑動。1/4 到 1/7 這四天可以整天換成別的行程，每一餐和每次按摩也都能換一家。<span class="local-note" data-shared="換過的內容會和所有打開這個網址的旅伴同步，按「全部恢復成原本的安排」也會重設所有人的。">換過的內容只存在這台裝置。</span>標紅字的項目要在出發前訂好。</p>
+      <p class="sec-lede">點任何一天直接翻到那一頁，也可以用下方的上一頁、下一頁，或左右滑動。1/4 到 1/7 這四天可以整天換成別的行程，每一餐和每次按摩也都能換一家。<span class="local-note" data-shared="換過的內容會和所有打開這個網址的旅伴同步，按「全部恢復成原本的安排」也會重設所有人的。">換過的內容只存在這台裝置。</span>標了「需預約」的項目要在出發前訂好。</p>
       <div class="glance" id="glance-list"></div>
       <button type="button" class="reset" id="reset" hidden>全部恢復成原本的安排</button>
     </div>
@@ -1488,14 +1515,20 @@ function dayHTML(i){
       +'</select></p>';
   }
   var notes=p.notes.concat(d.extra?[d.extra]:[]).map(function(x){return '<tr><th scope="row">'+x[0]+'</th><td>'+x[1]+'</td></tr>'}).join('');
+  /* 手機上地圖排在行程後面（桌機用左半邊的背景地圖，這塊不顯示） */
+  var hasPts=(p.map.pts||[]).length>0,alt=d.date+' '+p.title;
+  var inmap='<div class="day-inmap"><p class="inmap-title">今天的路線</p><div class="map">'
+    +(p.trip?tripSVG(p.trip,alt+'，路線剖面示意圖'):'')+(hasPts||!p.trip?mapSVG(p.map,alt+'，位置示意圖'):'')+'</div>'
+    +'<p class="map-cap">'+(p.trip?'路線剖面是示意，距離和海拔都是概略值。':'')+(hasPts||!p.trip?'<i></i>旅館。圓圈是今天的停留點，虛線是大致的移動順序。':'')+'</p></div>';
   return '<div class="wrap"><div class="panel">'+frame(
      '<header class="day-head"><p class="day-date"><span class="num">'+d.date+'</span><span>週'+d.wd+'，第 '+n+' 天</span>'
     +(bkk==='2027-01-0'+n?'<span class="today">今天</span>':'')+(d.free&&k!==d.plan?'<span class="changed">已換</span>':'')+'</p>'
-    +'<h2>'+p.title+'</h2>'+DIVIDER+'<p class="day-sum">'+p.sum+'</p>'+pick+'</header>'
+    +'<h2>'+p.title+'</h2>'+DIVIDER+'<p class="day-sum">'+p.sum+'</p>'
+    +(p.book?'<p class="day-book"><span class="need">需預約</span>'+p.book+'</p>':'')+pick+'</header>'
     +'<p class="tl-tools"><button type="button" class="text-btn" data-expand>全部收合</button></p>'
     +'<table class="ttable"><thead><tr><th scope="col">時間</th><th scope="col">類別</th><th scope="col">行程</th><th scope="col" class="c-cost">花費</th></tr></thead>'
     +'<tbody>'+p.items.map(function(it,idx){return itemHTML(k,idx,it)}).join('')+'</tbody></table>'
-    +'<table class="ntable"><caption>這天要注意</caption><tbody>'+notes+'</tbody></table>'
+    +'<table class="ntable"><caption>這天要注意</caption><tbody>'+notes+'</tbody></table>'+inmap
   )+'</div></div>';
 }
 
@@ -1503,7 +1536,7 @@ function renderGlance(){
   $('glance-list').innerHTML='<table class="gtable"><thead><tr><th scope="col">日期</th><th scope="col">行程</th><th scope="col" class="c-range">範圍</th><th scope="col">要先訂</th></tr></thead><tbody>'
     +DAYS.map(function(d,i){var p=PLANS[planOf(i)];
       return '<tr><td class="g-date">'+d.date+'<small>週'+d.wd+'</small></td><td><a class="g-title" href="#d'+(i+1)+'">'+p.title+'</a></td>'
-        +'<td class="c-range">'+p.range+'</td><td class="book">'+(p.book||'')+'</td></tr>';
+        +'<td class="c-range">'+p.range+'</td><td class="book">'+(p.book?'<span class="need">需預約</span>'+p.book:'')+'</td></tr>';
     }).join('')+'</tbody></table>';
   $('reset').hidden=!isChanged();
 }
@@ -1565,8 +1598,13 @@ function renderBg(){
     h=mapSVG({overview:true},'')+'<p class="map-cap">位置示意圖，沒有照比例畫。<i></i>建議住宿：塔佩門內側</p>';
   }else{
     var p=PLANS[planOf(pg.day)],narrow=window.matchMedia&&window.matchMedia('(max-width:899px)').matches;
-    if(p.trip)h+=tripSVG(p.trip,'');
-    if(!p.trip||(p.map.pts.length&&!narrow))h+=mapSVG(p.map,'');
+    if(narrow){
+      /* 手機：背景只放一張淡淡的地圖，看得清楚的那張排在行程後面 */
+      h+=mapSVG((p.map.pts||[]).length||!p.trip?p.map:{overview:true},'');
+    }else{
+      if(p.trip)h+=tripSVG(p.trip,'');
+      if(!p.trip||p.map.pts.length)h+=mapSVG(p.map,'');
+    }
     h+='<p class="map-cap">'+(p.trip?'路線剖面是示意，距離和海拔都是概略值。':'<i></i>旅館。圓圈是今天的停留點，虛線是大致的移動順序。')+'</p>';
   }
   bg.innerHTML=h;
@@ -1745,6 +1783,9 @@ navEl.insertAdjacentHTML('beforeend',band('th-band-krajang','bar-band'));
   inner.classList.add('hero-inner');
   while(grid.firstChild)inner.appendChild(grid.firstChild);
   grid.appendChild(fr);
+  /* 桌機的封面右側放一張帕邢寺的照片（手機不顯示） */
+  var ph=document.createElement('div');ph.innerHTML=photoHTML('帕邢寺');
+  if(ph.firstChild){ph.firstChild.className='ph cover-ph';inner.insertBefore(ph.firstChild,inner.querySelector('.flights'))}
 })();
 function measure(){root.style.setProperty('--nav-h',navEl.offsetHeight+'px');root.style.setProperty('--bar-h',pager.offsetHeight+'px')}
 var wasNarrow=null;
